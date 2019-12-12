@@ -1,0 +1,144 @@
+﻿@model TierraCreative.Model.AIL 
+
+@{
+    ViewBag.Title = "Add AIL";
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+
+<h2>AIL Entry</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.CreatedById)
+    @Html.HiddenFor(model => model.CreatedDate)
+    @Html.HiddenFor(model => model.UpdatedById)
+    @Html.HiddenFor(model => model.UpdatedDate)
+    
+    <div class="form-horizontal">
+        <h4>AIL</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.Label("UserName","UserName", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @Html.Raw(Session["UserName"])             
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.FromCSN, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("FromCSN", "FromCSN", new { htmlAttributes = new { @class = "form-control", @Value="123456789" } })
+                @Html.ValidationMessageFor(model => model.FromCSN, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FromCSN, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("FromCSN", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FromCSN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ISIN, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ISIN, new { htmlAttributes = new { @class = "form-control", @Value= @Session["ISIN"] } })
+                @Html.ValidationMessageFor(model => model.ISIN, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ToCSN, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ToCSN", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ToCSN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ISIN, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ISIN, new { htmlAttributes = new { @class = "form-control", @Value = @Session["ISIN"] } })
+                @Html.ValidationMessageFor(model => model.ISIN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TransferAmount, new { htmlAttributes = new { @class = "form-control", @Value = @Session["TransferAmount"] } })
+                @Html.ValidationMessageFor(model => model.TransferAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.CreatedById, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreatedById, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreatedById, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UpdatedById, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UpdatedById, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UpdatedById, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UpdatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UpdatedDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UpdatedDate, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "../Forms")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#FromCSN').on('change', function () {
+            $("#ToCSN option[value='" + $('#FromCSN').val() + "']").remove();
+
+            $("#ToCSN").append("<option value='" + $('#FromCSN').val() + "'>" + $('#FromCSN option:selected').text() + "</option>");
+        });
+
+        $('#ToCSN').on('change', function () {
+            $("#FromCSN option[value='" + $('#ToCSN').val() + "']").remove();
+
+            $("#FromCSN").append("<option value='" + $('#ToCSN').val() + "'>" + $('#ToCSN option:selected').text() + "</option>");
+        });
+
+    });
+
+</script>

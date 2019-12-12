@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <h2>Admin Login</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div> 
+        UserName: <input id="txtusername" name="txtusername" type="text" />
+    </div>
+    <br />
+    <div>
+      Password: <input id="txtpassword" name="txtpassword" type="password" />
+    </div>
+   <br />
+   <div>
+       <input type="submit" value="Login" class="btn btn-default" />
+   </div>
+
+}
+</body>
+</html>
