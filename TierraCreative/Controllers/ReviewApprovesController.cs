@@ -180,6 +180,51 @@ namespace TierraCreative.Controllers
             return Redirect("/ra/review");
         }
 
+        //[HttpPost]
+        public ActionResult Delete(int? id)
+        {
+            var source = Request.QueryString["source"];
+
+            switch (source)
+            {
+                case "DRP":
+                    var drp = _context.DRPs.Include(a => a.User).Include(a => a.ReviewedUser)
+                                           .SingleOrDefault(x => x.DRPId == id);
+
+                    drp.ReviewedById = int.Parse(Session["UserId"].ToString());
+                    drp.ReviewedDate = System.DateTime.Now;
+
+                    _context.Entry(drp).State = EntityState.Modified;
+                    //_context.SaveChanges();
+
+                    break;
+                case "AIL":
+                    var ail = _context.AILs.Include(a => a.User).Include(a => a.ReviewedUser)
+                                           .SingleOrDefault(x => x.AILId == id);
+
+                    ail.ReviewedById = int.Parse(Session["UserId"].ToString());
+                    ail.ReviewedDate = System.DateTime.Now;
+
+                    _context.Entry(ail).State = EntityState.Modified;
+                    //_context.SaveChanges();
+
+                    break;
+                case "Supplementary Dividend":
+                    var sP = _context.SupplementaryDividends.Include(a => a.User).Include(a => a.ReviewedUser)
+                                                            .SingleOrDefault(x => x.SDId == id);
+
+                    sP.ReviewedById = int.Parse(Session["UserId"].ToString());
+                    sP.ReviewedDate = System.DateTime.Now;
+
+                    _context.Entry(sP).State = EntityState.Modified;
+                    //_context.SaveChanges();
+
+                    break;
+            }
+
+            return Redirect("/ra/review");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -61,11 +61,14 @@
             </td>
 
             <td>
-                @Html.ActionLink("Review", "Approve", new { id = item.Id, source = item.Source })
-                
-                @*|
-                    @Html.ActionLink("Details", "Details", new { id=item.AILId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.AILId })*@
+                @if (item.ApprovedBy == "Pending")
+                {
+                    @Html.ActionLink("Review", "Approve", new { id = item.Id, source = item.Source })
+                }
+                else
+                {
+                    @Html.Raw("Review")
+                }
             </td>
         </tr>
     }
