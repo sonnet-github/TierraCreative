@@ -262,7 +262,6 @@
     <Content Include="Views\SupplementaryDividends\Details.cshtml" />
     <Content Include="Views\ReviewApproves\Review.cshtml" />
     <Content Include="Views\ReviewApproves\Approve.cshtml" />
-    <Content Include="Views\ReviewApproves\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

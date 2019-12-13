@@ -1,53 +1,60 @@
 ﻿@model TierraCreative.ViewModels.ReviewModel
 
 @{
-    ViewBag.Title = "Data Entry";
+    ViewBag.Title = "Review/Approve";
     Layout = "~/Views/Shared/Main.cshtml";
 }
-
-
-    <h2>Data Entry</h2>
+    <h2>Review/Approve</h2>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
-            <h4>DRP Review</h4>
+            <h4>Review/Approve</h4>
             <hr />
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.Source)
 
             <div class="form-group">
-                @Html.Label("UserName", "UserName", new { @class = "control-label col-md-2" })
+                @Html.DisplayNameFor(model => model.SubmittedBy)
                 <div class="col-md-10">
-                    @Html.Raw(Session["UserName"])
+                    @Html.DisplayFor(model => model.SubmittedBy)
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CSN, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DisplayNameFor(model => model.From)
                 <div class="col-md-10">
-                    @Html.Raw(Session["CSN"])
+                    @Html.DisplayFor(model => model.From)
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.ISIN, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DisplayNameFor(model => model.To)
                 <div class="col-md-10">
-                    @Html.Raw(Session["ISIN"])
+                    @Html.DisplayFor(model => model.To)
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.DRPAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DisplayNameFor(model => model.ISIN)
                 <div class="col-md-10">
-                    @Html.Raw(Session["DRPAmount"])
+                    @Html.DisplayFor(model => model.ISIN)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.Amount)
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.Amount)
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Submit" class="btn btn-default" />
+                    <input type="submit" value="Confirm" class="btn btn-default" />
                     &nbsp;
-                    <input id="Button1" type="button" value="Edit" onclick="window.location='add'" />
+                    <input id="submit" type="button" value="Delete" class="btn btn-default" />
                 </div>
             </div>
         </div>
