@@ -153,3 +153,15 @@ C:\2BInteractive\prg\TierraCreative_Git\TierraCreative\bin\Microsoft.Owin.Securi
 C:\2BInteractive\prg\TierraCreative_Git\TierraCreative\obj\Debug\TierraCreative.csprojResolveAssemblyReference.cache
 C:\2BInteractive\prg\TierraCreative_Git\TierraCreative\obj\Debug\TierraCreative.dll
 C:\2BInteractive\prg\TierraCreative_Git\TierraCreative\obj\Debug\TierraCreative.pdb
+D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative\bin\ApplicationInsights.config
+D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative\bin\TierraCreative.dll.config
+D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative\bin\TierraCreative.dll
+D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative\bin\TierraCreative.pdb
+D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative\bin\Newtonsoft.Json.dll
+D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative\bin\TierraCreative.Model.dll
+D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative\bin\TierraCreative.Model.pdb
+D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative\bin\TierraCreative.Model.dll.config
+D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative\obj\Debug\TierraCreative.csprojAssemblyReference.cache
+D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative\obj\Debug\TierraCreative.csproj.CopyComplete
+D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative\obj\Debug\TierraCreative.dll
+D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative\obj\Debug\TierraCreative.pdb

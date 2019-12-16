@@ -10,7 +10,28 @@
     <link href="~/Content/styles.css" rel="stylesheet" />
 </head>
 <body>
-
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/drps/add">DRP <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/supplementarydividends/add">Supplementary Dividend</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ails/add">AIL</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ra/review">Review</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div>
         @RenderSection("Scripts", false)
         @RenderBody()
