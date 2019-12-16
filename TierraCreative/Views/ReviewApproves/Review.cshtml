@@ -69,80 +69,82 @@
 </div>
 
 <div class="col-lg-12">
-    <table class="table table-condensed">
-        <thead>
-            <tr>
-                @*<th align="left">
-                        @Html.DisplayNameFor(model => model.Source)
-                    </th>*@
-                <th align="left">
-                    @Html.DisplayNameFor(model => model.From)
-                </th>
-                <th align="left">
-                    @Html.DisplayNameFor(model => model.To)
-                </th>
-                <th align="left">
-                    @Html.DisplayNameFor(model => model.ISIN)
-                </th>
-                <th align="left">
-                    @Html.DisplayNameFor(model => model.Amount)
-                </th>
-                <th align="left">
-                    @Html.DisplayNameFor(model => model.SubmittedBy)
-                </th>
-                <th align="left">
-                    @Html.DisplayNameFor(model => model.ApprovedBy)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    <div class="table-responsive-md">
+        <table class="table table-condensed">
+            <thead>
                 <tr>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.Source)
-                        </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.From)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.To)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ISIN)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Amount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SubmittedBy)
-                    </td>
-                    <td>
-
-                        @if (item.ApprovedBy == "Pending")
-                        {
-                            @: <span class='text-danger'>Pending</span>
-                        }
-                        else
-                        {
-                            @Html.DisplayFor(modelItem => item.ApprovedBy)
-                        }
-                    </td>
-
-                    <td>
-                        @if (item.ApprovedBy == "Pending")
-                        {
-                            @Html.ActionLink("Review", "Approve", new { id = item.Id, source = item.Source })
-                        }
-                        else
-                        {
-                            @Html.Raw("Review")
-                        }
-                    </td>
+                    @*<th align="left">
+                            @Html.DisplayNameFor(model => model.Source)
+                        </th>*@
+                    <th align="left">
+                        @Html.DisplayNameFor(model => model.From)
+                    </th>
+                    <th align="left">
+                        @Html.DisplayNameFor(model => model.To)
+                    </th>
+                    <th align="left">
+                        @Html.DisplayNameFor(model => model.ISIN)
+                    </th>
+                    <th align="left">
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </th>
+                    <th align="left">
+                        @Html.DisplayNameFor(model => model.SubmittedBy)
+                    </th>
+                    <th align="left">
+                        @Html.DisplayNameFor(model => model.ApprovedBy)
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.Source)
+                            </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.From)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.To)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ISIN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubmittedBy)
+                        </td>
+                        <td>
 
-    </table>
+                            @if (item.ApprovedBy == "Pending")
+                            {
+                                @: <span class='text-danger'>Pending</span>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.ApprovedBy)
+                            }
+                        </td>
+
+                        <td>
+                            @if (item.ApprovedBy == "Pending")
+                            {
+                                @Html.ActionLink("Review", "Approve", new { id = item.Id, source = item.Source })
+                            }
+                            else
+                            {
+                                @Html.Raw("Review")
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
 </div>
