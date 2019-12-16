@@ -17,11 +17,11 @@ margin-bottom:10px;
 p,label {
 font-weight:bold;
 }
-footer {
+footer,footer p {
     color: #494A4B!important;
     font-size:.9rem;
 }
 hr {
-    height: 2px;
+    height: 2px!important;
     background: #E5E5E5;
 }
