@@ -1,4 +1,4 @@
-﻿@model TierraCreative.Model.AIL 
+﻿@model TierraCreative.Model.AIL
 
 @{
     ViewBag.Title = "Supplementary Dividends Review";
@@ -7,14 +7,20 @@
 
 @if (ViewBag.IsView == "SDReview")
 {
-    <h2>Supplementary Dividends Review</h2>
 
+    <div class="col-lg-12 form">
+        <h4>
+            <p><small>Welcome <strong>John Smith (JohnSmith)</strong></small></p>
+        </h4>
+        <h2>Supplementary Dividends Review</h2>
+        <hr />
+    </div>
     using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
             <h4>Supplementary Dividends Review</h4>
-            <hr />  
+            <hr />
 
             <div class="form-group">
                 @Html.Label("UserName", "UserName", new { @class = "control-label col-md-2" })
@@ -38,7 +44,7 @@
             </div>
 
             <div class="form-group">
-               @Html.LabelFor(model => model.ISIN, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ISIN, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.Raw(Session["ISIN"])
                 </div>
@@ -63,12 +69,19 @@
 }
 @if (ViewBag.IsView == "Acknowledgement")
 {
-    <h2>Acknowledgement</h2>
+    
+    <div class="col-lg-12 form">
+        <h4>
+            <p><small>Welcome <strong>John Smith (JohnSmith)</strong></small></p>
+        </h4>
+        <h2>Acknowledgement</h2>
+        <hr />
+    </div>
     <table>
         <tr>
             <td><input id="Button1" type="button" value="Submit another?" onclick="window.location = 'add'" /></td>
         </tr>
-        
+
         <tr>
             <td><input id="Button2" type="button" value="Submit DRP?" onclick="window.location='../drps/add'" /></td>
         </tr>
