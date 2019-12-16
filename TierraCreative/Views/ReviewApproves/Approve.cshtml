@@ -8,6 +8,11 @@
 
 @if (ViewBag.IsView == "" || ViewBag.IsView == null)
 {
+    if (ViewBag.ErrorMessage != null)
+    {
+        <h3 style="color:red;"> @Html.Raw(ViewBag.ErrorMessage) </h3>
+    }
+
     using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
