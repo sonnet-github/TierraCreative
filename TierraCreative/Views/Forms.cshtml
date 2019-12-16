@@ -6,20 +6,20 @@
     <div class="container form">
         <div class="col-lg-12">
             <h4>
-                <p><small>Welcome <strong>John Smith (JohnSmith)</strong></small></p>
+                <p><small>Welcome <strong>(@Html.Raw(Session["UserName"]))</strong></small></p>
             </h4>
-            <h2>
+            @*<h2>
                 Supplementary Dividend Acknowledgement
-            </h2>
+            </h2>*@
             <hr />
         </div>
         <div class="col-lg-12">
-            <p>
+            @*<p>
                 Your entry is available for review by another user who has access to approve the details.
-            </p>
+            </p>*@
             <ul class="nav flex-column nav-pills nav-forms">
                 <li class="nav-item">
-                    <a class="btn default" href="supplementarydividends/add">Submit another?</a>
+                    <a class="btn default" href="supplementarydividends/add">Supplementary Dividend</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn default" href="drps/add">Submit DRP</a>

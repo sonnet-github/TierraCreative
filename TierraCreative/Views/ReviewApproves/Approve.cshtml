@@ -1,87 +1,144 @@
 ﻿@model TierraCreative.ViewModels.ReviewModel
 
 @{
-    ViewBag.Title = "Review/Approve";
+    ViewBag.Title = "Transaction Review";
     Layout = "~/Views/Shared/Main.cshtml";
 }
-    <h2>Review/Approve</h2>
 
 @if (ViewBag.IsView == "" || ViewBag.IsView == null)
 {
-    if (ViewBag.ErrorMessage != null)
-    {
-        <h3 style="color:red;"> @Html.Raw(ViewBag.ErrorMessage) </h3>
-    }
+    <div class="col-lg-12 form">
+        <h4>
+            <p><small>Welcome <strong>(@Html.Raw(Session["UserName"]))</strong></small></p>
+        </h4>
+        <h2>Transaction Review</h2>
+        <hr />
+    </div>
 
-    using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <div class="form-horizontal">
-            <h4>Review/Approve</h4>
-            <hr />
-            @Html.HiddenFor(model => model.Id)
-            @Html.HiddenFor(model => model.Source)
+    <div class="col-lg-12">
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <h3 style="color:red;"> @Html.Raw(ViewBag.ErrorMessage) </h3>
+        }
 
-            <div class="form-group">
-                @Html.DisplayNameFor(model => model.SubmittedBy)
-                <div class="col-md-10">
-                    @Html.DisplayFor(model => model.SubmittedBy)
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.Source)
+
+                <div class="form-group row">
+                    @Html.Label(Html.DisplayNameFor(model => model.SubmittedBy).ToString(), Html.DisplayNameFor(model => model.SubmittedBy).ToString(), new { @class = "control-label col-lg-3 col-sm-6" })
+
+                    <div class="col-lg-4 col-sm-6">
+                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.DisplayFor(model => model.SubmittedBy)" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.Label(Html.DisplayNameFor(model => model.From).ToString(), Html.DisplayNameFor(model => model.From).ToString(), new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="col-lg-4 col-sm-6">
+                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.DisplayFor(model => model.From)" />
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.Label(Html.DisplayNameFor(model => model.To).ToString(), Html.DisplayNameFor(model => model.To).ToString(), new { @class = "control-label col-lg-3 col-sm-6" })
+
+                    <div class="col-lg-4 col-sm-6">
+                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.DisplayFor(model => model.To)" />
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.Label(Html.DisplayNameFor(model => model.ISIN).ToString(), Html.DisplayNameFor(model => model.ISIN).ToString(), new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="col-lg-4 col-sm-6">
+                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.DisplayFor(model => model.ISIN)" />
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.Label(Html.DisplayNameFor(model => model.Amount).ToString(), Html.DisplayNameFor(model => model.Amount).ToString(), new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="col-lg-4 col-sm-6">
+                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.DisplayFor(model => model.Amount)" />
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-lg-3 col-sm-6"></div>
+                    <div class="col-lg-4 col-sm-6">
+                        <input type="submit" value="Confirm" class="btn default" />
+                        &nbsp;
+                        <button type="button" class="btn default" data-toggle="modal" data-target="#exampleModal">
+                            Delete
+                        </button>
+                        @*@Html.ActionLink(
+                            "Delete",
+                            "Delete",
+                            new { id = Model.Id, source = Model.Source },
+                            new { onclick = "return confirm('Are you sure you wish to delete this entry?');", @class = "btn default btn-large" })*@
+                        <p style="margin-top:1rem;"><strong>Or</strong></p>
+                        <input id="button1" type="button" value="Cancel and Return" class="btn default" onclick="window.location = '/ra/review'" />
+                    </div>
                 </div>
             </div>
-
-            <div class="form-group">
-                @Html.DisplayNameFor(model => model.From)
-                <div class="col-md-10">
-                    @Html.DisplayFor(model => model.From)
+        }
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete transaction?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
-
-            <div class="form-group">
-                @Html.DisplayNameFor(model => model.To)
-                <div class="col-md-10">
-                    @Html.DisplayFor(model => model.To)
+                <div class="modal-body">
+                    Are you sure you want to delete this transaction?
                 </div>
-            </div>
-
-            <div class="form-group">
-                @Html.DisplayNameFor(model => model.ISIN)
-                <div class="col-md-10">
-                    @Html.DisplayFor(model => model.ISIN)
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.DisplayNameFor(model => model.Amount)
-                <div class="col-md-10">
-                    @Html.DisplayFor(model => model.Amount)
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Confirm" class="btn btn-default" />
-                    &nbsp;
-                    @*<input id="submit2" type="button" value="Delete" class="btn btn-default" />*@
+                <div class="modal-footer">
                     @Html.ActionLink(
-             "Delete",
-             "Delete",
-             new { id = Model.Id, source = Model.Source },
-             new { onclick = "return confirm('Are you sure you wish to delete this entry?');", @class = "btn btn-primary btn-large" }) 
-                    <br /><br />
-                    <input id="button1" type="button" value="Cancel" class="btn btn-default" onclick="window.location = '/ra/review'" />
+                     "Delete",
+                     "Delete",
+                     new { id = Model.Id, source = Model.Source }, new { @class = "btn btn-default" })
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-    }
+    </div>
 }
-@if (ViewBag.IsView == "Approve") {
-<h2>Confirmation</h2>
-    <p>Thanks for your submission. You will receive a confirmation email shortly. </p>
-    <input id="button1" type="button" value="Return to review" class="btn btn-default" onclick="window.location = '/ra/review'" />
+@if (ViewBag.IsView == "Approve")
+{
+    <div class="col-lg-12 form">
+        <h4>
+            <p><small>Welcome <strong>(@Html.Raw(Session["UserName"]))</strong></small></p>
+        </h4>
+        <h2>Confirmation</h2>
+        <hr />
+    </div>
+
+    <div class="col-lg-12">
+        <p>Thanks for your submission. You will receive a confirmation email shortly. </p>
+        <input id="button1" type="button" value="Return to review" class="btn default" onclick="window.location = '/ra/review'" />
+    </div>
 }
 @if (ViewBag.IsView == "Delete")
 {
-    <h2>Delete Confirmation</h2>
-    <p>This entry has been successfully deleted!</p>
-    <input id="button1" type="button" value="Return to review" class="btn btn-default" onclick="window.location = '/ra/review'" />
+    <div class="col-lg-12 form">
+        <h4>
+            <p><small>Welcome <strong>(@Html.Raw(Session["UserName"]))</strong></small></p>
+        </h4>
+        <h2>Delete Confirmation</h2>
+        <hr />
+    </div>
+
+    <div class="col-lg-12">
+        <p>This entry has been successfully deleted!</p>
+        <input id="button1" type="button" value="Return to review" class="btn default" onclick="window.location = '/ra/review'" />
+    </div>
 }

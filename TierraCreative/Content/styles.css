@@ -1,6 +1,8 @@
 ﻿.navbar,.default {
     background: #670A51!important;
     color:#fff!important;
+    padding-left:20px;
+    padding-right:20px;
 }
 h2 {
     margin-top: 55px;
@@ -20,8 +22,12 @@ font-weight:bold;
 footer,footer p {
     color: #494A4B!important;
     font-size:.9rem;
+    margin-top:50px;
 }
 hr {
     height: 2px!important;
     background: #E5E5E5;
+}
+.control-label {
+padding-left:50px;
 }

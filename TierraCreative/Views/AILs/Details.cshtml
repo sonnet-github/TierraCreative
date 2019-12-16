@@ -1,4 +1,4 @@
-﻿@model TierraCreative.Model.AIL 
+﻿@model TierraCreative.Model.AIL
 
 @{
     ViewBag.Title = "AIL Review";
@@ -7,76 +7,96 @@
 
 @if (ViewBag.IsView == "AILReview")
 {
-    <h2>AIL Review</h2>
+    <div class="col-lg-12 form">
+        <h4>
+            <p><small>Welcome <strong>(@Html.Raw(Session["UserName"]))</strong></small></p>
+        </h4>
+        <h2>AIL Review</h2>
+        <hr />
+    </div>
 
-    using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <div class="form-horizontal">
-            <h4>AIL Review</h4>
-            <hr />  
+    <div class="col-lg-12">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <div class="form-group row">
+                    @Html.Label("UserName", "UserName", new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="col-lg-4 col-sm-6">
+                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.Raw(Session["UserName"])"/>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                @Html.Label("UserName", "UserName", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.Raw(Session["UserName"])
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.FromCSN, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="col-lg-4 col-sm-6">
+                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.Raw(Session["FromCSN"])" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.ToCSN, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="col-lg-4 col-sm-6">
+                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.Raw(Session["ToCSN"])" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.ISIN, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="col-lg-4 col-sm-6">
+                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.Raw(Session["ISIN"])" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.TransferAmount, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="col-lg-4 col-sm-6">
+                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.Raw(Session["TransferAmount"])" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-lg-3 col-sm-6"></div>
+                    <div class="col-lg-4 col-sm-6">
+                        <input type="submit" value="Submit" class="btn default" />
+                        &nbsp;
+                        <input id="Button1" type="button" value="Edit" class="btn default" onclick="window.location='add'" />
+                    </div>
                 </div>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.FromCSN, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.Raw(Session["FromCSN"])
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ToCSN, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.Raw(Session["ToCSN"])
-                </div>
-            </div>
-
-            <div class="form-group">
-               @Html.LabelFor(model => model.ISIN, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.Raw(Session["ISIN"])
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TransferAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.Raw(Session["TransferAmount"])
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Submit" class="btn btn-default" />
-                    &nbsp;
-                    <input id="Button1" type="button" value="Edit" onclick="window.location='add'" />
-                </div>
-            </div>
-        </div>
-    }
+        }
+    </div>
 }
 @if (ViewBag.IsView == "Acknowledgement")
 {
-    <h2>Acknowledgement</h2>
-    <table>
-        
-        <tr>
-            <td><input id="Button2" type="button" value="Submit another?" onclick="window.location='add'" /></td>
-        </tr>
-        <tr>
-            <td><input id="Button1" type="button" value="Submit DRP?" onclick="window.location='../drps/add'" /></td>
-        </tr>
-        <tr>
-            <td><input id="Button3" type="button" value="Submit Supplemantary Dividend?" onclick="window.location = '../supplementarydividends/add'" /></td>
-        </tr>
-        <tr>
-            <td><input id="Button4" type="button" value="Sign out" onclick="window.location='../signout'" /></td>
-        </tr>
-    </table>
+    <div class="container form">
+        <div class="col-lg-12">
+            <h4>
+                <p><small>Welcome <strong>(@Html.Raw(Session["UserName"]))</strong></small></p>
+            </h4>
+            <h2>
+                AIL Acknowledgement
+            </h2>
+            <hr />
+        </div>
+        <div class="col-lg-12">
+            <p>
+                Your entry is available for review by another user who has access to approve the details.
+            </p>
+            <ul class="nav flex-column nav-pills nav-forms">
+                <li class="nav-item">
+                    <a class="btn default" href="../supplementarydividends/add">Submit Supplementary Dividend</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn default" href="../drps/add">Submit DRP</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn default" href="../ails/add">Submit another?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn default" href="#">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 }
