@@ -4,7 +4,14 @@
     ViewBag.Title = "Supplementary Dividends Review";
     Layout = "~/Views/Shared/Main.cshtml";
 }
-
+@section ScriptContent
+{
+    <script>
+        $(function () {
+            $("nav a:contains('Supplementary Dividend')").parent().addClass("active");
+        });
+    </script>
+}
 @if (ViewBag.IsView == "SDReview")
 {
 

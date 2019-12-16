@@ -53,6 +53,14 @@
 
         });
     </script>
+    @section ScriptContent
+{
+        <script>
+            $(function () {
+                $("nav a:contains('Review')").parent().addClass("active");
+            });
+        </script>
+    }
 }
 
 <div class="col-lg-12 form">

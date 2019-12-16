@@ -4,6 +4,14 @@
     ViewBag.Title = "DRP Review";
     Layout = "~/Views/Shared/Main.cshtml";
 }
+@section ScriptContent
+{
+    <script>
+        $(function () {
+            $("nav a:contains('DRP')").parent().addClass("active");
+        });
+    </script>
+}
 
 @if (ViewBag.IsView == "DRPReview")
 {

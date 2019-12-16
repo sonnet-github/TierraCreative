@@ -4,7 +4,14 @@
     ViewBag.Title = "Transaction Review";
     Layout = "~/Views/Shared/Main.cshtml";
 }
-
+@section ScriptContent
+{
+    <script>
+        $(function () {
+            $("nav a:contains('Review')").parent().addClass("active");
+        });
+    </script>
+}
 @if (ViewBag.IsView == "" || ViewBag.IsView == null)
 {
     <div class="col-lg-12 form">

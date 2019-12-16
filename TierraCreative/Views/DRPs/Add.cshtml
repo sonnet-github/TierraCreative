@@ -4,6 +4,14 @@
     ViewBag.Title = "DRP";
     Layout = "~/Views/Shared/Main.cshtml";
 }
+@section ScriptContent
+{
+    <script>
+        $(function () {
+            $("nav a:contains('DRP')").parent().addClass("active");
+        });
+    </script>
+}
 
 <div class="col-lg-12 form">
     <h4>
@@ -23,98 +31,98 @@
         @Html.HiddenFor(model => model.UpdatedById)
         @Html.HiddenFor(model => model.UpdatedDate)
 
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
-            <div class="col-lg-4 col-sm-6">
-                @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="col-lg-4 col-sm-6">
+                        @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div class="form-group row">
+                @Html.Label("UserName", "UserName", new { @class = "control-label col-lg-3 col-sm-6" })
+                <div class="col-lg-4 col-sm-6">
+                    <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.Raw(Session["UserName"])" />
+                </div>
             </div>
-        </div>*@
 
-        <div class="form-group row">
-            @Html.Label("UserName", "UserName", new { @class = "control-label col-lg-3 col-sm-6" })
-            <div class="col-lg-4 col-sm-6">
-                <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.Raw(Session["UserName"])" />
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.CSN, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="col-lg-4 col-sm-6">
+                        @Html.Editor("CSN", "CSN", new { htmlAttributes = new { @class = "form-control", @Value="123456789" } })
+                        @Html.ValidationMessageFor(model => model.CSN, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.CSN, "CSN", htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
+                <div class="col-lg-4 col-sm-6">
+                    @Html.DropDownList("CSN", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CSN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.ISIN, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
+                <div class="col-lg-4 col-sm-6">
+                    @Html.EditorFor(model => model.ISIN, new { htmlAttributes = new { @class = "form-control", @Value = @Session["ISIN"] } })
+                    @Html.ValidationMessageFor(model => model.ISIN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.DRPAmount, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
+                <div class="col-lg-4 col-sm-6">
+                    @Html.EditorFor(model => model.DRPAmount, new { htmlAttributes = new { @class = "form-control", @Value = @Session["DRPAmount"] } })
+                    @Html.ValidationMessageFor(model => model.DRPAmount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.CreatedById, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="col-lg-4 col-sm-6">
+                        @Html.EditorFor(model => model.CreatedById, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CreatedById, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="col-lg-4 col-sm-6">
+                        @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UpdatedById, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="col-lg-4 col-sm-6">
+                        @Html.EditorFor(model => model.UpdatedById, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UpdatedById, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UpdatedDate, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="col-lg-4 col-sm-6">
+                        @Html.EditorFor(model => model.UpdatedDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UpdatedDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div class="form-group row">
+                <label class="control-label col-lg-3 col-sm-6"></label>
+                <div class="col-lg-4 col-sm-6">
+                    <input type="submit" value="Submit" class="btn default" />
+                </div>
             </div>
         </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.CSN, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
-            <div class="col-lg-4 col-sm-6">
-                @Html.Editor("CSN", "CSN", new { htmlAttributes = new { @class = "form-control", @Value="123456789" } })
-                @Html.ValidationMessageFor(model => model.CSN, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        <div class="form-group row">
-            @Html.LabelFor(model => model.CSN, "CSN", htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
-            <div class="col-lg-4 col-sm-6">
-                @Html.DropDownList("CSN", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CSN, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group row">
-            @Html.LabelFor(model => model.ISIN, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
-            <div class="col-lg-4 col-sm-6">
-                @Html.EditorFor(model => model.ISIN, new { htmlAttributes = new { @class = "form-control", @Value = @Session["ISIN"] } })
-                @Html.ValidationMessageFor(model => model.ISIN, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group row">
-            @Html.LabelFor(model => model.DRPAmount, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
-            <div class="col-lg-4 col-sm-6">
-                @Html.EditorFor(model => model.DRPAmount, new { htmlAttributes = new { @class = "form-control", @Value = @Session["DRPAmount"] } })
-                @Html.ValidationMessageFor(model => model.DRPAmount, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.CreatedById, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
-            <div class="col-lg-4 col-sm-6">
-                @Html.EditorFor(model => model.CreatedById, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedById, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
-            <div class="col-lg-4 col-sm-6">
-                @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UpdatedById, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
-            <div class="col-lg-4 col-sm-6">
-                @Html.EditorFor(model => model.UpdatedById, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UpdatedById, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UpdatedDate, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
-            <div class="col-lg-4 col-sm-6">
-                @Html.EditorFor(model => model.UpdatedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UpdatedDate, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        <div class="form-group row">
-            <label class="control-label col-lg-3 col-sm-6"></label>
-            <div class="col-lg-4 col-sm-6">
-                <input type="submit" value="Submit" class="btn default" />
-            </div>
-        </div>
-    </div>
     }
-    </div>
+</div>
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

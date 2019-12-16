@@ -4,6 +4,14 @@
     ViewBag.Title = "AIL Review";
     Layout = "~/Views/Shared/Main.cshtml";
 }
+@section ScriptContent
+{
+    <script>
+        $(function () {
+            $("nav a:contains('AIL')").parent().addClass("active");
+        });
+    </script>
+}
 
 @if (ViewBag.IsView == "AILReview")
 {
@@ -23,7 +31,7 @@
                 <div class="form-group row">
                     @Html.Label("UserName", "UserName", new { @class = "control-label col-lg-3 col-sm-6" })
                     <div class="col-lg-4 col-sm-6">
-                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.Raw(Session["UserName"])"/>
+                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.Raw(Session["UserName"])" />
                     </div>
                 </div>
 
