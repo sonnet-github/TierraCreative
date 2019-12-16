@@ -28,8 +28,11 @@ hr {
     height: 2px!important;
     background: #E5E5E5;
 }
-.control-label {
-padding-left:50px;
+
+@media(min-width:768px) {
+    .control-label {
+        padding-left: 50px;
+    }
 }
 .navbar-brand img {
     padding-bottom: 4px;
