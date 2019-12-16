@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using TierraCreative;
 using TierraCreative.Model;
 using TierraCreative.ViewModels;
@@ -250,6 +251,7 @@ namespace TierraCreative.Controllers
             var user = _context.Users.Include(x=>x.Role).SingleOrDefault(x => x.UserName == username || x.Email == username);
             if (user != null)
             {
+                MembershipUser userninfo = Membership.GetUser(username, false);
                 if (password == user.Password)
                     if (user.IsEnabled == true) {
                         Session["UserId"] = user.UserId;
