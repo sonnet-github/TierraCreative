@@ -31,3 +31,6 @@ hr {
 .control-label {
 padding-left:50px;
 }
+.navbar-brand img {
+    padding-bottom: 4px;
+}
