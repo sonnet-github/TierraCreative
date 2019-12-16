@@ -155,7 +155,6 @@ namespace TierraCreative.Controllers
             //return Redirect("/ra/review");
         }
 
-        //[HttpPost]
         public ActionResult Delete(int? id)
         {
             ViewBag.IsView = null;
