@@ -17,13 +17,11 @@ namespace TierraCreative.Controllers
     {
         public ActionResult Review()
         {
-            ViewBag.IsView = null;
-
             List<ReviewModel> reviews = new List<ReviewModel>();
 
-            var dRps = _context.DRPs.Include(a => a.User).Include(a => a.ReviewedUser).Where(x=>x.DeletedById == null).ToList();
-            var aILs = _context.AILs.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.DeletedById == null).ToList();
-            var sPs = _context.SupplementaryDividends.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.DeletedById == null).ToList();
+            var dRps = _context.DRPs.Include(a => a.User).Include(a => a.ReviewedUser).ToList();
+            var aILs = _context.AILs.Include(a => a.User).Include(a => a.ReviewedUser).ToList();
+            var sPs = _context.SupplementaryDividends.Include(a => a.User).Include(a => a.ReviewedUser).ToList();
 
             foreach (var drp in dRps) {
                 reviews.Add(new ReviewModel
@@ -76,7 +74,6 @@ namespace TierraCreative.Controllers
         }
 
         public ActionResult Approve(int? id) {
-            ViewBag.IsView = null;
 
             var source = Request.QueryString["source"];
 
@@ -180,11 +177,7 @@ namespace TierraCreative.Controllers
                     break;
             }
 
-            ViewBag.IsView = "Approve";
-
-            return View("Approve");
-
-            //return Redirect("/ra/review");
+            return Redirect("/ra/review");
         }
 
         //[HttpPost]
@@ -198,42 +191,38 @@ namespace TierraCreative.Controllers
                     var drp = _context.DRPs.Include(a => a.User).Include(a => a.ReviewedUser)
                                            .SingleOrDefault(x => x.DRPId == id);
 
-                    drp.DeletedById = int.Parse(Session["UserId"].ToString());
-                    drp.DeletedDate = System.DateTime.Now;
+                    drp.ReviewedById = int.Parse(Session["UserId"].ToString());
+                    drp.ReviewedDate = System.DateTime.Now;
 
                     _context.Entry(drp).State = EntityState.Modified;
-                    _context.SaveChanges();
+                    //_context.SaveChanges();
 
                     break;
                 case "AIL":
                     var ail = _context.AILs.Include(a => a.User).Include(a => a.ReviewedUser)
                                            .SingleOrDefault(x => x.AILId == id);
 
-                    ail.DeletedById = int.Parse(Session["UserId"].ToString());
-                    ail.DeletedDate = System.DateTime.Now;
+                    ail.ReviewedById = int.Parse(Session["UserId"].ToString());
+                    ail.ReviewedDate = System.DateTime.Now;
 
                     _context.Entry(ail).State = EntityState.Modified;
-                    _context.SaveChanges();
+                    //_context.SaveChanges();
 
                     break;
                 case "Supplementary Dividend":
                     var sP = _context.SupplementaryDividends.Include(a => a.User).Include(a => a.ReviewedUser)
                                                             .SingleOrDefault(x => x.SDId == id);
 
-                    sP.DeletedById = int.Parse(Session["UserId"].ToString());
-                    sP.DeletedDate = System.DateTime.Now;
+                    sP.ReviewedById = int.Parse(Session["UserId"].ToString());
+                    sP.ReviewedDate = System.DateTime.Now;
 
                     _context.Entry(sP).State = EntityState.Modified;
-                    _context.SaveChanges();
+                    //_context.SaveChanges();
 
                     break;
             }
 
-            ViewBag.IsView = "Delete";
-
-            return View("Approve");
-
-            //return Redirect("/ra/review");
+            return Redirect("/ra/review");
         }
 
         protected override void Dispose(bool disposing)

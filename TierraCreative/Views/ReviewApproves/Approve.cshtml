@@ -6,9 +6,7 @@
 }
     <h2>Review/Approve</h2>
 
-@if (ViewBag.IsView == "" || ViewBag.IsView == null)
-{
-    using (Html.BeginForm())
+    @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
@@ -58,25 +56,13 @@
                     &nbsp;
                     @*<input id="submit2" type="button" value="Delete" class="btn btn-default" />*@
                     @Html.ActionLink(
-             "Delete",
-             "Delete",
-             new { id = Model.Id, source = Model.Source },
-             new { onclick = "return confirm('Are you sure you wish to delete this entry?');", @class = "btn btn-primary btn-large" }) 
+                    "Delete",
+                    "Delete",
+                    new { id = Model.Id, source = Model.Source },
+                    new { onclick = "return confirm('Are you sure you wish to delete this entry?');", @class = "btn btn-primary btn-large" }) 
                     <br /><br />
                     <input id="button1" type="button" value="Cancel" class="btn btn-default" onclick="window.location = '/ra/review'" />
                 </div>
             </div>
         </div>
     }
-}
-@if (ViewBag.IsView == "Approve") {
-<h2>Confirmation</h2>
-    <p>Thanks for your submission. You will receive a confirmation email shortly. </p>
-    <input id="button1" type="button" value="Return to review" class="btn btn-default" onclick="window.location = '/ra/review'" />
-}
-@if (ViewBag.IsView == "Delete")
-{
-    <h2>Delete Confirmation</h2>
-    <p>This entry has been successfully deleted!</p>
-    <input id="button1" type="button" value="Return to review" class="btn btn-default" onclick="window.location = '/ra/review'" />
-}

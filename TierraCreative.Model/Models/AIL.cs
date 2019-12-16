@@ -43,9 +43,5 @@ namespace TierraCreative.Model
         public User ReviewedUser { get; set; }
 
         public DateTime? ReviewedDate { get; set; }
-
-        public int? DeletedById { get; set; }
-
-        public DateTime? DeletedDate { get; set; }
     }
 }
