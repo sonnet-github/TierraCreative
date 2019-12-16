@@ -12,6 +12,18 @@
         table thead th{
         color:#5791C2!important;
         }
+        #DataTables_Table_0_wrapper > div:nth-child(1),#DataTables_Table_0_wrapper > div:nth-child(3) > div.col-sm-12.col-md-5{
+            display:none!important;
+        }
+        table.dataTable th {
+            border-bottom: 0;
+        }
+        table tbody tr:last-of-type td{
+            border-bottom: 1px solid #dee2e6;
+        }
+        .pagination {
+            margin:50px 0!important;
+        }
     </style>
 }
 @section ScriptContent
@@ -21,7 +33,17 @@
     <script>
         $(document).ready(function () {
             $('.table').DataTable({
-                "order": []
+                "order": [],
+                "columnDefs": [
+                    { "type": "date-uk", targets: 2 },
+                    { "orderable": false, "targets": 0 },
+                    { "orderable": false, "targets": 1 },
+                    { "orderable": false, "targets": 2 },
+                    { "orderable": false, "targets": 3 },
+                    { "orderable": false, "targets": 4 },
+                    { "orderable": false, "targets": 5 },
+                    { "orderable": false, "targets": 6 }
+                ]
             });
 
         });
@@ -37,7 +59,7 @@
 </div>
 
 <div class="col-lg-12">
-    <table class="table">
+    <table class="table table-condensed">
         <thead>
             <tr>
                 @*<th align="left">
@@ -87,13 +109,21 @@
                         @Html.DisplayFor(modelItem => item.SubmittedBy)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ApprovedBy)
+
+                        @if (item.ApprovedBy == "Pending")
+                        {
+                            @: <span class='text-danger'>Pending</span>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.ApprovedBy)
+                        }
                     </td>
 
                     <td>
                         @if (item.ApprovedBy == "Pending")
                         {
-                            @Html.ActionLink("Review", "Approve", new { id = item.Id, source = item.Source })
+                            @Html.ActionLink("Pending", "Approve", new { id = item.Id, source = item.Source })
                         }
                         else
                         {
