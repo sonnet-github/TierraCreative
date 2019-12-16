@@ -18,13 +18,3 @@ C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.Model\bin\Debug\EntityFra
 C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.Model\obj\Debug\TierraCreative.Model.csprojResolveAssemblyReference.cache
 C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.Model\obj\Debug\TierraCreative.Model.dll
 C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.Model\obj\Debug\TierraCreative.Model.pdb
-D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative.Model\bin\Debug\TierraCreative.Model.dll.config
-D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative.Model\bin\Debug\TierraCreative.Model.dll
-D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative.Model\bin\Debug\TierraCreative.Model.pdb
-D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative.Model\bin\Debug\EntityFramework.dll
-D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative.Model\bin\Debug\EntityFramework.SqlServer.dll
-D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative.Model\bin\Debug\EntityFramework.xml
-D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative.Model\bin\Debug\EntityFramework.SqlServer.xml
-D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative.Model\obj\Debug\TierraCreative.Model.csproj.CopyComplete
-D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative.Model\obj\Debug\TierraCreative.Model.dll
-D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative.Model\obj\Debug\TierraCreative.Model.pdb
