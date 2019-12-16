@@ -76,7 +76,7 @@
             <div class="form-group row">
                 @Html.LabelFor(model => model.ISIN, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
                 <div class="col-lg-4 col-sm-6">
-                    @Html.EditorFor(model => model.ISIN, new { htmlAttributes = new { @required="required",@class = "form-control", @Value = @Session["ISIN"] } })
+                    @Html.EditorFor(model => model.ISIN, new { htmlAttributes = new { @required="required",@class = "form-control numeric", @Value = @Session["ISIN"] } })
                     @Html.ValidationMessageFor(model => model.ISIN, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -84,7 +84,7 @@
             <div class="form-group row">
                 @Html.LabelFor(model => model.TransferAmount, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
                 <div class="col-lg-4 col-sm-6">
-                    @Html.EditorFor(model => model.TransferAmount, new { htmlAttributes = new { @required="required",@class = "form-control", @Value = @Session["TransferAmount"] } })
+                    @Html.EditorFor(model => model.TransferAmount, new { htmlAttributes = new { @required="required",@class = "form-control numeric", @Value = @Session["TransferAmount"] } })
                     @Html.ValidationMessageFor(model => model.TransferAmount, "", new { @class = "text-danger" })
                 </div>
             </div>

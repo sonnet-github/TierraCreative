@@ -59,5 +59,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     @RenderSection("Scripts", false)
     @RenderSection("ScriptContent", false)
+    <script>
+        $(document).ready(function() {
+          $(".numeric").inputFilter(function(value) {
+            return /^\d*$/.test(value);    // Allow digits only, using a RegExp
+          });
+        });
+    </script>
 </body>
 </html>
