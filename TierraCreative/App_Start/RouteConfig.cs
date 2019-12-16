@@ -18,7 +18,13 @@ namespace TierraCreative
               url: "",
               defaults: new { controller = "users", action = "login", id = UrlParameter.Optional }
             );
-            
+
+            routes.MapRoute(
+             name: "Logout",
+             url: "logout",
+             defaults: new { controller = "users", action = "logout", id = UrlParameter.Optional }
+           );
+
             routes.MapRoute(
               name: "Login",
               url: "login",

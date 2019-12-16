@@ -251,7 +251,6 @@ namespace TierraCreative.Controllers
             var user = _context.Users.Include(x=>x.Role).SingleOrDefault(x => x.UserName == username || x.Email == username);
             if (user != null)
             {
-                MembershipUser userninfo = Membership.GetUser(username, false);
                 if (password == user.Password)
                     if (user.IsEnabled == true) {
                         Session["UserId"] = user.UserId;
@@ -294,6 +293,15 @@ namespace TierraCreative.Controllers
                 _context.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult LogOut()
+        {
+            Session["UserId"] = "";
+            Session["UserName"] = "";
+            Session["UserRole"] = "";
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Users", null);
         }
     }
 }
