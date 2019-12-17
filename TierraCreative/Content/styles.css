@@ -1,31 +1,41 @@
-﻿.navbar,.default {
-    background: #670A51!important;
-    color:#fff!important;
-    padding-left:20px;
-    padding-right:20px;
+﻿.navbar, .default {
+    background: #670A51 !important;
+    color: #fff !important;
+    padding-left: 20px;
+    padding-right: 20px;
 }
+
 h2 {
     margin-top: 55px;
 }
+
 .form h4 {
     margin-top: 55px;
 }
+
 .form h2 {
     margin-top: unset;
 }
+
 .nav-forms li {
-margin-bottom:10px;
+    margin-bottom: 10px;
 }
-p,label {
-font-weight:bold;
+
+p, label {
+    font-weight: bold;
 }
-footer,footer p {
-    color: #494A4B!important;
-    font-size:.9rem;
-    margin-top:50px;
+
+footer, footer p {
+    color: #494A4B !important;
+    font-size: .9rem;
 }
+
+footer {
+    margin-top: 50px;
+}
+
 hr {
-    height: 2px!important;
+    height: 2px !important;
     background: #E5E5E5;
 }
 
@@ -34,6 +44,7 @@ hr {
         padding-left: 50px;
     }
 }
+
 .navbar-brand img {
     padding-bottom: 4px;
 }
