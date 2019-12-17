@@ -201,6 +201,7 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\Utility\SendGridHelper.cs" />
     <Compile Include="Controllers\Utility\SessionExpireAttribute.cs" />
+    <Compile Include="Controllers\Utility\Utilities.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -39,6 +39,8 @@ namespace TierraCreative.Controllers
                             Session["UserId"] = user.UserId;
                             Session["UserName"] = user.UserName;
                             Session["UserRole"] = user.Role.RoleName;
+                            Session["UserFullName"] = "";
+                            Session["UserEmail"] = user.Email;
 
                             return Redirect("/admin/main");
                         }
@@ -247,7 +249,7 @@ namespace TierraCreative.Controllers
         {
             var username = form["txtusername"].ToString();
             var password = form["txtpassword"].ToString();
-
+           
             var user = _context.Users.Include(x=>x.Role).SingleOrDefault(x => x.UserName == username || x.Email == username);
             if (user != null)
             {
@@ -256,6 +258,8 @@ namespace TierraCreative.Controllers
                         Session["UserId"] = user.UserId;
                         Session["UserName"] = user.UserName;
                         Session["UserRole"] = user.Role.RoleName;
+                        Session["UserFullName"] = "";
+                        Session["UserEmail"] = user.Email;
 
                         return Redirect("Forms");
                     }

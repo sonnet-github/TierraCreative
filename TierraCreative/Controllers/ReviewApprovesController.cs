@@ -95,6 +95,21 @@ namespace TierraCreative.Controllers
             ViewBag.IsView = null;
             ViewBag.ErrorMessage = null;
 
+            Utility.Utilities utilities = new Utility.Utilities();
+
+            //email variable
+            var TransactionID = string.Empty;
+            var FromCSNValue = string.Empty;
+            var ToCSNValue = string.Empty;
+            var ISINValue = string.Empty;
+            var AmountValue = string.Empty;
+            var Timestamp = System.DateTime.Now.ToShortDateString();
+            var FormName = string.Empty;
+            var UserName = Session["UserName"].ToString();
+            var FullName = Session["UserFullName"].ToString();
+            var toEmail = Session["UserEmail"].ToString();
+            var fromEmail = string.Empty;
+
             var id = int.Parse(form["Id"]);
             var source = form["Source"];
 
@@ -112,6 +127,14 @@ namespace TierraCreative.Controllers
                         _context.Entry(drp).State = EntityState.Modified;
                         _context.SaveChanges();
 
+                        //email variables
+                        FormName = source;
+                        TransactionID = FormName + "-" + drp.DRPId.ToString();
+                        FromCSNValue = drp.CSN;
+                        ISINValue = drp.ISIN;
+                        AmountValue = drp.DRPAmount.ToString();
+                        fromEmail = "drp@computershare.co.nz";
+
                         break;
                     case "AIL":
                         var ail = _context.AILs.Include(a => a.User).Include(a => a.ReviewedUser)
@@ -122,6 +145,15 @@ namespace TierraCreative.Controllers
 
                         _context.Entry(ail).State = EntityState.Modified;
                         _context.SaveChanges();
+
+                        //email variables
+                        FormName = source;
+                        TransactionID = FormName + "-" + ail.AILId.ToString();
+                        FromCSNValue = ail.FromCSN;
+                        ToCSNValue = ail.ToCSN;
+                        ISINValue = ail.ISIN;
+                        AmountValue = ail.TransferAmount.ToString();
+                        fromEmail = "payments@computershare.co.nz";
 
                         break;
                     case "Supplementary Dividend":
@@ -134,10 +166,30 @@ namespace TierraCreative.Controllers
                         _context.Entry(sP).State = EntityState.Modified;
                         _context.SaveChanges();
 
+                        //email variables
+                        FormName = source;
+                        TransactionID = FormName + "-" + sP.CreatedById.ToString();
+                        FromCSNValue = sP.FromCSN;
+                        ToCSNValue = sP.ToCSN;
+                        ISINValue = sP.ISIN;
+                        AmountValue = sP.TransferAmount.ToString();
+                        fromEmail = "payments@computershare.co.nz";
+
                         break;
                 }
 
                 ViewBag.IsView = "Approve";
+
+                //Email                
+                var success = utilities.SendFormEmails(TransactionID,
+                            FromCSNValue, ToCSNValue,
+                            ISINValue,
+                            AmountValue,
+                            Timestamp,
+                            FullName, UserName,
+                            FormName,
+                            fromEmail,
+                            toEmail);
             }
             else
             {
