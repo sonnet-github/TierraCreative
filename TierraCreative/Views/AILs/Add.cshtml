@@ -76,7 +76,7 @@
             <div class="form-group row">
                 @Html.LabelFor(model => model.ISIN, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
                 <div class="col-lg-4 col-sm-6">
-                    @Html.EditorFor(model => model.ISIN, new { htmlAttributes = new { @required="required",@class = "form-control numeric", @Value = @Session["ISIN"] } })
+                    @Html.EditorFor(model => model.ISIN, new { htmlAttributes = new { @required = "required", @class = "form-control numeric", @Value = @Session["ISIN"] } })
                     @Html.ValidationMessageFor(model => model.ISIN, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -84,7 +84,7 @@
             <div class="form-group row">
                 @Html.LabelFor(model => model.TransferAmount, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
                 <div class="col-lg-4 col-sm-6">
-                    @Html.EditorFor(model => model.TransferAmount, new { htmlAttributes = new { @required="required",@class = "form-control numeric", @Value = @Session["TransferAmount"] } })
+                    @Html.EditorFor(model => model.TransferAmount, new { htmlAttributes = new { @required = "required", @class = "form-control numeric", @Value = @Session["TransferAmount"] } })
                     @Html.ValidationMessageFor(model => model.TransferAmount, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -137,27 +137,28 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#FromCSN').on('change', function () {
+                $("#ToCSN option[value='" + $('#FromCSN').val() + "']").remove();
+
+                $("#ToCSN").append("<option value='" + $('#FromCSN').val() + "'>" + $('#FromCSN option:selected').text() + "</option>");
+            });
+
+            $('#ToCSN').on('change', function () {
+                $("#FromCSN option[value='" + $('#ToCSN').val() + "']").remove();
+
+                $("#FromCSN").append("<option value='" + $('#ToCSN').val() + "'>" + $('#ToCSN option:selected').text() + "</option>");
+            });
+            $("form").validate({
+                rules: {
+                    // simple rule, converted to {required:true}
+                    FromCSN: "required"
+                }
+            });
+        });
+
+    </script>
+
 }
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#FromCSN').on('change', function () {
-            $("#ToCSN option[value='" + $('#FromCSN').val() + "']").remove();
-
-            $("#ToCSN").append("<option value='" + $('#FromCSN').val() + "'>" + $('#FromCSN option:selected').text() + "</option>");
-        });
-
-        $('#ToCSN').on('change', function () {
-            $("#FromCSN option[value='" + $('#ToCSN').val() + "']").remove();
-
-            $("#FromCSN").append("<option value='" + $('#ToCSN').val() + "'>" + $('#ToCSN option:selected').text() + "</option>");
-        });
-        $("form").validate({
-          rules: {
-            // simple rule, converted to {required:true}
-            FromCSN: "required"
-          }
-        });
-    });
-
-</script>
