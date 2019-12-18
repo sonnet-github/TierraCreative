@@ -19,14 +19,27 @@
 
         table.dataTable th {
             border-bottom: 0;
+            color:#347AB7;
+            background:#F0F0F0;
+            border:2px solid #E9E9E9;
+            border-left:0;
+            border-right:0;
         }
-
+        table tbody tr td{
+            font-weight:500;
+        }
+        table tbody tr td a{
+            text-decoration:underline;
+        }
         table tbody tr:last-of-type td {
             border-bottom: 1px solid #dee2e6;
         }
 
         .pagination {
             margin: 50px 0 !important;
+        }
+        #btn-add-user {
+            margin-bottom:1rem;
         }
     </style>
 }
@@ -40,14 +53,11 @@
                 "pagingType": "numbers",
                 "order": [],
                 "columnDefs": [
-                    { "type": "date-uk", targets: 2 },
+
                     { "orderable": false, "targets": 0 },
                     { "orderable": false, "targets": 1 },
                     { "orderable": false, "targets": 2 },
-                    { "orderable": false, "targets": 3 },
-                    { "orderable": false, "targets": 4 },
-                    { "orderable": false, "targets": 5 },
-                    { "orderable": false, "targets": 6 }
+                    { "orderable": false, "targets": 3 }
                 ]
             });
 
@@ -59,74 +69,86 @@
         });
     </script>
 }
-<table class="table">
-    <tr>
+<div class="col-lg-12 form">
+    <h4>
+        <p><small>Welcome <strong>(@Html.Raw(Session["UserName"]))</strong></small></p>
+    </h4>
+    <h2>Users</h2>
+    <hr />
+</div>
+<div class="col-lg-12">
+    <a href="/admin/create" class="btn default" id="btn-add-user">Create User</a>
+    <table class="table">
+        <thead>
+            <tr>
 
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Role.RoleName)
-        </th>
-        @*<th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsEnabled)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedById)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedById)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedDate)
-            </th>*@
-        <th>&nbsp;</th>
-    </tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Role.RoleName)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Password)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsEnabled)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedById)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpdatedById)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpdatedDate)
+                    </th>*@
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role.RoleName)
-            </td>
-            <td>
-                @if (Session["UserRole"].ToString() != "Client")
-                {
-                    if (Session["UserRole"].ToString() == "Admin")
-                    {
-                        if (item.Role.RoleName != "Super User")
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role.RoleName)
+                    </td>
+                    <td>
+                        @if (Session["UserRole"].ToString() != "Client")
                         {
-                            @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) <span>|</span>
-                            @Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>
-                            @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                            if (Session["UserRole"].ToString() == "Admin")
+                            {
+                                if (item.Role.RoleName != "Super User")
+                                {
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) <span>|</span>
+                                    @Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                                }
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) <span>|</span>
+                                @Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>
+                                @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                            }
                         }
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) <span>|</span>
-                        @Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>
-                        @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
-                    }
-                }
-            </td>
-        </tr>
-    }
+                    </td>
+                </tr>
+            }
+        </tbody>
 
-
-</table>
+    </table>
+</div>
