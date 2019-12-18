@@ -25,6 +25,8 @@ namespace TierraCreative.Controllers
         [HttpPost]
         public ActionResult Admin(FormCollection form)
         {
+            ViewBag.ErrorMessage = null;
+
             var username = form["txtusername"].ToString();
             var password = form["txtpassword"].ToString();
 
@@ -34,7 +36,7 @@ namespace TierraCreative.Controllers
                 if (password == user.Password)
                     if (user.IsEnabled == true)
                     {
-                        if (user.Role.RoleName == "Super User")
+                        if ((user.Role.RoleName == "Super User" || user.Role.RoleName == "Admin"))
                         {
                             Session["UserId"] = user.UserId;
                             Session["UserName"] = user.UserName;
@@ -51,7 +53,7 @@ namespace TierraCreative.Controllers
                         ViewBag.ErrorMessage = "UserName is disabled!";
                 else
                     ViewBag.ErrorMessage = "Invalid password!";
-            }                    
+            }
             else
                 ViewBag.ErrorMessage = "UserName does not exists!";
 
@@ -90,7 +92,11 @@ namespace TierraCreative.Controllers
             if (Session["UserId"] == null)
                 return Redirect("/admin");
 
-            ViewBag.RoleId = new SelectList(_context.Roles, "RoleId", "RoleName");
+            if (Session["UserRole"].ToString() == "Admin")
+                ViewBag.RoleId = new SelectList(_context.Roles.Where(x=>x.RoleId == 2 || x.RoleId == 3), "RoleId", "RoleName");
+            else
+                ViewBag.RoleId = new SelectList(_context.Roles, "RoleId", "RoleName");
+
             return View();
         }
 
@@ -120,7 +126,11 @@ namespace TierraCreative.Controllers
                 return RedirectToAction("../admin/main");
             }
 
-            ViewBag.RoleId = new SelectList(_context.Roles, "RoleId", "RoleName");
+            if (Session["UserRole"].ToString() == "Admin")
+                ViewBag.RoleId = new SelectList(_context.Roles.Where(x => x.RoleId == 2 || x.RoleId == 3), "RoleId", "RoleName");
+            else
+                ViewBag.RoleId = new SelectList(_context.Roles, "RoleId", "RoleName");
+
             return View(user);
         }
        
@@ -138,7 +148,12 @@ namespace TierraCreative.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.RoleId = new SelectList(_context.Roles, "RoleId", "RoleName", user.RoleId);
+
+            if (Session["UserRole"].ToString() == "Admin")
+                ViewBag.RoleId = new SelectList(_context.Roles.Where(x => x.RoleId == 2 || x.RoleId == 3), "RoleId", "RoleName",user.RoleId);
+            else
+                ViewBag.RoleId = new SelectList(_context.Roles, "RoleId", "RoleName", user.RoleId);
+
             return View(user);
         }
 
@@ -158,7 +173,12 @@ namespace TierraCreative.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("../admin/main");
             }
-            ViewBag.RoleId = new SelectList(_context.Roles, "RoleId", "RoleName", user.RoleId);
+
+            if (Session["UserRole"].ToString() == "Admin")
+                ViewBag.RoleId = new SelectList(_context.Roles.Where(x => x.RoleId == 2 || x.RoleId == 3), "RoleId", "RoleName");
+            else
+                ViewBag.RoleId = new SelectList(_context.Roles, "RoleId", "RoleName");
+
             return View(user);
         }
               
@@ -325,14 +345,6 @@ namespace TierraCreative.Controllers
             }
             base.Dispose(disposing);
         }
-
-        //public ActionResult LogOut()
-        //{
-        //    Session["UserId"] = "";
-        //    Session["UserName"] = "";
-        //    Session["UserRole"] = "";
-        //    FormsAuthentication.SignOut();
-        //    return RedirectToAction("Login", "Users", null);
-        //}
+        
     }
 }

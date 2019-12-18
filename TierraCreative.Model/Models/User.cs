@@ -36,5 +36,9 @@ namespace TierraCreative.Model
         public int? UpdatedById { get; set; }
 
         public DateTime? UpdatedDate { get; set; }
+
+        public int? DeletedById { get; set; }
+
+        public DateTime? DeletedDate { get; set; }
     }
 }

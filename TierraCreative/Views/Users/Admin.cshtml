@@ -15,6 +15,12 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+
+    if (ViewBag.ErrorMessage != null)
+    {
+        <p style="color:red;">@Html.Raw(ViewBag.ErrorMessage)!</p>
+    }
+
     <div> 
         UserName: <input id="txtusername" name="txtusername" type="text" />
     </div>

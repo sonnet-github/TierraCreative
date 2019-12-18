@@ -63,29 +63,26 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Role.RoleName)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
+        </td>    
         <td>
-            @Html.DisplayFor(modelItem => item.IsEnabled)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedById)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedById)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedDate)
-        </td>*@
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
-            @Html.ActionLink("View", "Details", new { id=item.UserId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
+            @if (Session["UserRole"].ToString() != "Client")
+            {
+                if (Session["UserRole"].ToString() == "Admin")
+                {
+                    if (item.Role.RoleName != "Super User")
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) <span>|</span>
+                        @Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                    }
+                }
+                else
+                {
+                   @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) <span>|</span>
+                   @Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>
+                   @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                }
+            }
         </td>
     </tr>
 }
