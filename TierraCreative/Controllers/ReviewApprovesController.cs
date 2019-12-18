@@ -197,7 +197,10 @@ namespace TierraCreative.Controllers
 
                 review = GetApproveData(review, source, int.Parse(id.ToString()));
 
-                ViewBag.ErrorMessage = "You cannot approve your own entry!";
+                ViewBag.ErrorMessage = @"Your username is associated with the submission.<br />
+                                         You are not allowed to confirm this.<br />
+                                         Please refer approval to a user with the appropriate clearance.
+                                        ";
 
                 return View(review);
             }
@@ -259,7 +262,6 @@ namespace TierraCreative.Controllers
         }
         
         #region -- private methods --
-
         private ReviewModel GetApproveData(ReviewModel review, string source, int id) {
             switch (source)
             {
@@ -318,6 +320,7 @@ namespace TierraCreative.Controllers
 
             return review;
         }
+
         #endregion
 
         protected override void Dispose(bool disposing)

@@ -25,7 +25,11 @@
     <div class="col-lg-12">
         @if (ViewBag.ErrorMessage != null)
         {
-            <h3 style="color:red;"> @Html.Raw(ViewBag.ErrorMessage) </h3>
+            @*<h3 style="color:red;"> @Html.Raw(ViewBag.ErrorMessage) </h3>
+            <a class="btn default" href="supplementarydividends/add">Return to review</a>*@
+
+            <p style="color:red;">@Html.Raw(ViewBag.ErrorMessage)!</p>
+            @*<input id="button1" type="button" value="Return to review" class="btn default" onclick="window.location = '/ra/review'" />*@
         }
 
         @using (Html.BeginForm())
