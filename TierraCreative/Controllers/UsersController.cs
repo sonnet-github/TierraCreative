@@ -288,6 +288,15 @@ namespace TierraCreative.Controllers
             return View("../Forms");
         }
 
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            Session.RemoveAll();
+
+            return RedirectToAction("Login", "Users", null);
+            //return View("../Login");
+        }
+
         #endregion
 
         protected override void Dispose(bool disposing)
@@ -299,13 +308,13 @@ namespace TierraCreative.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult LogOut()
-        {
-            Session["UserId"] = "";
-            Session["UserName"] = "";
-            Session["UserRole"] = "";
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "Users", null);
-        }
+        //public ActionResult LogOut()
+        //{
+        //    Session["UserId"] = "";
+        //    Session["UserName"] = "";
+        //    Session["UserRole"] = "";
+        //    FormsAuthentication.SignOut();
+        //    return RedirectToAction("Login", "Users", null);
+        //}
     }
 }
