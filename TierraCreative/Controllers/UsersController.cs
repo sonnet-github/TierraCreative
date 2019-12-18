@@ -63,7 +63,8 @@ namespace TierraCreative.Controllers
             if (Session["UserId"] == null)
                 return Redirect("/admin");
 
-            var users = _context.Users.Include(u => u.Role);
+            var users = _context.Users.Include(u => u.Role).Where(x=>x.DeletedById == null);
+
             return View("Main", users.ToList());
         }
                
@@ -97,21 +98,30 @@ namespace TierraCreative.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(User user) 
         {
+            ViewBag.ErrorMessage = null;
+
             if (Session["UserId"] == null)
                 return Redirect("/admin");
 
-            user.IsEnabled = true;
-            user.CreatedById = int.Parse(Session["UserId"].ToString());
-            user.CreatedDate = System.DateTime.Now;
+            var check_users = _context.Users.Where(x => x.UserName == user.UserName || x.Email == user.Email);
+            if (check_users.Any())
+            {
+                ViewBag.ErrorMessage = @"UserName/Email already exists!";
+            }
+            else
+            {
+                user.IsEnabled = true;
+                user.CreatedById = int.Parse(Session["UserId"].ToString());
+                user.CreatedDate = System.DateTime.Now;
 
-            _context.Users.Add(user);
-            _context.SaveChanges();
+                _context.Users.Add(user);
+                _context.SaveChanges();
 
-            return RedirectToAction("../admin/main");
+                return RedirectToAction("../admin/main");
+            }
 
-            //ViewBag.RoleId = new SelectList(_context.Roles, "RoleId", "RoleName", user.RoleId);
-
-            //return View(user);
+            ViewBag.RoleId = new SelectList(_context.Roles, "RoleId", "RoleName");
+            return View(user);
         }
        
         public ActionResult Edit(int? id)
@@ -177,9 +187,17 @@ namespace TierraCreative.Controllers
                 return Redirect("/admin");
 
             User user = _context.Users.Find(id);
-            _context.Users.Remove(user);
+
+            user.IsEnabled = false;
+            user.DeletedById = int.Parse(Session["UserId"].ToString());
+            user.DeletedDate = System.DateTime.Now;
+
+            _context.Entry(user).State = EntityState.Modified;
             _context.SaveChanges();
-            return RedirectToAction("Index");
+
+            //_context.Users.Remove(user);
+
+            return RedirectToAction("../admin/main");
         }
 
         public ActionResult Support()

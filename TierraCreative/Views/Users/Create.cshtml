@@ -23,6 +23,15 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+        @if (ViewBag.ErrorMessage != null)
+        {
+            @*<h3 style="color:red;"> @Html.Raw(ViewBag.ErrorMessage) </h3>
+            <a class="btn default" href="supplementarydividends/add">Return to review</a>*@
+
+            <p style="color:red;">@Html.Raw(ViewBag.ErrorMessage)!</p>
+            @*<input id="button1" type="button" value="Return to review" class="btn default" onclick="window.location = '/ra/review'" />*@
+        }
+
         <div class="form-group">
             @Html.LabelFor(model => model.RoleId, "Role", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
