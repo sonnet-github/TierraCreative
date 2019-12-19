@@ -6,7 +6,7 @@
 }
 @section ScriptContent
 {
-<<<<<<< HEAD
+
     @Html.AntiForgeryToken()
 
     @Html.HiddenFor(model => model.Password)
@@ -33,14 +33,14 @@
                 @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
             </div>
         </div>
-=======
+
     <script>
         $(function () {
             $("nav a:contains('DRP')").parent().addClass("active");
         });
     </script>
 }
->>>>>>> 0ae54f6ed99c35357d5fbf6bff456897475ee392
+
 
 <div class="col-lg-12 form">
     <h4>
@@ -147,6 +147,8 @@
             </div>
         </div>
     }
+</div>
+
 </div>
 @*<div>
         @Html.ActionLink("Back to List", "../admin/main")
