@@ -37,6 +37,13 @@ namespace TierraCreative
              defaults: new { controller = "users", action = "forms", id = UrlParameter.Optional }
            );
 
+
+            routes.MapRoute(
+             name: "ChangePassword",
+             url: "changepassword",
+             defaults: new { controller = "users", action = "changepassword", id = UrlParameter.Optional }
+           );
+
             routes.MapRoute(
              name: "ReviewApproves",
              url: "ra",

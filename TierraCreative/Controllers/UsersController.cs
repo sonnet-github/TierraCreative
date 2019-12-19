@@ -336,6 +336,37 @@ namespace TierraCreative.Controllers
             return View("../Forms");
         }
 
+        [SessionExpire]
+        public ActionResult ChangePassword()
+        {
+            ViewBag.IsSuccess = null;
+            return View("../ChangePassword");
+        }
+
+        [SessionExpire]
+        [HttpPost]
+        public ActionResult ChangePassword(FormCollection form)
+        {
+            ViewBag.IsSuccess = null;
+
+            var newpassword = form["New password"].ToString();
+
+            var userid = int.Parse(Session["UserId"].ToString());
+            var user = _context.Users.SingleOrDefault(x => x.UserId == userid);
+
+            if (user != null)
+            {
+                user.Password = newpassword;
+                _context.Entry(user).State = EntityState.Modified;
+                _context.SaveChanges();
+
+                ViewBag.IsSuccess = "Success";
+
+            }
+
+            return View("../ChangePassword");
+        }
+
         public ActionResult Logout()
         {
             Session.Clear();
