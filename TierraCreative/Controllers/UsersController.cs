@@ -104,13 +104,13 @@ namespace TierraCreative.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(User user) 
         {
-            ViewBag.ErrorMessage = null;
-
             if (Session["UserId"] == null)
                 return Redirect("/admin");
 
-            var check_users = _context.Users.Where(x => x.UserName == user.UserName || x.Email == user.Email);
-            if (check_users.Any())
+            ViewBag.ErrorMessage = null;
+            
+            var check_users = _context.Users.Where(x => x.UserName == user.UserName || x.Email == user.Email).ToList();
+            if (check_users.Count!=0)
             {
                 ViewBag.ErrorMessage = @"UserName/Email already exists!";
             }
@@ -159,19 +159,29 @@ namespace TierraCreative.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(User user) 
+        public ActionResult Edit(User user)
         {
             if (Session["UserId"] == null)
                 return Redirect("/admin");
 
+            ViewBag.ErrorMessage = null;
+            
             if (ModelState.IsValid)
             {
-                user.UpdatedById = 1; //Session["UserId"]
-                user.UpdatedDate = System.DateTime.Now;
+                var check_users = _context.Users.Where(x => (x.UserName == user.UserName || x.Email == user.Email) && x.UserId!=user.UserId).ToList();
+                if (check_users.Count!=0)
+                {
+                    ViewBag.ErrorMessage = @"UserName/Email already exists!";
+                }
+                else
+                {
+                    user.UpdatedById = int.Parse(Session["UserId"].ToString());
+                    user.UpdatedDate = System.DateTime.Now;
 
-                _context.Entry(user).State = EntityState.Modified;
-                _context.SaveChanges();
-                return RedirectToAction("../admin/main");
+                    _context.Entry(user).State = EntityState.Modified;
+                    _context.SaveChanges();
+                    return RedirectToAction("../admin/main");
+                }
             }
 
             if (Session["UserRole"].ToString() == "Admin")
