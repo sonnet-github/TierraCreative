@@ -4,87 +4,151 @@
     ViewBag.Title = "Main";
     Layout = "~/Views/Shared/Administrator.cshtml";
 }
+@section HeadContent
+{
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <style>
+        table thead th {
+            color: #5791C2 !important;
+        }
 
-<h2>Main</h2>
+        #DataTables_Table_0_wrapper > div:nth-child(1), #DataTables_Table_0_wrapper > div:nth-child(3) > div.col-sm-12.col-md-5 {
+            display: none !important;
+        }
 
-<table>
-    <tr>
-        <td>
-            @Html.ActionLink("Support", "Support")
-        </td>
-    </tr>
-</table>
+        table.dataTable th {
+            border-bottom: 0;
+            color:#347AB7;
+            background:#F0F0F0;
+            border:2px solid #E9E9E9;
+            border-left:0;
+            border-right:0;
+        }
+        table tbody tr td{
+            font-weight:500;
+        }
+        table tbody tr td a{
+            text-decoration:underline;
+        }
+        table tbody tr:last-of-type td {
+            border-bottom: 1px solid #dee2e6;
+        }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-<table class="table">
-    <tr>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Role.RoleName)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsEnabled)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedById)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedById)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedDate)
-        </th>*@
-        <th>&nbsp;</th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Role.RoleName)
-        </td>    
-        <td>
-            @if (Session["UserRole"].ToString() != "Client")
-            {
-                if (Session["UserRole"].ToString() == "Admin")
-                {
-                    if (item.Role.RoleName != "Super User")
-                    {
-                        @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) <span>|</span>
-                        @Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>
-                        @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
-                    }
-                }
-                else
-                {
-                   @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) <span>|</span>
-                   @Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>
-                   @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
-                }
-            }
-        </td>
-    </tr>
+        .pagination {
+            margin: 50px 0 !important;
+        }
+        #btn-add-user {
+            margin-bottom:1rem;
+        }
+    </style>
 }
+@section ScriptContent
+{
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable({
+                "pagingType": "numbers",
+                "order": [],
+                "columnDefs": [
 
-</table>
+                    { "orderable": false, "targets": 0 },
+                    { "orderable": false, "targets": 1 },
+                    { "orderable": false, "targets": 2 },
+                    { "orderable": false, "targets": 3 }
+                ]
+            });
+
+        });
+    </script>
+    <script>
+        $(function () {
+            $("nav a:contains('Review')").parent().addClass("active");
+        });
+    </script>
+}
+<div class="col-lg-12 form">
+    <h4>
+        <p><small>Welcome <strong>(@Html.Raw(Session["UserName"]))</strong></small></p>
+    </h4>
+    <h2>Users</h2>
+    <hr />
+</div>
+<div class="col-lg-12">
+    <a href="/admin/create" class="btn default" id="btn-add-user">Create User</a>
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Role.RoleName)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Password)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsEnabled)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedById)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpdatedById)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpdatedDate)
+                    </th>*@
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role.RoleName)
+                    </td>
+                    <td>
+                        @if (Session["UserRole"].ToString() != "Client")
+                        {
+                            if (Session["UserRole"].ToString() == "Admin")
+                            {
+                                if (item.Role.RoleName != "Super User")
+                                {
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) <span>|</span>
+                                    @Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                                }
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) <span>|</span>
+                                @Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>
+                                @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

@@ -41,7 +41,7 @@ hr {
 
 @media(min-width:768px) {
     .control-label {
-        padding-left: 50px;
+        padding-left: 50px!important;
     }
 }
 
