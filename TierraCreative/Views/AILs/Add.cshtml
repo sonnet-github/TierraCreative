@@ -52,7 +52,7 @@
             <div class="form-group row">
                 @Html.LabelFor(model => model.FromCSN, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
                 <div class="col-lg-4 col-sm-6">
-                    @Html.DropDownList("FromCSN", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("FromCSN", null,"Please select", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.FromCSN, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -68,7 +68,7 @@
             <div class="form-group row">
                 @Html.LabelFor(model => model.ToCSN, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
                 <div class="col-lg-4 col-sm-6">
-                    @Html.DropDownList("ToCSN", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("ToCSN", null,"Please select", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.ToCSN, "", new { @class = "text-danger" })
                 </div>
             </div>

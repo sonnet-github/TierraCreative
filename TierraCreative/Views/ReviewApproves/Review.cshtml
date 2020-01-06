@@ -19,6 +19,7 @@
 
         table.dataTable th {
             border-bottom: 0;
+            text-transform:uppercase;
         }
 
         table tbody tr:last-of-type td {
@@ -94,7 +95,7 @@
                     <th align="left">
                         @Html.DisplayNameFor(model => model.ApprovedBy)
                     </th>
-                    <th></th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -108,7 +109,13 @@
                             @Html.DisplayFor(modelItem => item.From)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.To)
+                            @if (item.To != "")
+                            {
+                                @Html.DisplayFor(modelItem => item.To)
+                            }
+                            else { 
+                                @: -
+                            }
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.ISIN)
