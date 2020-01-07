@@ -15,6 +15,9 @@ namespace TierraCreative.Model
         [StringLength(150)]
         public string UserName { get; set; }
 
+        [StringLength(250)]
+        public string FullName { get; set; }
+
         [StringLength(150)]
         public string Email { get; set; }
 
