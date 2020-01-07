@@ -46,8 +46,8 @@ namespace TierraCreative.Controllers.Utility
                       .Replace("[FormName]", FormName)
                       .Replace("[Timestamp]", Timestamp);                     
 
-            string body = @"The following [FormName] transaction was approved by [FullName] ([Username]):
-                                <table>
+            string body = @"The following [FormName] transaction was approved by [FullName] ([Username]): <br />
+                                <table border='1'>
                                     <tr>
                                         <td>ID</td>
                                         <td>[TransactionID]</td>
@@ -71,8 +71,8 @@ namespace TierraCreative.Controllers.Utility
                                 </table>";
 
             if (FormName == "AIL" || FormName == "Supplementary Dividend") { 
-            body = @"The following [FormName] transaction was approved by [FullName] ([Username]):
-                                <table>
+            body = @"The following [FormName] transaction was approved by [FullName] ([Username]): <br />
+                                <table border='1'>
                                     <tr>
                                         <td>ID</td>
                                         <td>[TransactionID]</td>
