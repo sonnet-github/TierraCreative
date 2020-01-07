@@ -121,10 +121,15 @@ namespace TierraCreative.Controllers
             var check_users = _context.Users.Where(x => x.UserName == user.UserName || x.Email == user.Email).ToList();
             if (check_users.Count!=0)
             {
-                ViewBag.ErrorMessage = @"UserName/Email already exists!";
+                ViewBag.ErrorMessage = "UserName/Email already exists!<br>";
+                if (user.Password != Request["ConfirmPassword"])
+                {
+                    ViewBag.ErrorMessage += "Password and Confirm Password did not match!";
+                }
             }
             else
             {
+                
                 user.IsEnabled = true;
                 user.CreatedById = int.Parse(Session["UserId"].ToString());
                 user.CreatedDate = System.DateTime.Now;
@@ -135,6 +140,7 @@ namespace TierraCreative.Controllers
                 ViewBag.IsView = "Created";
                 //return RedirectToAction("../admin/main");
             }
+            
 
             if (Session["UserRole"].ToString() == "Admin")
                 ViewBag.RoleId = new SelectList(_context.Roles.Where(x => x.RoleId == 2 || x.RoleId == 3), "RoleId", "RoleName");
@@ -273,12 +279,13 @@ namespace TierraCreative.Controllers
 
         public ActionResult Support()
         {
+            User user = _context.Users.Find(Session["UserId"]);
             if (Session["UserId"] == null)
                 return Redirect("/admin");
 
             ViewBag.IsSuccess = null;
 
-            return View();
+            return View(user);
         }
 
         [HttpPost]
