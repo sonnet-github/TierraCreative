@@ -92,6 +92,9 @@ namespace TierraCreative.Controllers
             if (Session["UserId"] == null)
                 return Redirect("/admin");
 
+            ViewBag.IsView = null;
+            ViewBag.ErrorMessage = null;
+
             if (Session["UserRole"].ToString() == "Admin")
                 ViewBag.RoleId = new SelectList(_context.Roles.Where(x=>x.RoleId == 2 || x.RoleId == 3), "RoleId", "RoleName");
             else
@@ -107,8 +110,9 @@ namespace TierraCreative.Controllers
             if (Session["UserId"] == null)
                 return Redirect("/admin");
 
+            ViewBag.IsView = null;
             ViewBag.ErrorMessage = null;
-            
+
             var check_users = _context.Users.Where(x => x.UserName == user.UserName || x.Email == user.Email).ToList();
             if (check_users.Count!=0)
             {
@@ -123,7 +127,8 @@ namespace TierraCreative.Controllers
                 _context.Users.Add(user);
                 _context.SaveChanges();
 
-                return RedirectToAction("../admin/main");
+                ViewBag.IsView = "Created";
+                //return RedirectToAction("../admin/main");
             }
 
             if (Session["UserRole"].ToString() == "Admin")
@@ -138,6 +143,9 @@ namespace TierraCreative.Controllers
         {
             if (Session["UserId"] == null)
                 return Redirect("/admin");
+
+            ViewBag.IsView = null;
+            ViewBag.ErrorMessage = null;
 
             if (id == null)
             {
@@ -164,8 +172,9 @@ namespace TierraCreative.Controllers
             if (Session["UserId"] == null)
                 return Redirect("/admin");
 
+            ViewBag.IsView = null;
             ViewBag.ErrorMessage = null;
-            
+
             if (ModelState.IsValid)
             {
                 var check_users = _context.Users.Where(x => (x.UserName == user.UserName || x.Email == user.Email) && x.UserId!=user.UserId).ToList();
