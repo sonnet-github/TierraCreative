@@ -27,6 +27,12 @@
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
+
+                if (ViewBag.ErrorMessage != null)
+                {
+                    <p style="color:red;">@Html.Raw(ViewBag.ErrorMessage)!</p>
+                }
+
                 <div class="form-group row">
                     <label for="#txtusername" class="col-lg-2 col-sm-6 col-form-label text-right">Username</label>
                     <div class="col-lg-3 col-sm-6">
