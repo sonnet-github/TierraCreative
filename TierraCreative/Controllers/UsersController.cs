@@ -353,6 +353,8 @@ namespace TierraCreative.Controllers
         [HttpPost]
         public ActionResult Login(FormCollection form)
         {
+            ViewBag.ErrorMessage = null;
+
             var username = form["txtusername"].ToString();
             var password = form["txtpassword"].ToString();
            
