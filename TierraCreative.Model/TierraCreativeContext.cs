@@ -30,5 +30,7 @@ namespace TierraCreative
         public virtual DbSet<AIL> AILs { get; set; }
         public virtual DbSet<SupplementaryDividend> SupplementaryDividends { get; set; }
         public virtual DbSet<CSNLookUp> CSNLookUps { get; set; }
+
+        public virtual DbSet<Setting> Settings { get; set; }
     }
 }

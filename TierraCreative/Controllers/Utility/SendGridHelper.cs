@@ -14,10 +14,14 @@ namespace TierraCreative.Controllers
     {
         public bool SendEmail(SendGridModel model)
         {
-            string emailhost = "";
-            int emailport = 0;
-            string emailusername = "";
-            string emailpassword = "";
+            var _context = new TierraCreativeContext();
+
+            var settings = _context.Settings;
+
+            string emailhost = settings.SingleOrDefault(x => x.Description == "emailhost").Value;
+            int emailport = int.Parse(settings.SingleOrDefault(x => x.Description == "emailport").Value);
+            string emailusername = settings.SingleOrDefault(x => x.Description == "emailusername").Value;
+            string emailpassword = settings.SingleOrDefault(x => x.Description == "emailpassword").Value;
 
             try
             {
