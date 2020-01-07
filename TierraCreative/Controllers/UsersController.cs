@@ -65,6 +65,11 @@ namespace TierraCreative.Controllers
             if (Session["UserId"] == null)
                 return Redirect("/admin");
 
+            if (Session["Deleted"] != null) { 
+                ViewBag.IsView = "Deleted";
+                Session["Deleted"] = null;
+            }
+
             var users = _context.Users.Include(u => u.Role).Where(x=>x.DeletedById == null);
 
             return View("Main", users.ToList());
@@ -201,27 +206,33 @@ namespace TierraCreative.Controllers
             return View(user);
         }
               
-        public ActionResult Delete(int? id)
+        //public ActionResult Delete(int? id)
+        //{
+        //    //if (Session["UserId"] == null)
+        //    //    return Redirect("/admin");
+
+        //    //ViewBag.IsView = null;
+        //    //ViewBag.ErrorMessage = null;
+
+        //    //if (id == null)
+        //    //{
+        //    //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    //}
+        //    //User user = _context.Users.Include(u => u.Role).SingleOrDefault(x => x.UserId == id);
+        //    //if (user == null)
+        //    //{
+        //    //    return HttpNotFound();
+        //    //}
+        //    //return View(user);
+        //}
+
+        public ActionResult DeleteConfirm(int id)
         {
             if (Session["UserId"] == null)
                 return Redirect("/admin");
 
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = _context.Users.Include(u => u.Role).SingleOrDefault(x => x.UserId == id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
-
-        public ActionResult DeleteGet(int id)
-        {
-            if (Session["UserId"] == null)
-                return Redirect("/admin");
+            ViewBag.IsView = null;
+            ViewBag.ErrorMessage = null;
 
             User user = _context.Users.Find(id);
 
@@ -231,30 +242,34 @@ namespace TierraCreative.Controllers
 
             _context.Entry(user).State = EntityState.Modified;
             _context.SaveChanges();
-            
-            return RedirectToAction("../admin/main");
-        }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            //if (Session["UserId"] == null)
-            //    return Redirect("/admin");
-
-            //User user = _context.Users.Find(id);
-
-            //user.IsEnabled = false;
-            //user.DeletedById = int.Parse(Session["UserId"].ToString());
-            //user.DeletedDate = System.DateTime.Now;
-
-            //_context.Entry(user).State = EntityState.Modified;
-            //_context.SaveChanges();
-
-            ////_context.Users.Remove(user);
+            Session["Deleted"] = true; 
 
             return RedirectToAction("../admin/main");
+
+            //return View("delete",user);
         }
+
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    //if (Session["UserId"] == null)
+        //    //    return Redirect("/admin");
+
+        //    //User user = _context.Users.Find(id);
+
+        //    //user.IsEnabled = false;
+        //    //user.DeletedById = int.Parse(Session["UserId"].ToString());
+        //    //user.DeletedDate = System.DateTime.Now;
+
+        //    //_context.Entry(user).State = EntityState.Modified;
+        //    //_context.SaveChanges();
+
+        //    ////_context.Users.Remove(user);
+
+        //    return RedirectToAction("../admin/main");
+        //}
 
         public ActionResult Support()
         {
