@@ -332,6 +332,16 @@ namespace TierraCreative.Controllers
             return View(user);
         }
 
+        public ActionResult LogoutAdmin()
+        {
+            Session.Clear();
+            Session.RemoveAll();
+
+            return Redirect("/Admin");
+            //return View("../Login");
+        }
+
+
         #endregion
 
         #region -- Users -- 

@@ -14,6 +14,15 @@ namespace TierraCreative.Controllers
     {
         public bool SendEmail(SendGridModel model)
         {
+            var _context = new TierraCreativeContext();
+
+            var settings = _context.Settings;
+
+            string emailhost = settings.SingleOrDefault(x => x.Description == "emailhost").Value;
+            int emailport = int.Parse(settings.SingleOrDefault(x => x.Description == "emailport").Value);
+            string emailusername = settings.SingleOrDefault(x => x.Description == "emailusername").Value;
+            string emailpassword = settings.SingleOrDefault(x => x.Description == "emailpassword").Value;
+
             try
             {
                 MailMessage mailMsg = new MailMessage();
@@ -46,9 +55,12 @@ namespace TierraCreative.Controllers
                 else
                     mailMsg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(model.Body, null, MediaTypeNames.Text.Plain));
 
-                SmtpClient smtpClient = new SmtpClient(ConfigurationManager.AppSettings["emailhost"], Convert.ToInt32(ConfigurationManager.AppSettings["emailport"]));
+                //SmtpClient smtpClient = new SmtpClient(ConfigurationManager.AppSettings["emailhost"], Convert.ToInt32(ConfigurationManager.AppSettings["emailport"]));
+                //System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["emailusername"], ConfigurationManager.AppSettings["emailpassword"]);
 
-                System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["emailusername"], ConfigurationManager.AppSettings["emailpassword"]);
+                SmtpClient smtpClient = new SmtpClient(emailhost, emailport);
+                System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(emailusername, emailpassword);
+
                 smtpClient.Credentials = credentials;
 
                 smtpClient.Send(mailMsg);

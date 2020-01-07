@@ -61,6 +61,7 @@
     <Compile Include="Models\AIL.cs" />
     <Compile Include="Models\DRP.cs" />
     <Compile Include="Models\SupplementaryDividend.cs" />
+    <Compile Include="Models\Setting.cs" />
     <Compile Include="TierraCreativeContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
