@@ -154,14 +154,16 @@
                                 {
                                     @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) <span>|</span>
                                     @Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                                    @*@Html.ActionLink("Delete", "Delete", new { id = item.UserId })*@
+                                    <a href="#" onclick="if (confirm('Are you sure you want to delete this user?')) { window.location.href = '@Url.Action("DeleteGet", "admin", new { id = item.UserId })'; }" >Delete</a>
                                 }
                             }
                             else
                             {
                                 @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) <span>|</span>
                                 @Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>
-                                @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                                @*@Html.ActionLink("Delete", "Delete", new { id = item.UserId })*@
+                                <a href="#" onclick="if (confirm('Are you sure you want to delete this user?')) { window.location.href = '@Url.Action("DeleteGet", "admin", new { id = item.UserId })'; }" >Delete</a>
                             }
                         }
                     </td>
@@ -171,3 +173,4 @@
 
     </table>
 </div>
+

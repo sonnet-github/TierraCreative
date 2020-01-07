@@ -217,10 +217,8 @@ namespace TierraCreative.Controllers
             }
             return View(user);
         }
-      
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+
+        public ActionResult DeleteGet(int id)
         {
             if (Session["UserId"] == null)
                 return Redirect("/admin");
@@ -233,8 +231,27 @@ namespace TierraCreative.Controllers
 
             _context.Entry(user).State = EntityState.Modified;
             _context.SaveChanges();
+            
+            return RedirectToAction("../admin/main");
+        }
 
-            //_context.Users.Remove(user);
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            //if (Session["UserId"] == null)
+            //    return Redirect("/admin");
+
+            //User user = _context.Users.Find(id);
+
+            //user.IsEnabled = false;
+            //user.DeletedById = int.Parse(Session["UserId"].ToString());
+            //user.DeletedDate = System.DateTime.Now;
+
+            //_context.Entry(user).State = EntityState.Modified;
+            //_context.SaveChanges();
+
+            ////_context.Users.Remove(user);
 
             return RedirectToAction("../admin/main");
         }
