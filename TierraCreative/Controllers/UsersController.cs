@@ -430,6 +430,8 @@ namespace TierraCreative.Controllers
         public ActionResult ForgotPassword()
         {
             ViewBag.IsSuccess = null;
+            ViewBag.ErrorMessage = null;
+
             return View("../ForgotPassword");
         }
 
@@ -437,26 +439,36 @@ namespace TierraCreative.Controllers
         public ActionResult ForgotPassword(FormCollection form)
         {
             Utility.Utilities utilities = new Utility.Utilities();
-            
+
+            ViewBag.IsSuccess = null;
+            ViewBag.ErrorMessage = null;
+
             //get new guid
             Guid guid = Guid.NewGuid();
 
-            var email = form["txtusername"].ToString();
+            var username_parameter = form["txtusername"].ToString();
 
-            //add new forgotpassword token
-            var forgotpassword = new ForgotPasswordToken
+            var user = _context.Users.Include(x => x.Role).SingleOrDefault(x => x.UserName == username_parameter || x.Email == username_parameter);
+
+            if (user != null)
             {
-                Unique_Guid = guid.ToString(),
-                Email = email,
-                CreatedDate = System.DateTime.Now
-            };
-            _context.ForgotPasswordTokens.Add(forgotpassword);
-            _context.SaveChanges();
+                //add new forgotpassword token
+                var forgotpassword = new ForgotPasswordToken
+                {
+                    Unique_Guid = guid.ToString(),
+                    Email = user.Email,
+                    CreatedDate = System.DateTime.Now
+                };
+                _context.ForgotPasswordTokens.Add(forgotpassword);
+                _context.SaveChanges();
 
-            //send email link
-            var success = utilities.SendForgotPasswordEmail(guid.ToString(), System.Configuration.ConfigurationManager.AppSettings["supportemail"], email);
+                //send email link
+                var success = utilities.SendForgotPasswordEmail(guid.ToString(), System.Configuration.ConfigurationManager.AppSettings["supportemail"], user.Email, user.UserName);
 
-            ViewBag.IsSuccess = "Success";
+                ViewBag.IsSuccess = "Success";
+            }
+            else
+                ViewBag.ErrorMessage = "User not found.";
 
             return View("../ForgotPassword");
         }
@@ -464,6 +476,7 @@ namespace TierraCreative.Controllers
         public ActionResult ForgotPasswordChange()
         {
             ViewBag.IsSuccess = null;
+            ViewBag.ErrorMessage = null;
 
             var guid = Request.QueryString["guid"];
             var email = Request.QueryString["email"];

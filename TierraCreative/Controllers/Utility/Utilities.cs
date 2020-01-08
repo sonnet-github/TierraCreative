@@ -123,7 +123,8 @@ namespace TierraCreative.Controllers.Utility
         public bool SendForgotPasswordEmail(
             string guid,
             string fromEmail,
-            string toEmail)
+            string toEmail,
+            string username)
         {
             SendGridHelper emailhelper = new SendGridHelper();
             SendGridModel emailmodel = new SendGridModel();
@@ -148,7 +149,7 @@ namespace TierraCreative.Controllers.Utility
 
             var subject = @"CISELECT – Forgotten Password";
 
-            var body = "The following user [ Username ] initiated a forgotten password request on [ date ].";
+            var body = "The following user " + username + " initiated a forgotten password request on " +  System.DateTime.Now + ".";
             body += " <br /><br />";
             body += " Please use the following link to reset your password: ";
             body += " <br />";
