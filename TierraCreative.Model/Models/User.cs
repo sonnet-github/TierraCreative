@@ -38,6 +38,8 @@ namespace TierraCreative.Model
 
         public DateTime? CreatedDate { get; set; }
 
+        public bool IsFirstLog { get; set; }
+
         public int? UpdatedById { get; set; }
 
         public DateTime? UpdatedDate { get; set; }

@@ -11,10 +11,12 @@ h2 {
 
 .form h4 {
     margin-top: 55px;
+    padding-left:30px;
 }
 
 .form h2 {
     margin-top: unset;
+    padding-left: 30px;
 }
 
 .nav-forms li {

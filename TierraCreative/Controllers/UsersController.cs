@@ -368,8 +368,13 @@ namespace TierraCreative.Controllers
                         Session["UserRole"] = user.Role.RoleName;
                         Session["UserFullName"] = "";
                         Session["UserEmail"] = user.Email;
-
-                        return Redirect("Forms");
+                        if (user.IsFirstLog == false || (user.Role.RoleName == "Super User" || user.Role.RoleName == "Admin"))
+                        {
+                            return Redirect("Forms");
+                        }
+                        else {
+                            return Redirect("ChangePassword");
+                        }
                     }
                     else
                         ViewBag.ErrorMessage = "UserName is disabled!";
@@ -417,6 +422,7 @@ namespace TierraCreative.Controllers
             if (user != null)
             {
                 user.Password = newpassword;
+                user.IsFirstLog = false;
                 _context.Entry(user).State = EntityState.Modified;
                 _context.SaveChanges();
 
