@@ -119,5 +119,52 @@ namespace TierraCreative.Controllers.Utility
            
             return true;
         }
+
+        public bool SendForgotPasswordEmail(
+            string guid,
+            string fromEmail,
+            string toEmail)
+        {
+            SendGridHelper emailhelper = new SendGridHelper();
+            SendGridModel emailmodel = new SendGridModel();
+
+            var From = new Recipient
+            {
+                Email = fromEmail,
+                Name = fromEmail
+            };
+            emailmodel.From = From;
+
+            var To = new Recipient
+            {
+                Email = toEmail,
+                Name = toEmail
+            };
+            emailmodel.To.Add(To);
+
+            /*Uncomment if need to attach single or multiple file*/
+            //Attachment attachment = new Attachment(@"C:\2BInteractive\Docs\FTPAcct.txt");
+            //emailmodel.Attachment.Add(attachment);
+
+            var subject = @"CISELECT – Forgotten Password";
+
+            var body = "The following user [ Username ] initiated a forgotten password request on [ date ].";
+            body += " <br /><br />";
+            body += " Please use the following link to reset your password: ";
+            body += " <br />";
+            body += " <a href='" + string.Format("{0}forgotpasswordchange?guid={1}&email={2}", HttpContext.Current.Request.Url.AbsoluteUri.Replace("forgotpassword",""), guid.ToString(), toEmail) + "'>Click here</a>";
+            body += " <br /><br />";
+            body += " If you didn’t initiate this request please use the link below to invalidate it and contact " + fromEmail;
+            body += " <br /><br />";
+            body += " This e-mail was sent on by the CISELECT application.";
+
+            emailmodel.Subject = subject;
+            emailmodel.Body = body;
+            emailmodel.IsBodyHtml = true;
+
+            var success = emailhelper.SendEmail(emailmodel);
+
+            return true;
+        }
     }
 }

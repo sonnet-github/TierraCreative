@@ -266,6 +266,7 @@
     <Content Include="Views\ReviewApproves\Approve.cshtml" />
     <Content Include="Views\ChangePassword.cshtml" />
     <Content Include="Views\ForgotPassword.cshtml" />
+    <Content Include="Views\ForgotPasswordChange.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

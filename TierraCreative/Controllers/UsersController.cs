@@ -436,11 +436,78 @@ namespace TierraCreative.Controllers
         [HttpPost]
         public ActionResult ForgotPassword(FormCollection form)
         {
+            Utility.Utilities utilities = new Utility.Utilities();
+            
+            //get new guid
+            Guid guid = Guid.NewGuid();
 
+            var email = form["txtusername"].ToString();
+
+            //add new forgotpassword token
+            var forgotpassword = new ForgotPasswordToken
+            {
+                Unique_Guid = guid.ToString(),
+                Email = email,
+                CreatedDate = System.DateTime.Now
+            };
+            _context.ForgotPasswordTokens.Add(forgotpassword);
+            _context.SaveChanges();
+
+            //send email link
+            var success = utilities.SendForgotPasswordEmail(guid.ToString(), System.Configuration.ConfigurationManager.AppSettings["supportemail"], email);
 
             ViewBag.IsSuccess = "Success";
 
             return View("../ForgotPassword");
+        }
+
+        public ActionResult ForgotPasswordChange()
+        {
+            ViewBag.IsSuccess = null;
+
+            var guid = Request.QueryString["guid"];
+            var email = Request.QueryString["email"];
+
+            var forgotpasswordtoken = _context.ForgotPasswordTokens.SingleOrDefault(x => x.Unique_Guid == guid);
+
+            if (forgotpasswordtoken != null) {
+                ViewBag.Email = email;
+                return View("../ForgotPasswordChange");
+            }
+
+            return Redirect("/");
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPasswordChange(FormCollection form)
+        {
+            Utility.Utilities utilities = new Utility.Utilities();
+
+            ViewBag.IsSuccess = null;
+
+            var email = form["email"];
+            var newpassword = form["New Password"];
+
+            var user = _context.Users.SingleOrDefault(x => x.Email == email);
+            if (user != null)
+            {
+                //update password
+                user.Password = newpassword;
+                _context.Entry(user).State = EntityState.Modified;
+                _context.SaveChanges();
+
+                //delete all token of user forgot password
+                var forgotpasswordtoken = _context.ForgotPasswordTokens.Where(x => x.Email == email).ToList();
+                if (forgotpasswordtoken.Any())
+                {
+                    _context.ForgotPasswordTokens.RemoveRange(forgotpasswordtoken);
+                    _context.SaveChanges();
+                }
+
+                ViewBag.IsSuccess = "Success";
+            }
+
+            return View("../ForgotPasswordChange");
         }
 
         public ActionResult Logout()

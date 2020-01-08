@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ForgotPasswordToken.cs" />
     <Compile Include="Models\CSNLookUp.cs" />
     <Compile Include="Models\AIL.cs" />
     <Compile Include="Models\DRP.cs" />
