@@ -147,7 +147,7 @@
                             }
                         </td>
 
-                        <td>
+                        <td class="links">
                             @if (item.ApprovedBy == "Pending")
                             {
                                 @Html.ActionLink("Review", "Approve", new { id = item.Id, source = item.Source })
