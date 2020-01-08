@@ -564,22 +564,30 @@ namespace TierraCreative.Controllers
             var newpassword = form["New Password"];
 
             var user = _context.Users.SingleOrDefault(x => x.Email == email);
+            var error_ = false;
             if (user != null)
             {
-                //update password
-                user.Password = newpassword;
-                _context.Entry(user).State = EntityState.Modified;
-                _context.SaveChanges();
-
-                //delete all token of user forgot password
-                var forgotpasswordtoken = _context.ForgotPasswordTokens.Where(x => x.Email == email).ToList();
-                if (forgotpasswordtoken.Any())
+                if (newpassword != Request["ConfirmPassword"])
                 {
-                    _context.ForgotPasswordTokens.RemoveRange(forgotpasswordtoken);
-                    _context.SaveChanges();
+                    ViewBag.ErrorMessage += "Password and Confirm Password did not match!"; error_ = true;
                 }
+                if (!error_)
+                {
+                    //update password
+                    user.Password = newpassword;
+                    _context.Entry(user).State = EntityState.Modified;
+                    _context.SaveChanges();
 
-                ViewBag.IsSuccess = "Success";
+                    //delete all token of user forgot password
+                    var forgotpasswordtoken = _context.ForgotPasswordTokens.Where(x => x.Email == email).ToList();
+                    if (forgotpasswordtoken.Any())
+                    {
+                        _context.ForgotPasswordTokens.RemoveRange(forgotpasswordtoken);
+                        _context.SaveChanges();
+                    }
+
+                    ViewBag.IsSuccess = "Success";
+                }
             }
 
             return View("../ForgotPasswordChange");
