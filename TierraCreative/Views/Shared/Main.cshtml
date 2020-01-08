@@ -19,31 +19,36 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/drps/add">DRP <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/supplementarydividends/add">Supplementary Dividend</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/ails/add">AIL</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/ra/review">Review</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/users/support">Support</a>
-                </li>
-                <li class="nav-item d-lg-none ">
-                    <a class="nav-link" href="#">Change Password</a>
-                </li>
-                <li class="nav-item d-lg-none">
-                    <a class="nav-link" href="/logout">Log Off</a>
-                </li>
-            </ul>
-            <a class="btn d-none d-lg-block mb-3 mb-md-0 ml-md-3" style="color:rgba(255,255,255,.5);" href="/changepassword">Change Password</a>
-            <a class="btn d-none d-lg-block mb-3 mb-md-0 ml-md-3" style="color:rgba(255,255,255,.5);" href="/logout">Log off</a>
+            @if (Convert.ToInt32(Session["UserId"])!=0 && Session["UserId"].ToString()!="" && Session["UserId"]!=null)
+            {
+                <text>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/drps/add">DRP <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/supplementarydividends/add">Supplementary Dividend</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ails/add">AIL</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ra/review">Review</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/support">Support</a>
+                        </li>
+                        <li class="nav-item d-lg-none ">
+                            <a class="nav-link" href="#">Change Password</a>
+                        </li>
+                        <li class="nav-item d-lg-none">
+                            <a class="nav-link" href="/logout">Log Off</a>
+                        </li>
+                    </ul>
+                    <a class="btn d-none d-lg-block mb-3 mb-md-0 ml-md-3" style="color:rgba(255,255,255,.5);" href="/changepassword">Change Password</a>
+                    <a class="btn d-none d-lg-block mb-3 mb-md-0 ml-md-3" style="color:rgba(255,255,255,.5);" href="/logout">Log off</a>
+                </text>
+            }
         </div>
     </nav>
     <div class="container">
@@ -66,21 +71,21 @@
     @RenderSection("ScriptContent", false)
     <script>
         // Restricts input for the set of matched elements to the given inputFilter function.
-        (function($) {
-          $.fn.inputFilter = function(inputFilter) {
-            return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
-              if (inputFilter(this.value)) {
-                this.oldValue = this.value;
-                this.oldSelectionStart = this.selectionStart;
-                this.oldSelectionEnd = this.selectionEnd;
-              } else if (this.hasOwnProperty("oldValue")) {
-                this.value = this.oldValue;
-                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-              } else {
-                this.value = "";
-              }
-            });
-          };
+        (function ($) {
+            $.fn.inputFilter = function (inputFilter) {
+                return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
+                    if (inputFilter(this.value)) {
+                        this.oldValue = this.value;
+                        this.oldSelectionStart = this.selectionStart;
+                        this.oldSelectionEnd = this.selectionEnd;
+                    } else if (this.hasOwnProperty("oldValue")) {
+                        this.value = this.oldValue;
+                        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                    } else {
+                        this.value = "";
+                    }
+                });
+            };
         }(jQuery));
         $(document).ready(function () {
             $(".numeric").inputFilter(function (value) {
