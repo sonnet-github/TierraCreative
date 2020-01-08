@@ -29,6 +29,9 @@
         .pagination {
             margin: 50px 0 !important;
         }
+        .links a {
+            text-decoration: underline;
+        }
     </style>
 }
 @section ScriptContent
@@ -86,7 +89,7 @@
                     <th align="left">
                         @Html.DisplayNameFor(model => model.To)
                     </th>
-                    <th align="left">
+                    <th align="left" style="text-transform:uppercase;">
                         @Html.DisplayNameFor(model => model.ISIN)
                     </th>
                     <th align="left">
@@ -95,7 +98,7 @@
                     <th align="left" style="min-width:150px;">
                         @Html.DisplayNameFor(model => model.SubmittedBy)
                     </th>
-                    <th align="left" style="min-width:150px;">
+                    <th align="left" style="min-width:150px;" class="links">
                         @Html.DisplayNameFor(model => model.ApprovedBy)
                     </th>
                     <th></th>
@@ -144,7 +147,7 @@
                             }
                         </td>
 
-                        <td>
+                        <td class="links">
                             @if (item.ApprovedBy == "Pending")
                             {
                                 @Html.ActionLink("Review", "Approve", new { id = item.Id, source = item.Source })

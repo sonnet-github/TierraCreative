@@ -16,7 +16,7 @@ namespace TierraCreative.Controllers
     public class UsersController : BaseController
     {
         #region -- Admin --
-        
+
         public ActionResult Admin()
         {
             return View("Admin");
@@ -44,8 +44,17 @@ namespace TierraCreative.Controllers
                             Session["UserFullName"] = user.FullName;
                             Session["UserEmail"] = user.Email;
                             Session["Layout"] = "admin";
+                            Session["IsFirstLog"] = "false";
+                            if (user.IsFirstLog == false)
+                            {
+                                return Redirect("/admin/main");
+                            }
+                            else
+                            {
+                                Session["IsFirstLog"] = "true";
+                                return Redirect("ChangePassword");
+                            }
 
-                            return Redirect("/admin/main");
                         }
                         else
                             ViewBag.ErrorMessage = "You do not have access to the admin panel!";
@@ -66,16 +75,17 @@ namespace TierraCreative.Controllers
             if (Session["UserId"] == null)
                 return Redirect("/admin");
 
-            if (Session["Deleted"] != null) { 
+            if (Session["Deleted"] != null)
+            {
                 ViewBag.IsView = "Deleted";
                 Session["Deleted"] = null;
             }
 
-            var users = _context.Users.Include(u => u.Role).Where(x=>x.DeletedById == null);
+            var users = _context.Users.Include(u => u.Role).Where(x => x.DeletedById == null);
 
             return View("Main", users.ToList());
         }
-               
+
         public ActionResult Details(int? id)
         {
             if (Session["UserId"] == null)
@@ -85,14 +95,14 @@ namespace TierraCreative.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = _context.Users.Include(u => u.Role).SingleOrDefault(x=>x.UserId == id);
+            User user = _context.Users.Include(u => u.Role).SingleOrDefault(x => x.UserId == id);
             if (user == null)
             {
                 return HttpNotFound();
             }
             return View(user);
         }
-              
+
         public ActionResult Create()
         {
             if (Session["UserId"] == null)
@@ -102,7 +112,7 @@ namespace TierraCreative.Controllers
             ViewBag.ErrorMessage = null;
 
             if (Session["UserRole"].ToString() == "Admin")
-                ViewBag.RoleId = new SelectList(_context.Roles.Where(x=>x.RoleId == 2 || x.RoleId == 3), "RoleId", "RoleName");
+                ViewBag.RoleId = new SelectList(_context.Roles.Where(x => x.RoleId == 2 || x.RoleId == 3), "RoleId", "RoleName");
             else
                 ViewBag.RoleId = new SelectList(_context.Roles, "RoleId", "RoleName");
 
@@ -111,26 +121,28 @@ namespace TierraCreative.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(User user) 
+        public ActionResult Create(User user)
         {
             if (Session["UserId"] == null)
                 return Redirect("/admin");
 
             ViewBag.IsView = null;
             ViewBag.ErrorMessage = null;
-
             var check_users = _context.Users.Where(x => x.UserName == user.UserName || x.Email == user.Email).ToList();
-            if (check_users.Count!=0)
+            var error_ = false;
+            
+            if (check_users.Count != 0)
             {
                 ViewBag.ErrorMessage = "UserName/Email already exists!<br>";
-                if (user.Password != Request["ConfirmPassword"])
-                {
-                    ViewBag.ErrorMessage += "Password and Confirm Password did not match!";
-                }
-            }
-            else
-            {
+                error_ = true;
                 
+            }
+            if (user.Password != Request["ConfirmPassword"])
+            {
+                ViewBag.ErrorMessage += "Password and Confirm Password did not match!"; error_ = true;
+            }
+            if (!error_ )
+            {
                 user.IsEnabled = true;
                 user.CreatedById = int.Parse(Session["UserId"].ToString());
                 user.CreatedDate = System.DateTime.Now;
@@ -139,9 +151,9 @@ namespace TierraCreative.Controllers
                 _context.SaveChanges();
 
                 ViewBag.IsView = "Created";
-                //return RedirectToAction("../admin/main");
             }
-            
+            //return RedirectToAction("../admin/main");
+
 
             if (Session["UserRole"].ToString() == "Admin")
                 ViewBag.RoleId = new SelectList(_context.Roles.Where(x => x.RoleId == 2 || x.RoleId == 3), "RoleId", "RoleName");
@@ -150,7 +162,7 @@ namespace TierraCreative.Controllers
 
             return View(user);
         }
-       
+
         public ActionResult Edit(int? id)
         {
             if (Session["UserId"] == null)
@@ -170,7 +182,7 @@ namespace TierraCreative.Controllers
             }
 
             if (Session["UserRole"].ToString() == "Admin")
-                ViewBag.RoleId = new SelectList(_context.Roles.Where(x => x.RoleId == 2 || x.RoleId == 3), "RoleId", "RoleName",user.RoleId);
+                ViewBag.RoleId = new SelectList(_context.Roles.Where(x => x.RoleId == 2 || x.RoleId == 3), "RoleId", "RoleName", user.RoleId);
             else
                 ViewBag.RoleId = new SelectList(_context.Roles, "RoleId", "RoleName", user.RoleId);
 
@@ -189,8 +201,8 @@ namespace TierraCreative.Controllers
 
             if (ModelState.IsValid)
             {
-                var check_users = _context.Users.Where(x => (x.UserName == user.UserName || x.Email == user.Email) && x.UserId!=user.UserId).ToList();
-                if (check_users.Count!=0)
+                var check_users = _context.Users.Where(x => (x.UserName == user.UserName || x.Email == user.Email) && x.UserId != user.UserId).ToList();
+                if (check_users.Count != 0)
                 {
                     ViewBag.ErrorMessage = @"UserName/Email already exists!";
                 }
@@ -212,7 +224,7 @@ namespace TierraCreative.Controllers
 
             return View(user);
         }
-              
+
         //public ActionResult Delete(int? id)
         //{
         //    //if (Session["UserId"] == null)
@@ -250,7 +262,7 @@ namespace TierraCreative.Controllers
             _context.Entry(user).State = EntityState.Modified;
             _context.SaveChanges();
 
-            Session["Deleted"] = true; 
+            Session["Deleted"] = true;
 
             return RedirectToAction("../admin/main");
 
@@ -358,23 +370,27 @@ namespace TierraCreative.Controllers
 
             var username = form["txtusername"].ToString();
             var password = form["txtpassword"].ToString();
-           
-            var user = _context.Users.Include(x=>x.Role).SingleOrDefault(x => x.UserName == username || x.Email == username);
+
+            var user = _context.Users.Include(x => x.Role).SingleOrDefault(x => x.UserName == username || x.Email == username);
             if (user != null)
             {
                 if (password == user.Password)
-                    if (user.IsEnabled == true) {
+                    if (user.IsEnabled == true)
+                    {
                         Session["UserId"] = user.UserId;
                         Session["UserName"] = user.UserName;
                         Session["UserRole"] = user.Role.RoleName;
-                        Session["UserFullName"] = user.FullName ;
+                        Session["UserFullName"] = user.FullName;
                         Session["UserEmail"] = user.Email;
                         Session["Layout"] = "user";
-                        if (user.IsFirstLog == false || (user.Role.RoleName == "Super User" || user.Role.RoleName == "Admin"))
+                        Session["IsFirstLog"] = "false";
+                        if (user.IsFirstLog == false)
                         {
                             return Redirect("Forms");
                         }
-                        else {
+                        else
+                        {
+                            Session["IsFirstLog"] = "true";
                             return Redirect("ChangePassword");
                         }
                     }
@@ -383,9 +399,9 @@ namespace TierraCreative.Controllers
                 else
                     ViewBag.ErrorMessage = "Invalid password!";
             }
-            else 
+            else
                 ViewBag.ErrorMessage = "UserName does not exists!";
-            
+
             return View("../Login");
         }
 
@@ -399,8 +415,34 @@ namespace TierraCreative.Controllers
             Session["ISIN"] = null;
             Session["DRPAmount"] = null;
             Session["TransferAmount"] = null;
+            Session["IsFirstLog"] = "false";
+            if (Session["UserEmail"] == null)
+            {
+                return Redirect("Login");
+            }
+            else
+            {
+                var email = Session["UserEmail"].ToString();
+                var userid = int.Parse(Session["UserId"].ToString());
+                var user = _context.Users.SingleOrDefault(x => x.UserId == userid);
+                if (user != null)
+                {
+                    if (user.IsFirstLog == false)
+                    {
+                        return View("../Forms");
+                    }
+                    else
+                    {
+                        Session["IsFirstLog"] = "true";
+                        return Redirect("ChangePassword");
+                    }
+                }
+                else
+                {
+                    return View("../Forms");
+                }
+            }
 
-            return View("../Forms");
         }
 
         [SessionExpire]
@@ -420,23 +462,19 @@ namespace TierraCreative.Controllers
 
             var userid = int.Parse(Session["UserId"].ToString());
             var user = _context.Users.SingleOrDefault(x => x.UserId == userid);
-
-            if (user != null)
+            var error_ = false;
+            if (user.Password != Request["ConfirmPassword"])
             {
-                if (user.Password != Request["ConfirmPassword"])
-                {
-                    ViewBag.ErrorMessage += "Password and Confirm Password did not match!";
-                }
-                else {
-                    user.Password = newpassword;
-                    user.IsFirstLog = false;
-                    _context.Entry(user).State = EntityState.Modified;
-                    _context.SaveChanges();
+                ViewBag.ErrorMessage += "Password and Confirm Password did not match!"; error_ = true;
+            }
+            if (!error_)
+            {
+                user.Password = newpassword;
+                user.IsFirstLog = false;
+                _context.Entry(user).State = EntityState.Modified;
+                _context.SaveChanges();
 
-                    ViewBag.IsSuccess = "Success";
-                }
-                
-
+                ViewBag.IsSuccess = "Success";
             }
 
             return View("../ChangePassword");
@@ -464,23 +502,31 @@ namespace TierraCreative.Controllers
             var username_parameter = form["txtusername"].ToString();
 
             var user = _context.Users.Include(x => x.Role).SingleOrDefault(x => x.UserName == username_parameter || x.Email == username_parameter);
+            var error_ = false;
 
             if (user != null)
             {
-                //add new forgotpassword token
-                var forgotpassword = new ForgotPasswordToken
+                if (user.Password != Request["ConfirmPassword"])
                 {
-                    Unique_Guid = guid.ToString(),
-                    Email = user.Email,
-                    CreatedDate = System.DateTime.Now
-                };
-                _context.ForgotPasswordTokens.Add(forgotpassword);
-                _context.SaveChanges();
+                    ViewBag.ErrorMessage += "Password and Confirm Password did not match!"; error_ = true;
+                }
+                if (!error_)
+                {
+                    //add new forgotpassword token
+                    var forgotpassword = new ForgotPasswordToken
+                    {
+                        Unique_Guid = guid.ToString(),
+                        Email = user.Email,
+                        CreatedDate = System.DateTime.Now
+                    };
+                    _context.ForgotPasswordTokens.Add(forgotpassword);
+                    _context.SaveChanges();
 
-                //send email link
-                var success = utilities.SendForgotPasswordEmail(guid.ToString(), System.Configuration.ConfigurationManager.AppSettings["supportemail"], user.Email, user.UserName);
+                    //send email link
+                    var success = utilities.SendForgotPasswordEmail(guid.ToString(), System.Configuration.ConfigurationManager.AppSettings["supportemail"], user.Email, user.UserName);
 
-                ViewBag.IsSuccess = "Success";
+                    ViewBag.IsSuccess = "Success";
+                }
             }
             else
                 ViewBag.ErrorMessage = "User not found.";
@@ -498,7 +544,8 @@ namespace TierraCreative.Controllers
 
             var forgotpasswordtoken = _context.ForgotPasswordTokens.SingleOrDefault(x => x.Unique_Guid == guid);
 
-            if (forgotpasswordtoken != null) {
+            if (forgotpasswordtoken != null)
+            {
                 ViewBag.Email = email;
                 return View("../ForgotPasswordChange");
             }
@@ -557,6 +604,6 @@ namespace TierraCreative.Controllers
             }
             base.Dispose(disposing);
         }
-        
+
     }
 }
