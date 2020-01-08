@@ -12,9 +12,11 @@ namespace TierraCreative.Model
         [Key]
         public int UserId { get; set; }
 
+        [Display(Name = "UserName")]
         [StringLength(150)]
         public string UserName { get; set; }
 
+        [Display(Name = "Name")]
         [StringLength(250)]
         public string FullName { get; set; }
 
