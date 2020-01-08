@@ -42,7 +42,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            @if (Session["Layout"].ToString() !="admin"  && Convert.ToInt32(Session["UserId"]) != 0 && Session["UserId"].ToString() != "" && Session["UserId"] != null)
+            @if ((Session["Layout"]!=null && Session["Layout"].ToString() !="admin")  && Convert.ToInt32(Session["UserId"]) != 0 && Session["UserId"].ToString() != "" && Session["UserId"] != null)
             {
                 <text>
                     <ul class="navbar-nav mr-auto">
@@ -72,7 +72,7 @@
                     <a class="btn d-none d-lg-block mb-3 mb-md-0 ml-md-3" style="color:rgba(255,255,255,.5);" href="/logout">Log off</a>
                 </text>
             }
-            else if (Session["Layout"].ToString() =="admin" && (Session["UserRole"].ToString() == "Super User" || Session["UserRole"].ToString() == "Admin") && Convert.ToInt32(Session["UserId"]) != 0 && Session["UserId"].ToString() != "" && Session["UserId"] != null)
+            else if (Session["Layout"]!=null && Session["Layout"].ToString() =="admin" && (Session["UserRole"].ToString() == "Super User" || Session["UserRole"].ToString() == "Admin") && Convert.ToInt32(Session["UserId"]) != 0 && Session["UserId"].ToString() != "" && Session["UserId"] != null)
             {
                 <text>
                     <ul class="navbar-nav mr-auto">

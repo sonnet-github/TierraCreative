@@ -423,12 +423,19 @@ namespace TierraCreative.Controllers
 
             if (user != null)
             {
-                user.Password = newpassword;
-                user.IsFirstLog = false;
-                _context.Entry(user).State = EntityState.Modified;
-                _context.SaveChanges();
+                if (user.Password != Request["ConfirmPassword"])
+                {
+                    ViewBag.ErrorMessage += "Password and Confirm Password did not match!";
+                }
+                else {
+                    user.Password = newpassword;
+                    user.IsFirstLog = false;
+                    _context.Entry(user).State = EntityState.Modified;
+                    _context.SaveChanges();
 
-                ViewBag.IsSuccess = "Success";
+                    ViewBag.IsSuccess = "Success";
+                }
+                
 
             }
 
