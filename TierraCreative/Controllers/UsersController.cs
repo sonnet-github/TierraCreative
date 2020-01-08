@@ -41,8 +41,9 @@ namespace TierraCreative.Controllers
                             Session["UserId"] = user.UserId;
                             Session["UserName"] = user.UserName;
                             Session["UserRole"] = user.Role.RoleName;
-                            Session["UserFullName"] = "";
+                            Session["UserFullName"] = user.FullName;
                             Session["UserEmail"] = user.Email;
+                            Session["Layout"] = "admin";
 
                             return Redirect("/admin/main");
                         }
@@ -368,6 +369,7 @@ namespace TierraCreative.Controllers
                         Session["UserRole"] = user.Role.RoleName;
                         Session["UserFullName"] = user.FullName ;
                         Session["UserEmail"] = user.Email;
+                        Session["Layout"] = "user";
                         if (user.IsFirstLog == false || (user.Role.RoleName == "Super User" || user.Role.RoleName == "Admin"))
                         {
                             return Redirect("Forms");
