@@ -502,16 +502,16 @@ namespace TierraCreative.Controllers
             var username_parameter = form["txtusername"].ToString();
 
             var user = _context.Users.Include(x => x.Role).SingleOrDefault(x => x.UserName == username_parameter || x.Email == username_parameter);
-            var error_ = false;
+            //var error_ = false;
 
             if (user != null)
             {
-                if (user.Password != Request["ConfirmPassword"])
-                {
-                    ViewBag.ErrorMessage += "Password and Confirm Password did not match!"; error_ = true;
-                }
-                if (!error_)
-                {
+                //if (user.Password != Request["ConfirmPassword"])
+                //{
+                //    ViewBag.ErrorMessage += "Password and Confirm Password did not match!"; error_ = true;
+                //}
+                //if (!error_)
+                //{
                     //add new forgotpassword token
                     var forgotpassword = new ForgotPasswordToken
                     {
@@ -526,7 +526,7 @@ namespace TierraCreative.Controllers
                     var success = utilities.SendForgotPasswordEmail(guid.ToString(), System.Configuration.ConfigurationManager.AppSettings["supportemail"], user.Email, user.UserName);
 
                     ViewBag.IsSuccess = "Success";
-                }
+                //}
             }
             else
                 ViewBag.ErrorMessage = "User not found.";
