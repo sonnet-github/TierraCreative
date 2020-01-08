@@ -427,6 +427,22 @@ namespace TierraCreative.Controllers
             return View("../ChangePassword");
         }
 
+        public ActionResult ForgotPassword()
+        {
+            ViewBag.IsSuccess = null;
+            return View("../ForgotPassword");
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(FormCollection form)
+        {
+
+
+            ViewBag.IsSuccess = "Success";
+
+            return View("../ForgotPassword");
+        }
+
         public ActionResult Logout()
         {
             Session.Clear();

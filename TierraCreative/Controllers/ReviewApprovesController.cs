@@ -197,10 +197,7 @@ namespace TierraCreative.Controllers
 
                 review = GetApproveData(review, source, int.Parse(id.ToString()));
 
-                ViewBag.ErrorMessage = @"Your username is associated with the submission.<br />
-                                         You are not allowed to confirm this.<br />
-                                         Please refer approval to a user with the appropriate clearance.
-                                        ";
+                ViewBag.ErrorMessage = @"Your username is associated with the submission. You are not allowed to confirm this. Please refer approval to a user with the appropriate clearance.";
 
                 return View(review);
             }

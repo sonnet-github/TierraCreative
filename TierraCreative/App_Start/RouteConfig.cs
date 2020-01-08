@@ -45,6 +45,12 @@ namespace TierraCreative
            );
 
             routes.MapRoute(
+             name: "ForgotPassword",
+             url: "forgotpassword",
+             defaults: new { controller = "users", action = "forgotpassword", id = UrlParameter.Optional }
+           );
+
+            routes.MapRoute(
              name: "ReviewApproves",
              url: "ra",
              defaults: new { controller = "reviewapproves", action = "review", id = UrlParameter.Optional }
