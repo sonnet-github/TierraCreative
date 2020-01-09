@@ -11,11 +11,25 @@ h2 {
 
 .form h4 {
     margin-top: 55px;
-    padding-left:30px;
 }
 
 .form h2 {
     margin-top: unset;
+    padding-left: 30px;
+}
+
+.form-horizontal {
+    padding-left: 30px;
+}
+
+.col-lg-12 p{
+    padding-left: 30px;
+}
+.col-lg-4.col-sm-6 input,.col-lg-4.col-sm-6 textarea {
+    margin-left: 30px;
+}
+
+.form .nav-forms li {
     padding-left: 30px;
 }
 
@@ -34,7 +48,12 @@ footer, footer p {
 
 footer {
     margin-top: 50px;
+    padding: 0 30px;
 }
+
+    footer p {
+        font-weight: normal;
+    }
 
 hr {
     height: 2px !important;
@@ -43,7 +62,29 @@ hr {
 
 @media(min-width:768px) {
     .control-label {
-        padding-left: 50px!important;
+        padding-left: 50px !important;
+    }
+    .form h2 {
+        padding-left: 0;
+    }
+
+    .form-horizontal {
+        padding-left: 0;
+    }
+
+    .col-lg-12 p {
+        padding-left: 0;
+    }
+
+    .col-lg-4.col-sm-6 input, .col-lg-4.col-sm-6 textarea {
+        margin-left: 0;
+    }
+
+    .form .nav-forms li {
+        padding-left: 0;
+    }
+    footer {
+        padding: 0;
     }
 }
 

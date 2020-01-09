@@ -137,9 +137,26 @@ namespace TierraCreative.Controllers
                 error_ = true;
                 
             }
-            if (user.Password != Request["ConfirmPassword"])
+            var newpassword = user.Password;
+            if (newpassword != Request["ConfirmPassword"].ToString())
             {
-                ViewBag.ErrorMessage += "Password and Confirm Password did not match!"; error_ = true;
+                ViewBag.ErrorMessage += "Password and Confirm Password did not match!<br/>"; error_ = true;
+            }
+            if (newpassword.Length < 8)
+            {
+                ViewBag.ErrorMessage += "Minimum of 8 characters is required!<br/>"; error_ = true;
+            }
+            if (!newpassword.Any(char.IsUpper))
+            {
+                ViewBag.ErrorMessage += "Password must have atleast 1 uppercase!<br/>"; error_ = true;
+            }
+            if (!newpassword.Any(char.IsLower))
+            {
+                ViewBag.ErrorMessage += "Password must have atleast 1 lowercase!<br/>"; error_ = true;
+            }
+            if (!newpassword.Any(ch => !Char.IsLetterOrDigit(ch)))
+            {
+                ViewBag.ErrorMessage += "Password must have atleast 1 special character!<br/>"; error_ = true;
             }
             if (!error_ )
             {
@@ -444,9 +461,29 @@ namespace TierraCreative.Controllers
             var userid = int.Parse(Session["UserId"].ToString());
             var user = _context.Users.SingleOrDefault(x => x.UserId == userid);
             var error_ = false;
-            if (user.Password != Request["ConfirmPassword"])
+            if (newpassword != Request["ConfirmPassword"])
             {
                 ViewBag.ErrorMessage += "Password and Confirm Password did not match!"; error_ = true;
+            }
+            if (newpassword != Request["ConfirmPassword"].ToString())
+            {
+                ViewBag.ErrorMessage += "Password and Confirm Password did not match!<br/>"; error_ = true;
+            }
+            if (newpassword.Length < 8)
+            {
+                ViewBag.ErrorMessage += "Minimum of 8 characters is required!<br/>"; error_ = true;
+            }
+            if (!newpassword.Any(char.IsUpper))
+            {
+                ViewBag.ErrorMessage += "Password must have atleast 1 uppercase!<br/>"; error_ = true;
+            }
+            if (!newpassword.Any(char.IsLower))
+            {
+                ViewBag.ErrorMessage += "Password must have atleast 1 lowercase!<br/>"; error_ = true;
+            }
+            if (!newpassword.Any(ch => !Char.IsLetterOrDigit(ch)))
+            {
+                ViewBag.ErrorMessage += "Password must have atleast 1 special character!<br/>"; error_ = true;
             }
             if (!error_)
             {
@@ -552,10 +589,25 @@ namespace TierraCreative.Controllers
             var error_ = false;
             if (user != null)
             {
-                if (newpassword != Request["ConfirmPassword"])
+                if (newpassword != Request["ConfirmPassword"].ToString())
                 {
-                    ViewBag.Email = email;
-                    ViewBag.ErrorMessage += "Password and Confirm Password did not match!"; error_ = true;
+                    ViewBag.ErrorMessage += "Password and Confirm Password did not match.<br/>"; error_ = true;
+                }
+                if (newpassword.Length < 8)
+                {
+                    ViewBag.ErrorMessage += "Minimum of 8 characters is required.<br/>"; error_ = true;
+                }
+                if (!newpassword.Any(char.IsUpper))
+                {
+                    ViewBag.ErrorMessage += "Password must have atleast 1 uppercase.<br/>"; error_ = true;
+                }
+                if (!newpassword.Any(char.IsLower))
+                {
+                    ViewBag.ErrorMessage += "Password must have atleast 1 lowercase.<br/>"; error_ = true;
+                }
+                if (!newpassword.Any(ch => !Char.IsLetterOrDigit(ch)))
+                {
+                    ViewBag.ErrorMessage += "Password must have atleast 1 special character.<br/>"; error_ = true;
                 }
                 if (!error_)
                 {
