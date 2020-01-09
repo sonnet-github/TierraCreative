@@ -91,7 +91,7 @@ namespace TierraCreative.Controllers.Utility
                                         <td>[ISINValue]</td>
                                     </tr>
                                     <tr>
-                                        <td>DRP Amount</td>
+                                        <td>Transfer Amount</td>
                                         <td>[AmountValue]</td>
                                     </tr>
                                     <tr>
@@ -114,6 +114,7 @@ namespace TierraCreative.Controllers.Utility
 
             emailmodel.Subject = subject;
             emailmodel.Body = body;
+            body += " This e-mail was sent on " + System.DateTime.Now.ToString("dd/MM/yyyy") + "by the CISELECT application.";
             emailmodel.IsBodyHtml = true;
 
             var success = emailhelper.SendEmail(emailmodel);
@@ -152,7 +153,7 @@ namespace TierraCreative.Controllers.Utility
             if (HttpContext.Current.Request.Url.AbsoluteUri.ToLower().IndexOf("/admin") != -1)
                 subject = "CISELECT – Admin Forgotten Password";
 
-            var body = "The following user " + username + " initiated a forgotten password request on " + System.DateTime.Now + ".";
+            var body = "The following user " + username + " initiated a forgotten password request on " + System.DateTime.Now.ToString("dd/MM/yyyy") + ".";
             body += " <br /><br />";
             body += " Please use the following link to reset your password: ";
             body += " <br />";
@@ -160,7 +161,7 @@ namespace TierraCreative.Controllers.Utility
             body += " <br /><br />";
             body += " If you didn’t initiate this request please use the link below to invalidate it and contact " + fromEmail;
             body += " <br /><br />";
-            body += " This e-mail was sent on by the CISELECT application.";
+            body += " This e-mail was sent on " + System.DateTime.Now.ToString("dd/MM/yyyy") + "by the CISELECT application.";
 
             emailmodel.Subject = subject;
             emailmodel.Body = body;
@@ -201,11 +202,11 @@ namespace TierraCreative.Controllers.Utility
             if (HttpContext.Current.Request.Url.AbsoluteUri.ToLower().IndexOf("admin") != -1)
                 subject = "CISELECT – Admin Password Changed";
 
-            var body = "The following user " + username + " has changed the password associated with their account on " + System.DateTime.Now + ".";
+            var body = "The following user " + username + " has changed the password associated with their account on " + System.DateTime.Now.ToString("dd/MM/yyyy") + ".";
             body += " <br /><br />";
             body += " If you didn’t initiate this password change please contact " + fromEmail;
             body += " <br /><br />";
-            body += " This e-mail was sent on by the CISELECT application.";
+            body += " This e-mail was sent on " + System.DateTime.Now.ToString("dd/MM/yyyy") + "by the CISELECT application.";
 
             emailmodel.Subject = subject;
             emailmodel.Body = body;
@@ -254,7 +255,8 @@ namespace TierraCreative.Controllers.Utility
             body += " <br />";
             body += message;
             body += " <br />br />";
-            body += " This e-mail was sent on by the CISELECT application.";
+            DateTime dateTime = DateTime.UtcNow.Date;
+            body += " This e-mail was sent on "+ dateTime.ToString("dd/MM/yyyy") + "by the CISELECT application.";
 
             emailmodel.Subject = subject;
             emailmodel.Body = body;
