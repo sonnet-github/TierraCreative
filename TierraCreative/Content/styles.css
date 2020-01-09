@@ -26,7 +26,7 @@ h2 {
     padding-left: 30px;
 }
 
-.col-lg-4.col-sm-6 input, .col-lg-4.col-sm-6 textarea, .col-lg-4.col-sm-6 > a, .col-lg-4.col-sm-6 select, .col-lg-12 > input{
+.col-lg-4.col-sm-6 input:first-child, .col-lg-4.col-sm-6 textarea, .col-lg-4.col-sm-6 > a:first-child, .col-lg-4.col-sm-6 select:first-child, .col-lg-12 > input:first-child {
     margin-left: 30px;
 }
 
@@ -58,7 +58,7 @@ footer {
     footer p {
         font-weight: normal;
     }
-.btn {
+.modal .btn {
     border:1px solid #acacac;
 }
 hr {
@@ -90,7 +90,7 @@ hr {
         padding-left: 0;
     }
 
-    .form > input, .col-lg-4.col-sm-6 input, .col-lg-4.col-sm-6 textarea, .col-lg-4.col-sm-6 > a, .col-lg-4.col-sm-6 select, .col-lg-12 > input {
+    .form > input, .col-lg-4.col-sm-6 input:first-child, .col-lg-4.col-sm-6 textarea, .col-lg-4.col-sm-6 > a:first-child, .col-lg-4.col-sm-6 select:first-child, .col-lg-12 > input:first-child {
         margin-left: 0;
     }
 
