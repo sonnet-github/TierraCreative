@@ -461,10 +461,6 @@ namespace TierraCreative.Controllers
             var userid = int.Parse(Session["UserId"].ToString());
             var user = _context.Users.SingleOrDefault(x => x.UserId == userid);
             var error_ = false;
-            if (newpassword != Request["ConfirmPassword"])
-            {
-                ViewBag.ErrorMessage += "Password and Confirm Password did not match!"; error_ = true;
-            }
             if (newpassword != Request["ConfirmPassword"].ToString())
             {
                 ViewBag.ErrorMessage += "Password and Confirm Password did not match!<br/>"; error_ = true;

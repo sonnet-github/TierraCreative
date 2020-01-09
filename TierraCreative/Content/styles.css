@@ -22,10 +22,11 @@ h2 {
     padding-left: 30px;
 }
 
-.col-lg-12 p{
+.col-lg-12 p {
     padding-left: 30px;
 }
-.col-lg-4.col-sm-6 input,.col-lg-4.col-sm-6 textarea {
+
+.col-lg-4.col-sm-6 input, .col-lg-4.col-sm-6 textarea {
     margin-left: 30px;
 }
 
@@ -64,6 +65,9 @@ hr {
     .control-label {
         padding-left: 50px !important;
     }
+}
+
+@media(max-width:767px) {
     .form h2 {
         padding-left: 0;
     }
@@ -83,6 +87,7 @@ hr {
     .form .nav-forms li {
         padding-left: 0;
     }
+
     footer {
         padding: 0;
     }
