@@ -26,12 +26,15 @@ h2 {
     padding-left: 30px;
 }
 
-.col-lg-4.col-sm-6 input, .col-lg-4.col-sm-6 textarea {
+.col-lg-4.col-sm-6 input, .col-lg-4.col-sm-6 textarea, .col-lg-4.col-sm-6 > a, .col-lg-4.col-sm-6 select {
     margin-left: 30px;
 }
 
 .form .nav-forms li {
     padding-left: 30px;
+}
+.form > input {
+    margin-left: 30px;
 }
 
 .nav-forms li {
@@ -80,7 +83,7 @@ hr {
         padding-left: 0;
     }
 
-    .col-lg-4.col-sm-6 input, .col-lg-4.col-sm-6 textarea {
+    .form > input,.col-lg-4.col-sm-6 input, .col-lg-4.col-sm-6 textarea, .col-lg-4.col-sm-6 > a,, .col-lg-4.col-sm-6 select {
         margin-left: 0;
     }
 

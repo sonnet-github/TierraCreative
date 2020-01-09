@@ -163,6 +163,7 @@ namespace TierraCreative.Controllers
                 user.IsEnabled = true;
                 user.CreatedById = int.Parse(Session["UserId"].ToString());
                 user.CreatedDate = System.DateTime.Now;
+                user.IsFirstLog = true;
 
                 _context.Users.Add(user);
                 _context.SaveChanges();
