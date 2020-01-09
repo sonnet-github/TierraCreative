@@ -308,36 +308,15 @@ namespace TierraCreative.Controllers
             if (Session["UserId"] == null)
                 return Redirect("/admin");
 
+            Utility.Utilities utilities = new Utility.Utilities();
+
             //string UserId = Session["UserId"].ToString();
 
             string msg = form["txtmessage"];
 
-            SendGridHelper emailhelper = new SendGridHelper();
-            SendGridModel emailmodel = new SendGridModel();
-
-            var From = new Recipient
-            {
-                Email = "raymondm@sonnet.digital",
-                Name = "Raymond Milca"
-            };
-            emailmodel.From = From;
-
-            var To = new Recipient
-            {
-                Email = "raymondm@sonnet.digital",
-                Name = "Raymond Milca"
-            };
-            emailmodel.To.Add(To);
-
-            /*Uncomment if need to attach single or multiple file*/
-            //Attachment attachment = new Attachment(@"C:\2BInteractive\Docs\FTPAcct.txt");
-            //emailmodel.Attachment.Add(attachment);
-
-            emailmodel.Subject = "Email Subject";
-            emailmodel.Body = "<strong>Email Body</strong>";
-            emailmodel.IsBodyHtml = true;
-
-            var success = emailhelper.SendEmail(emailmodel);
+            //send email link
+            var success = utilities.SendSupportEmail(System.Configuration.ConfigurationManager.AppSettings["supportemail"], System.Configuration.ConfigurationManager.AppSettings["supportemail"], user.FullName, user.UserName, msg);
+            success = utilities.SendSupportUserEmail(System.Configuration.ConfigurationManager.AppSettings["supportemail"], user.Email, user.FullName, user.UserName, msg);
 
             if (success)
                 ViewBag.IsSuccess = true;
@@ -456,6 +435,8 @@ namespace TierraCreative.Controllers
         [HttpPost]
         public ActionResult ChangePassword(FormCollection form)
         {
+            Utility.Utilities utilities = new Utility.Utilities();
+
             ViewBag.IsSuccess = null;
 
             var newpassword = form["New password"].ToString();
@@ -475,6 +456,10 @@ namespace TierraCreative.Controllers
                 _context.SaveChanges();
 
                 ViewBag.IsSuccess = "Success";
+
+                //send email link
+                var success = utilities.SendChangePasswordEmail(System.Configuration.ConfigurationManager.AppSettings["supportemail"], user.Email, user.UserName);
+
             }
 
             return View("../ChangePassword");
