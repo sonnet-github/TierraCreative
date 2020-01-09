@@ -107,37 +107,41 @@ namespace TierraCreative.Controllers
             var FormName = string.Empty;
             var UserName = Session["UserName"].ToString();
             var FullName = Session["UserFullName"].ToString();
-            var toEmail = Session["UserEmail"].ToString();
-            var fromEmail = string.Empty;
+            var ApprovalEmail = Session["UserEmail"].ToString();
+            var fromEmail = System.Configuration.ConfigurationManager.AppSettings["supportemail"];
 
             var id = int.Parse(form["Id"]);
             var source = form["Source"];
+
+            var submitUserEmail = string.Empty;
+            var computershareEmail = string.Empty;
 
             if (Session["UserId"].ToString() != id.ToString())
             {
                 switch (source)
                 {
                     case "DRP":
-                        var drp = _context.DRPs.Include(a => a.User).Include(a => a.ReviewedUser)
+                        var drp = _context.DRPs.Include(a => a.User).Include(a => a.ReviewedUser).Include(a => a.CreatedByUser)
                                                .SingleOrDefault(x => x.DRPId == id);
 
                         drp.ReviewedById = int.Parse(Session["UserId"].ToString());
                         drp.ReviewedDate = System.DateTime.Now;
 
                         _context.Entry(drp).State = EntityState.Modified;
-                        _context.SaveChanges();
+                        _context.SaveChanges();                       
 
                         //email variables
                         FormName = source;
                         TransactionID = FormName + "-" + drp.DRPId.ToString();
                         FromCSNValue = drp.CSN;
                         ISINValue = drp.ISIN;
-                        AmountValue = drp.DRPAmount.ToString();
-                        fromEmail = "drp@computershare.co.nz";
+                        AmountValue = drp.DRPAmount.ToString();                        
+                        computershareEmail = "1drp@computershare.co.nz";
+                        submitUserEmail = drp.CreatedByUser.Email;
 
                         break;
                     case "AIL":
-                        var ail = _context.AILs.Include(a => a.User).Include(a => a.ReviewedUser)
+                        var ail = _context.AILs.Include(a => a.User).Include(a => a.ReviewedUser).Include(a => a.CreatedByUser)
                                                .SingleOrDefault(x => x.AILId == id);
 
                         ail.ReviewedById = int.Parse(Session["UserId"].ToString());
@@ -152,12 +156,14 @@ namespace TierraCreative.Controllers
                         FromCSNValue = ail.FromCSN;
                         ToCSNValue = ail.ToCSN;
                         ISINValue = ail.ISIN;
-                        AmountValue = ail.TransferAmount.ToString();
-                        fromEmail = "payments@computershare.co.nz";
+                        AmountValue = ail.TransferAmount.ToString();                        
+                        fromEmail = System.Configuration.ConfigurationManager.AppSettings["supportemail"];
+                        computershareEmail = "1payments@computershare.co.nz";
+                        submitUserEmail = ail.CreatedByUser.Email;
 
                         break;
                     case "Supplementary Dividend":
-                        var sP = _context.SupplementaryDividends.Include(a => a.User).Include(a => a.ReviewedUser)
+                        var sP = _context.SupplementaryDividends.Include(a => a.User).Include(a => a.ReviewedUser).Include(a => a.CreatedByUser)
                                                                 .SingleOrDefault(x => x.SDId == id);
 
                         sP.ReviewedById = int.Parse(Session["UserId"].ToString());
@@ -173,7 +179,8 @@ namespace TierraCreative.Controllers
                         ToCSNValue = sP.ToCSN;
                         ISINValue = sP.ISIN;
                         AmountValue = sP.TransferAmount.ToString();
-                        fromEmail = "payments@computershare.co.nz";
+                        computershareEmail = "1payments@computershare.co.nz";
+                        submitUserEmail = sP.CreatedByUser.Email;
 
                         break;
                 }
@@ -189,7 +196,9 @@ namespace TierraCreative.Controllers
                             FullName, UserName,
                             FormName,
                             fromEmail,
-                            toEmail);
+                            ApprovalEmail,
+                            computershareEmail,
+                            submitUserEmail);
             }
             else
             {
