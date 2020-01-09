@@ -26,6 +26,8 @@ namespace TierraCreative.Model
         public double? DRPAmount { get; set; }
 
         public int? CreatedById { get; set; }
+        [ForeignKey("UserId")]
+        public User CreatedByUser { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

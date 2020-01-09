@@ -17,7 +17,9 @@ namespace TierraCreative.Controllers.Utility
             string FullName, string UserName,
             string FormName,
             string fromEmail,
-            string toEmail)
+            string ApprovalEmail,
+            string computershareEmail,
+            string submitUserEmail)
         {
             SendGridHelper emailhelper = new SendGridHelper();
             SendGridModel emailmodel = new SendGridModel();
@@ -31,8 +33,22 @@ namespace TierraCreative.Controllers.Utility
 
             var To = new Recipient
             {
-                Email = toEmail,
-                Name = toEmail
+                Email = ApprovalEmail,
+                Name = ApprovalEmail
+            };
+            emailmodel.To.Add(To);
+
+            To = new Recipient
+            {
+                Email = computershareEmail,
+                Name = computershareEmail
+            };
+            emailmodel.To.Add(To);
+
+            To = new Recipient
+            {
+                Email = submitUserEmail,
+                Name = submitUserEmail
             };
             emailmodel.To.Add(To);
 

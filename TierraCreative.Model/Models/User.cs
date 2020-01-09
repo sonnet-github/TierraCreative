@@ -34,7 +34,7 @@ namespace TierraCreative.Model
         [Display(Name = "Enabled")]
         public bool IsEnabled { get; set; }
 
-        public int? CreatedById { get; set; }
+        public int? CreatedById { get; set; }       
 
         public DateTime? CreatedDate { get; set; }
 
