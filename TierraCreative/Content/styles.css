@@ -58,15 +58,22 @@ footer {
     footer p {
         font-weight: normal;
     }
-
+.btn {
+    border:1px solid #acacac;
+}
 hr {
     height: 2px !important;
     background: #E5E5E5;
 }
-
+.modal-dialog {
+    margin-top: 220px !important;
+}
 @media(min-width:768px) {
     .control-label {
         padding-left: 50px !important;
+    }
+    .modal-dialog {
+        min-width: 500px;
     }
 }
 
