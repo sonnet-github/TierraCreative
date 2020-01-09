@@ -569,6 +569,7 @@ namespace TierraCreative.Controllers
             {
                 if (newpassword != Request["ConfirmPassword"])
                 {
+                    ViewBag.Email = email;
                     ViewBag.ErrorMessage += "Password and Confirm Password did not match!"; error_ = true;
                 }
                 if (!error_)
