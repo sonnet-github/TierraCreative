@@ -112,7 +112,7 @@ namespace TierraCreative.Controllers.Utility
                     .Replace("[AmountValue]", AmountValue)
                     .Replace("[Timestamp]", Timestamp);
 
-            emailmodel.Subject = subject;
+            emailmodel.Subject = subject + "<br /><br />This notification was sent on " + System.DateTime.Now + " by the CISELECT application.";
             emailmodel.Body = body;
             emailmodel.IsBodyHtml = true;
 
