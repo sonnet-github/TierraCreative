@@ -94,6 +94,9 @@ hr {
     footer {
         padding: 0;
     }
+    .text-right {
+        text-align:initial!important;
+    }
 }
 
 .navbar-brand img {
