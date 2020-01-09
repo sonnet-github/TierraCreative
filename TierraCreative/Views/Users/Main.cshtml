@@ -167,13 +167,17 @@
                                     {
                                         @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) <span>|</span>
                                         @Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>
-                                        @Html.Raw("<span='#' style='color:gray;'>Delete</span>")
+                                        <a href="#" onclick="$('#confirm_delete').attr('href', '@Url.Action("DeleteConfirm", "admin", new { id = item.UserId })');" data-toggle="modal" data-target="#exampleModal">
+                                            Delete
+                                        </a>
                                     }
                                     else
                                     {
                                         @Html.Raw("<span style='color:gray;'>Edit</span> | ")
                                         @Html.Raw("<span style='color:gray;'>View</span> | ")
-                                        @Html.Raw("<span style='color:gray;'>Delete</span>")
+                                        <a href="#" onclick="$('#confirm_delete').attr('href', '@Url.Action("DeleteConfirm", "admin", new { id = item.UserId })');" data-toggle="modal" data-target="#exampleModal">
+                                            Delete
+                                        </a>
                                     }
                                 }
                                 else
