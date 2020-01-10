@@ -128,7 +128,7 @@ namespace TierraCreative.Controllers.Utility
                     .Replace("[AmountValue]", AmountValue)
                     .Replace("[Timestamp]", Timestamp);
 
-            emailmodel.Subject = subject + "<br /><br />This notification was sent on " + System.DateTime.Now + " by the CISELECT application.";
+            emailmodel.Subject = subject + "<br /><br />This notification was sent on " + System.DateTime.Now.ToString("dd/MM/yyyy") + " by the CISELECT application.";
             emailmodel.Body = body;
             body += " This e-mail was sent on " + System.DateTime.Now.ToString("dd/MM/yyyy") + "by the CISELECT application.";
             emailmodel.IsBodyHtml = true;
@@ -263,7 +263,7 @@ namespace TierraCreative.Controllers.Utility
 
             var subject = @"CISELECT – Support Request";
 
-            var body = "Support request was submitted on " + System.DateTime.Now + ".";
+            var body = "Support request was submitted on " + System.DateTime.Now.ToString("dd/MM/yyyy") + ".";
             body += " <br /><br />";
             body += string.Format("{0} [{1}]", fullame, username);
             body += " <br />br />";
@@ -313,7 +313,7 @@ namespace TierraCreative.Controllers.Utility
 
             var subject = @"CISELECT – Support Request";
 
-            var body = "Support request was submitted on " + System.DateTime.Now + ".";
+            var body = "Support request was submitted on " + System.DateTime.Now.ToString("dd/MM/yyyy") + ".";
             body += " <br />br />";
             body += " Your Support Message:";
             body += " <br />";

@@ -277,8 +277,28 @@ namespace TierraCreative.Controllers
             user.DeletedById = int.Parse(Session["UserId"].ToString());
             user.DeletedDate = System.DateTime.Now;
 
-            _context.Entry(user).State = EntityState.Modified;
-            _context.SaveChanges();
+            var userid = int.Parse(Session["UserId"].ToString());
+            var cur_user = _context.Users.SingleOrDefault(x => x.UserId == userid);
+            if ((user.Role.RoleName == "Super User"))
+            {
+                if (cur_user.Role.RoleName == "Super User")
+                {
+                    _context.Entry(user).State = EntityState.Modified;
+                    _context.SaveChanges();
+                }
+            }
+            else
+            {
+                if (cur_user.Role.RoleName != "Super User")
+                {
+                    if(user.Role.RoleName != "Super User"){
+                        _context.Entry(user).State = EntityState.Modified;
+                        _context.SaveChanges();
+                    }
+                }
+            }
+
+
 
             Session["Deleted"] = true;
 
