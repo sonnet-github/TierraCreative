@@ -26,8 +26,11 @@ h2 {
     padding-left: 30px;
 }
 
-.col-lg-4.col-sm-6 input:first-child, .col-lg-4.col-sm-6 textarea, .col-lg-4.col-sm-6 > a, .col-lg-4.col-sm-6 select:first-child, .col-lg-12 > input:first-child, .form-group div> span span {
+.col-lg-4.col-sm-6 input, .col-lg-4.col-sm-6 textarea, .col-lg-4.col-sm-6 > a, .col-lg-4.col-sm-6 select:first-child, .col-lg-12 > input, .form-group div> span span {
     margin-left: 30px;
+}
+.btn.edit {
+    margin-left: 0!important;
 }
 
 .form .nav-forms li {
@@ -88,7 +91,7 @@ hr {
         padding-left: 0;
     }
 
-    .form > input, .col-lg-4.col-sm-6 input:first-child, .col-lg-4.col-sm-6 textarea, .col-lg-4.col-sm-6 > a, .col-lg-4.col-sm-6 select:first-child, .col-lg-12 > input:first-child, .form-group div>span span {
+    .form > input, .col-lg-4.col-sm-6 input, .col-lg-4.col-sm-6 textarea, .col-lg-4.col-sm-6 > a, .col-lg-4.col-sm-6 select:first-child, .col-lg-12 > input, .form-group div>span span {
         margin-left: 0;
     }
 
