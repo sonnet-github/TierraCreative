@@ -239,6 +239,10 @@
         <hr />
     </div>
     <div class="col-lg-12 form">
+        @if (ViewBag.with_transaction == true)
+        {
+            @:<p>Unable to deleted user with transaction.</p>
+        }
         @if (ViewBag.IsAllowed == true)
         {
 

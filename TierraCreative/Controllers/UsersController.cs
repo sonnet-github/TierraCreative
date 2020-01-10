@@ -285,7 +285,17 @@ namespace TierraCreative.Controllers
             var userid = int.Parse(Session["UserId"].ToString());
             var cur_user = _context.Users.SingleOrDefault(x => x.UserId == userid);
             Session["allowed"] = false;
-            if (Session["UserRole"].ToString() != "Super User")
+            Session["with_transaction"] = false;
+            var with_transaction = true;
+
+            var dRps = _context.DRPs.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).Where(x => x.DeletedById == null).ToList();
+            var aILs = _context.AILs.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).Where(x => x.DeletedById == null).ToList();
+            var sPs = _context.SupplementaryDividends.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).Where(x => x.DeletedById == null).ToList();
+
+            if (dRps.Count() == 0 || dRps.Count() == 0 || dRps.Count() == 0) {
+                with_transaction = false;
+            }
+            if (Session["UserRole"].ToString() != "Super User" && with_transaction==false)
             {
                 if (user != null) {
                     if (user.Role.RoleName != "Super User")
