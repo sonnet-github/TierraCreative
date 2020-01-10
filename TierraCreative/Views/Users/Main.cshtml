@@ -243,12 +243,12 @@
         {
             @:<p>Unable to deleted user with transaction.</p>
         }
-        @if (ViewBag.IsAllowed == true)
+        @if (ViewBag.IsAllowed == true && ViewBag.with_transaction==false)
         {
 
             @:<p>The user has been successfully deleted.</p>
         }
-        else
+        else if (ViewBag.IsAllowed != true)
         {
             @:<p>Unable to delete Super admin user</p>
         }
