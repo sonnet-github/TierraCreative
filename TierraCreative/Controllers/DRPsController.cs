@@ -66,34 +66,34 @@ namespace TierraCreative.Controllers
             Session["ISIN"] = null;
             Session["DRPAmount"] = null;
 
-            #region -- Email --
-            SendGridHelper emailhelper = new SendGridHelper();
-            SendGridModel emailmodel = new SendGridModel();
+            //#region -- Email --
+            //SendGridHelper emailhelper = new SendGridHelper();
+            //SendGridModel emailmodel = new SendGridModel();
 
-            var From = new Recipient
-            {
-                Email = "raymondm@sonnet.digital",
-                Name = "Raymond Milca"
-            };
-            emailmodel.From = From;
+            //var From = new Recipient
+            //{
+            //    Email = "raymondm@sonnet.digital",
+            //    Name = "Raymond Milca"
+            //};
+            //emailmodel.From = From;
 
-            var To = new Recipient
-            {
-                Email = "raymondm@sonnet.digital",
-                Name = "Raymond Milca"
-            };
-            emailmodel.To.Add(To);
+            //var To = new Recipient
+            //{
+            //    Email = "raymondm@sonnet.digital",
+            //    Name = "Raymond Milca"
+            //};
+            //emailmodel.To.Add(To);
 
-            /*Uncomment if need to attach single or multiple file*/
-            //Attachment attachment = new Attachment(@"C:\2BInteractive\Docs\FTPAcct.txt");
-            //emailmodel.Attachment.Add(attachment);
+            ///*Uncomment if need to attach single or multiple file*/
+            ////Attachment attachment = new Attachment(@"C:\2BInteractive\Docs\FTPAcct.txt");
+            ////emailmodel.Attachment.Add(attachment);
 
-            emailmodel.Subject = "Email Subject";
-            emailmodel.Body = "<strong>Email Body</strong>";
-            emailmodel.IsBodyHtml = true;
+            //emailmodel.Subject = "Email Subject";
+            //emailmodel.Body = "<strong>Email Body</strong>";
+            //emailmodel.IsBodyHtml = true;
 
-            var success = emailhelper.SendEmail(emailmodel);
-            #endregion
+            //var success = emailhelper.SendEmail(emailmodel);
+            //#endregion
 
             ViewBag.IsView = "Acknowledgement";
 
