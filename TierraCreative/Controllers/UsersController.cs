@@ -292,9 +292,10 @@ namespace TierraCreative.Controllers
             var aILs = _context.AILs.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).Where(x => x.DeletedById == null).ToList();
             var sPs = _context.SupplementaryDividends.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).Where(x => x.DeletedById == null).ToList();
 
-            if (dRps.Count() == 0 || dRps.Count() == 0 || dRps.Count() == 0) {
+            if (dRps.Count == 0 || dRps.Count == 0 || dRps.Count == 0) {
                 with_transaction = false;
             }
+            ViewBag.with_transaction = with_transaction;
             if (Session["UserRole"].ToString() != "Super User" && with_transaction==false)
             {
                 if (user != null) {
@@ -308,9 +309,11 @@ namespace TierraCreative.Controllers
             }
             else
             {
-                Session["allowed"] = true;
-                _context.Entry(user).State = EntityState.Modified;
-                _context.SaveChanges();
+                if (with_transaction) {
+                    Session["allowed"] = true;
+                    _context.Entry(user).State = EntityState.Modified;
+                    _context.SaveChanges();
+                }
             }
 
 
