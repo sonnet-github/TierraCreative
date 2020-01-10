@@ -279,23 +279,20 @@ namespace TierraCreative.Controllers
 
             var userid = int.Parse(Session["UserId"].ToString());
             var cur_user = _context.Users.SingleOrDefault(x => x.UserId == userid);
-            if ((user.Role.RoleName == "Super User"))
+            if (cur_user.Role.RoleName != "Super User")
             {
-                if (cur_user.Role.RoleName == "Super User")
-                {
-                    _context.Entry(user).State = EntityState.Modified;
-                    _context.SaveChanges();
-                }
-            }
-            else
-            {
-                if (cur_user.Role.RoleName != "Super User")
-                {
-                    if(user.Role.RoleName != "Super User"){
+                if (user != null) {
+                    if (user.Role.RoleName != "Super User")
+                    {
                         _context.Entry(user).State = EntityState.Modified;
                         _context.SaveChanges();
                     }
                 }
+            }
+            else
+            {
+                _context.Entry(user).State = EntityState.Modified;
+                _context.SaveChanges();
             }
 
 
