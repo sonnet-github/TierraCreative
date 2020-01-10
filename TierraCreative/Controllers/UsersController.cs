@@ -79,6 +79,7 @@ namespace TierraCreative.Controllers
             {
                 ViewBag.IsView = "Deleted";
                 ViewBag.IsAllowed = Session["allowed"];
+                ViewBag.with_transaction = Session["with_transaction"];
                 Session["Deleted"] = null;
             }
 
@@ -285,7 +286,7 @@ namespace TierraCreative.Controllers
             var userid = int.Parse(Session["UserId"].ToString());
             var cur_user = _context.Users.SingleOrDefault(x => x.UserId == userid);
             Session["allowed"] = false;
-            Session["with_transaction"] = false;
+            Session["with_transaction"] = true;
             var with_transaction = true;
 
             var dRps = _context.DRPs.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).Where(x => x.DeletedById == null).ToList();
@@ -314,12 +315,8 @@ namespace TierraCreative.Controllers
                     _context.SaveChanges();
                 }
             }
-
-            ViewBag.with_transaction = with_transaction;
-            ViewBag.IsAllowed = Session["allowed"];
-
             Session["Deleted"] = true;
-
+            Session["with_transaction"] = with_transaction;
             return RedirectToAction("../admin/main");
 
             //return View("delete",user);
