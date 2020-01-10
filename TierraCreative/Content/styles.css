@@ -69,9 +69,7 @@ hr {
     margin-top: 220px !important;
 }
 @media(min-width:768px) {
-    .control-label {
-        padding-left: 50px !important;
-    }
+    
     .modal-dialog {
         min-width: 500px;
     }
