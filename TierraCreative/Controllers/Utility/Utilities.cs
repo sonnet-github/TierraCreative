@@ -130,7 +130,7 @@ namespace TierraCreative.Controllers.Utility
 
             emailmodel.Subject = subject + "<br /><br />This notification was sent on " + System.DateTime.Now.ToString("dd/MM/yyyy") + " by the CISELECT application.";
             emailmodel.Body = body;
-            body += " This e-mail was sent on " + System.DateTime.Now.ToString("dd/MM/yyyy") + "by the CISELECT application.";
+            body += " This e-mail was sent on by the CISELECT application.";
             emailmodel.IsBodyHtml = true;
 
             var success = emailhelper.SendEmail(emailmodel);
@@ -177,7 +177,7 @@ namespace TierraCreative.Controllers.Utility
             body += " <br /><br />";
             body += " If you didn’t initiate this request please use the link below to invalidate it and contact " + fromEmail;
             body += " <br /><br />";
-            body += " This e-mail was sent on " + System.DateTime.Now.ToString("dd/MM/yyyy") + "by the CISELECT application.";
+            body += " This e-mail was sent on by the CISELECT application.";
 
             emailmodel.Subject = subject;
             emailmodel.Body = body;
@@ -222,7 +222,7 @@ namespace TierraCreative.Controllers.Utility
             body += " <br /><br />";
             body += " If you didn’t initiate this password change please contact " + fromEmail;
             body += " <br /><br />";
-            body += " This e-mail was sent on " + System.DateTime.Now.ToString("dd/MM/yyyy") + "by the CISELECT application.";
+            body += " This e-mail was sent on by the CISELECT application.";
 
             emailmodel.Subject = subject;
             emailmodel.Body = body;
@@ -272,7 +272,7 @@ namespace TierraCreative.Controllers.Utility
             body += message;
             body += " <br />br />";
             DateTime dateTime = DateTime.UtcNow.Date;
-            body += " This e-mail was sent on "+ dateTime.ToString("dd/MM/yyyy") + "by the CISELECT application.";
+            body += " This e-mail was sent on by the CISELECT application.";
 
             emailmodel.Subject = subject;
             emailmodel.Body = body;
