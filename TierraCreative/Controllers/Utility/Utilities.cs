@@ -266,11 +266,11 @@ namespace TierraCreative.Controllers.Utility
             var body = "Support request was submitted on " + System.DateTime.Now.ToString("dd/MM/yyyy") + ".";
             body += " <br /><br />";
             body += string.Format("{0} [{1}]", fullame, username);
-            body += " <br />br />";
+            body += " <br /><br />";
             body += " Support Message:";
             body += " <br />";
             body += message;
-            body += " <br />br />";
+            body += " <br /><br />";
             DateTime dateTime = DateTime.UtcNow.Date;
             body += " This e-mail was sent on by the CISELECT application.";
 
@@ -314,11 +314,11 @@ namespace TierraCreative.Controllers.Utility
             var subject = @"CISELECT – Support Request";
 
             var body = "Support request was submitted on " + System.DateTime.Now.ToString("dd/MM/yyyy") + ".";
-            body += " <br />br />";
+            body += " <br /><br />";
             body += " Your Support Message:";
             body += " <br />";
             body += message;
-            body += " <br />br />";
+            body += " <br /><br />";
             body += " This e-mail was sent on by the CISELECT application.";
 
             emailmodel.Subject = subject;
