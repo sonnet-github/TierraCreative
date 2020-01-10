@@ -78,6 +78,7 @@ namespace TierraCreative.Controllers
             if (Session["Deleted"] != null)
             {
                 ViewBag.IsView = "Deleted";
+                ViewBag.IsAllowed = Session["allowed"];
                 Session["Deleted"] = null;
             }
 
@@ -271,7 +272,7 @@ namespace TierraCreative.Controllers
             ViewBag.IsView = null;
             ViewBag.ErrorMessage = null;
 
-            User user = _context.Users.Find(id);
+            User user = _context.Users.Include(x => x.Role).SingleOrDefault(x => x.UserId == id);
 
             user.IsEnabled = false;
             user.DeletedById = int.Parse(Session["UserId"].ToString());
@@ -279,11 +280,13 @@ namespace TierraCreative.Controllers
 
             var userid = int.Parse(Session["UserId"].ToString());
             var cur_user = _context.Users.SingleOrDefault(x => x.UserId == userid);
-            if (cur_user.Role.RoleName != "Super User")
+            Session["allowed"] = false;
+            if (Session["UserRole"].ToString() != "Super User")
             {
                 if (user != null) {
                     if (user.Role.RoleName != "Super User")
                     {
+                        Session["allowed"] = true;
                         _context.Entry(user).State = EntityState.Modified;
                         _context.SaveChanges();
                     }
@@ -291,6 +294,7 @@ namespace TierraCreative.Controllers
             }
             else
             {
+                Session["allowed"] = true;
                 _context.Entry(user).State = EntityState.Modified;
                 _context.SaveChanges();
             }

@@ -227,7 +227,15 @@
         <hr />
     </div>
     <div class="col-lg-12 form">
-        <p>The user has been successfully deleted</p>
+        @if (ViewBag.IsAllowed == true)
+        {
+
+            @:<p>The user has been successfully deleted</p>
+        }
+        else
+        {
+            @:<p>Unable to delete Super admin user</p>
+        }
         <input id="button1" type="button" value="Return to user list" class="btn default" onclick="window.location = '/admin/main'" />
     </div>
 
