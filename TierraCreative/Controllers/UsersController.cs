@@ -578,8 +578,8 @@ namespace TierraCreative.Controllers
             Utility.Utilities utilities = new Utility.Utilities();
 
             ViewBag.IsSuccess = null;
-
             var email = form["email"];
+            ViewBag.Email = email;
             var newpassword = form["New Password"];
 
             var user = _context.Users.SingleOrDefault(x => x.Email == email);
