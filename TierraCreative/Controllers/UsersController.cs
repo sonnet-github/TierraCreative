@@ -149,19 +149,19 @@ namespace TierraCreative.Controllers
             }
             if (!newpassword.Any(char.IsUpper))
             {
-                ViewBag.ErrorMessage += "Password must have atleast 1 uppercase!<br/>"; error_ = true;
+                ViewBag.ErrorMessage += "Password must have at least 1 uppercase!<br/>"; error_ = true;
             }
             if (!newpassword.Any(char.IsLower))
             {
-                ViewBag.ErrorMessage += "Password must have atleast 1 lowercase!<br/>"; error_ = true;
+                ViewBag.ErrorMessage += "Password must have at least 1 lowercase!<br/>"; error_ = true;
             }
             if (!newpassword.Any(ch => !Char.IsLetterOrDigit(ch)))
             {
-                ViewBag.ErrorMessage += "Password must have atleast 1 special character!<br/>"; error_ = true;
+                ViewBag.ErrorMessage += "Password must have at least 1 special character!<br/>"; error_ = true;
             }
             if (!newpassword.Any(char.IsNumber))
             {
-                ViewBag.ErrorMessage += "Password must have atleast 1 numeric character!<br/>"; error_ = true;
+                ViewBag.ErrorMessage += "Password must have at least 1 numeric character!<br/>"; error_ = true;
             }
             if (!error_ )
             {
@@ -497,19 +497,19 @@ namespace TierraCreative.Controllers
             }
             if (!newpassword.Any(char.IsUpper))
             {
-                ViewBag.ErrorMessage += "Password must have atleast 1 uppercase!<br/>"; error_ = true;
+                ViewBag.ErrorMessage += "Password must have at least 1 uppercase!<br/>"; error_ = true;
             }
             if (!newpassword.Any(char.IsLower))
             {
-                ViewBag.ErrorMessage += "Password must have atleast 1 lowercase!<br/>"; error_ = true;
+                ViewBag.ErrorMessage += "Password must have at least 1 lowercase!<br/>"; error_ = true;
             }
             if (!newpassword.Any(ch => !Char.IsLetterOrDigit(ch)))
             {
-                ViewBag.ErrorMessage += "Password must have atleast 1 special character!<br/>"; error_ = true;
+                ViewBag.ErrorMessage += "Password must have at least 1 special character!<br/>"; error_ = true;
             }
             if (!newpassword.Any(char.IsNumber))
             {
-                ViewBag.ErrorMessage += "Password must have atleast 1 numeric character!<br/>"; error_ = true;
+                ViewBag.ErrorMessage += "Password must have at least 1 numeric character!<br/>"; error_ = true;
             }
             if (!error_)
             {
@@ -625,19 +625,19 @@ namespace TierraCreative.Controllers
                 }
                 if (!newpassword.Any(char.IsUpper))
                 {
-                    ViewBag.ErrorMessage += "Password must have atleast 1 uppercase.<br/>"; error_ = true;
+                    ViewBag.ErrorMessage += "Password must have at least 1 uppercase.<br/>"; error_ = true;
                 }
                 if (!newpassword.Any(char.IsLower))
                 {
-                    ViewBag.ErrorMessage += "Password must have atleast 1 lowercase.<br/>"; error_ = true;
+                    ViewBag.ErrorMessage += "Password must have at least 1 lowercase.<br/>"; error_ = true;
                 }
                 if (!newpassword.Any(ch => !Char.IsLetterOrDigit(ch)))
                 {
-                    ViewBag.ErrorMessage += "Password must have atleast 1 special character.<br/>"; error_ = true;
+                    ViewBag.ErrorMessage += "Password must have at least 1 special character.<br/>"; error_ = true;
                 }
                 if (!newpassword.Any(char.IsNumber))
                 {
-                    ViewBag.ErrorMessage += "Password must have atleast 1 numeric character!<br/>"; error_ = true;
+                    ViewBag.ErrorMessage += "Password must have at least 1 numeric character!<br/>"; error_ = true;
                 }
                 if (!error_)
                 {
