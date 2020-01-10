@@ -32,6 +32,9 @@
             @Html.HiddenFor(model => model.CreatedDate)
             @Html.HiddenFor(model => model.UpdatedById)
             @Html.HiddenFor(model => model.UpdatedDate)
+            @Html.HiddenFor(model => model.FullName)
+            @Html.HiddenFor(model => model.UserName)
+            @Html.HiddenFor(model => model.Email)
 
             <div class="form-horizontal">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })

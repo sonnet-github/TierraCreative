@@ -265,7 +265,7 @@ namespace TierraCreative.Controllers.Utility
 
             var body = "Support request was submitted on " + System.DateTime.Now + ".";
             body += " <br /><br />";
-            body += string.Format("{0} [{}]", fullame, username);
+            body += string.Format("{0} [{1}]", fullame, username);
             body += " <br />br />";
             body += " Support Message:";
             body += " <br />";
