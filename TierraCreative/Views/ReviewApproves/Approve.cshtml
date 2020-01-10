@@ -24,7 +24,7 @@
     </div>
 
     <div class="col-lg-12">
-        @if (ViewBag.ErrorMessage != null)
+        @if (ViewBag.ErrorMessage != null && ViewBag.NotAllowed == null)
         {
             @*<h3 style="color:red;"> @Html.Raw(ViewBag.ErrorMessage) </h3>
             <a class="btn default" href="supplementarydividends/add">Return to review</a>*@
@@ -32,73 +32,82 @@
             <p style="color:red;">@Html.Raw(ViewBag.ErrorMessage)</p>
             @*<input id="button1" type="button" value="Return to review" class="btn default" onclick="window.location = '/ra/review'" />*@
         }
-
-        @using (Html.BeginForm())
+        @if (ViewBag.NotAllowed != null)
         {
-            @Html.AntiForgeryToken()
-            <div class="form-horizontal">
-                @Html.HiddenFor(model => model.Id)
-                @Html.HiddenFor(model => model.Source)
+            <p>@Html.Raw(ViewBag.ErrorMessage)</p>
+            <input id="button1" type="button" value="Return to review" class="btn default" onclick="window.location = '/ra/review'" />
+        }
+        @if (ViewBag.NotAllowed == null)
+        {
+            using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.Source)
+                    @Html.HiddenFor(model => model.SubmittedBy)
 
-                <div class="form-group row">
-                    @Html.Label(Html.DisplayNameFor(model => model.SubmittedBy).ToString(), Html.DisplayNameFor(model => model.SubmittedBy).ToString(), new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="form-group row">
+                        @Html.Label(Html.DisplayNameFor(model => model.SubmittedBy).ToString(), Html.DisplayNameFor(model => model.SubmittedBy).ToString(), new { @class = "control-label col-lg-3 col-sm-6" })
 
-                    <div class="col-lg-4 col-sm-6">
-                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.DisplayFor(model => model.SubmittedBy)" />
+                        <div class="col-lg-4 col-sm-6">
+                            <input type="text" class="form-control" readonly="readonly" name="" value="@Html.DisplayFor(model => model.SubmittedBy)" />
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    @Html.Label(Html.DisplayNameFor(model => model.From).ToString(), Html.DisplayNameFor(model => model.From).ToString(), new { @class = "control-label col-lg-3 col-sm-6" })
-                    <div class="col-lg-4 col-sm-6">
-                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.DisplayFor(model => model.From)" />
+                    <div class="form-group row">
+                        @Html.Label(Html.DisplayNameFor(model => model.From).ToString(), Html.DisplayNameFor(model => model.From).ToString(), new { @class = "control-label col-lg-3 col-sm-6" })
+                        <div class="col-lg-4 col-sm-6">
+                            <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.DisplayFor(model => model.From)" />
 
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    @Html.Label(Html.DisplayNameFor(model => model.To).ToString(), Html.DisplayNameFor(model => model.To).ToString(), new { @class = "control-label col-lg-3 col-sm-6" })
+                    <div class="form-group row">
+                        @Html.Label(Html.DisplayNameFor(model => model.To).ToString(), Html.DisplayNameFor(model => model.To).ToString(), new { @class = "control-label col-lg-3 col-sm-6" })
 
-                    <div class="col-lg-4 col-sm-6">
-                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.DisplayFor(model => model.To)" />
+                        <div class="col-lg-4 col-sm-6">
+                            <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.DisplayFor(model => model.To)" />
 
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    @Html.Label(Html.DisplayNameFor(model => model.ISIN).ToString(), Html.DisplayNameFor(model => model.ISIN).ToString(), new { @class = "control-label col-lg-3 col-sm-6" })
-                    <div class="col-lg-4 col-sm-6">
-                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.DisplayFor(model => model.ISIN)" />
+                    <div class="form-group row">
+                        @Html.Label(Html.DisplayNameFor(model => model.ISIN).ToString(), Html.DisplayNameFor(model => model.ISIN).ToString(), new { @class = "control-label col-lg-3 col-sm-6" })
+                        <div class="col-lg-4 col-sm-6">
+                            <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.DisplayFor(model => model.ISIN)" />
 
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    @Html.Label(Html.DisplayNameFor(model => model.Amount).ToString(), Html.DisplayNameFor(model => model.Amount).ToString(), new { @class = "control-label col-lg-3 col-sm-6" })
-                    <div class="col-lg-4 col-sm-6">
-                        <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.DisplayFor(model => model.Amount)" />
+                    <div class="form-group row">
+                        @Html.Label(Html.DisplayNameFor(model => model.Amount).ToString(), Html.DisplayNameFor(model => model.Amount).ToString(), new { @class = "control-label col-lg-3 col-sm-6" })
+                        <div class="col-lg-4 col-sm-6">
+                            <input type="text" class="form-control" readonly="readonly" disabled="disabled" value="@Html.DisplayFor(model => model.Amount)" />
 
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <div class="col-lg-3 col-sm-6"></div>
-                    <div class="col-lg-4 col-sm-6">
-                        <input type="submit" value="Confirm" class="btn default" />
-                        &nbsp;
-                        <button type="button" class="btn default" data-toggle="modal" data-target="#exampleModal">
-                            Delete
-                        </button>
-                        @*@Html.ActionLink(
+                    <div class="form-group row">
+                        <div class="col-lg-3 col-sm-6"></div>
+                        <div class="col-lg-4 col-sm-6">
+                            <input type="submit" value="Confirm" class="btn default" />
+                            &nbsp;
+                            <button type="button" class="btn default" data-toggle="modal" data-target="#exampleModal">
+                                Delete
+                            </button>
+                            @*@Html.ActionLink(
                             "Delete",
                             "Delete",
                             new { id = Model.Id, source = Model.Source },
                             new { onclick = "return confirm('Are you sure you wish to delete this entry?');", @class = "btn default btn-large" })*@
-                        <p style="margin-top:1rem;"><strong>Or</strong></p>
-                        <input id="button1" type="button" value="Cancel and Return" class="btn default" onclick="window.location = '/ra/review'" />
+                            <p style="margin-top:1rem;"><strong>Or</strong></p>
+                            <input id="button1" type="button" value="Cancel and Return" class="btn default" onclick="window.location = '/ra/review'" />
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
+
         }
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

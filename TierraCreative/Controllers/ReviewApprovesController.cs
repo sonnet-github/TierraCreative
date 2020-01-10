@@ -116,7 +116,7 @@ namespace TierraCreative.Controllers
             var submitUserEmail = string.Empty;
             var computershareEmail = string.Empty;
 
-            if (Session["UserId"].ToString() != id.ToString())
+            if (UserName != form["SubmittedBy"].ToString())
             {
                 switch (source)
                 {
@@ -203,7 +203,7 @@ namespace TierraCreative.Controllers
             else
             {
                 var review = new ReviewModel();
-
+                ViewBag.NotAllowed = true;
                 review = GetApproveData(review, source, int.Parse(id.ToString()));
 
                 ViewBag.ErrorMessage = @"Your username is associated with the submission. You are not allowed to confirm this. Please refer approval to a user with the appropriate clearance.";

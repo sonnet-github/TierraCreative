@@ -159,6 +159,10 @@ namespace TierraCreative.Controllers
             {
                 ViewBag.ErrorMessage += "Password must have atleast 1 special character!<br/>"; error_ = true;
             }
+            if (!newpassword.Any(char.IsNumber))
+            {
+                ViewBag.ErrorMessage += "Password must have atleast 1 numeric character!<br/>"; error_ = true;
+            }
             if (!error_ )
             {
                 user.IsEnabled = true;
@@ -503,6 +507,10 @@ namespace TierraCreative.Controllers
             {
                 ViewBag.ErrorMessage += "Password must have atleast 1 special character!<br/>"; error_ = true;
             }
+            if (!newpassword.Any(char.IsNumber))
+            {
+                ViewBag.ErrorMessage += "Password must have atleast 1 numeric character!<br/>"; error_ = true;
+            }
             if (!error_)
             {
                 user.Password = newpassword;
@@ -626,6 +634,10 @@ namespace TierraCreative.Controllers
                 if (!newpassword.Any(ch => !Char.IsLetterOrDigit(ch)))
                 {
                     ViewBag.ErrorMessage += "Password must have atleast 1 special character.<br/>"; error_ = true;
+                }
+                if (!newpassword.Any(char.IsNumber))
+                {
+                    ViewBag.ErrorMessage += "Password must have atleast 1 numeric character!<br/>"; error_ = true;
                 }
                 if (!error_)
                 {

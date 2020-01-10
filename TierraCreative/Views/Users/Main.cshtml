@@ -32,6 +32,13 @@
         table tbody tr td {
             font-weight: 500;
         }
+        .links a {
+            color:#5791C2;
+        }
+        .paginate_button a {
+            background:#5791C2!important;
+            border-color:#5791C2!important;
+        }
 
             table tbody tr td a {
                 text-decoration: underline;
@@ -156,7 +163,7 @@
                                     <span style="color:red;">@Html.Raw("Disabled")</span>
                                 }
                             </td>
-                            <td>
+                            <td class="links">
                                 @if (Session["UserRole"].ToString() != "Client")
                                 {
                                     if (Session["UserRole"].ToString() == "Admin")
