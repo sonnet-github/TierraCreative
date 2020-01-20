@@ -4,3 +4,9 @@ C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\Tierra
 C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\obj\Debug\TierraCreative.FtpPurge.csprojResolveAssemblyReference.cache
 C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\obj\Debug\TierraCreative.FtpPurge.exe
 C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\obj\Debug\TierraCreative.FtpPurge.pdb
+C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\EntityFramework.dll
+C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\EntityFramework.SqlServer.dll
+C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\TierraCreative.Model.dll
+C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\TierraCreative.Model.pdb
+C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\EntityFramework.xml
+C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\EntityFramework.SqlServer.xml

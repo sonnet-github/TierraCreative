@@ -8,8 +8,9 @@ namespace TierraCreative.FtpPurge.Process
 {
     public static class Extractions
     {
-        public static string ExtractPurgeData(string filename) {
+        public static string ExtractPurgeData(string filename, out List<Models.FilenameFields> fileNameFields) {
             TierraCreativeContext _context = new TierraCreativeContext();
+            fileNameFields = new List<Models.FilenameFields>();
 
             var ctr = 1;
             string data = string.Empty;
@@ -17,9 +18,7 @@ namespace TierraCreative.FtpPurge.Process
             var Main_Account = _context.CSNLookUps.SingleOrDefault(x => x.CSNName == "Main").CSNAccount;
             var AIL_Account = _context.CSNLookUps.SingleOrDefault(x => x.CSNName == "AIL").CSNAccount;
             var SP_Account = _context.CSNLookUps.SingleOrDefault(x => x.CSNName == "Supplementary Dividend").CSNAccount;
-
-            List<Models.FilenameFields> fileNameFields = new List<Models.FilenameFields>();
-
+            
             try {
                 var drps = _context.DRPs.ToList();
                 foreach (var drp in drps) {
@@ -39,8 +38,7 @@ namespace TierraCreative.FtpPurge.Process
 
                     ctr += 1;
                 }
-
-
+                
                 var ails = _context.AILs.ToList();
                 foreach (var ail in ails) {
                     var fileNameField = new Models.FilenameFields
@@ -82,7 +80,17 @@ namespace TierraCreative.FtpPurge.Process
                 //create file and purge
                 foreach (var fileNameField in fileNameFields)
                 {
-
+                    data += string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}{9}",
+                                        fileNameField.Sequence,
+                                        fileNameField.Timestamp,
+                                        fileNameField.MainCSN,
+                                        fileNameField.CSN,
+                                        fileNameField.ISIN,
+                                        fileNameField.InstructionID,
+                                        fileNameField.TIN,
+                                        fileNameField.TransferDate,
+                                        fileNameField.TransferQty, 
+                                        Environment.NewLine);
                 }
 
             }
