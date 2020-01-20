@@ -77,7 +77,7 @@ namespace TierraCreative.FtpPurge.Process
                     ctr += 1;
                 }
 
-                //create file and purge
+                //concat data
                 foreach (var fileNameField in fileNameFields)
                 {
                     data += string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}{9}",

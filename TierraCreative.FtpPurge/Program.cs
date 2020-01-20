@@ -13,7 +13,8 @@ namespace TierraCreative.FtpPurge
             var filename = string.Empty;
 
             //extraction
-            var data = FtpPurge.Process.Extractions.ExtractPurgeData(filename);
+            List<Models.FilenameFields> fileNameFields = new List<Models.FilenameFields>();
+            var data = FtpPurge.Process.Extractions.ExtractPurgeData(filename, out fileNameFields);
             
             //ftp data
             var IsSuccess = FtpPurge.Process.Ftps.PostDatatoFTP(filename);
