@@ -1,0 +1,6 @@
+C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\TierraCreative.FtpPurge.exe.config
+C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\TierraCreative.FtpPurge.exe
+C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\TierraCreative.FtpPurge.pdb
+C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\obj\Debug\TierraCreative.FtpPurge.csprojResolveAssemblyReference.cache
+C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\obj\Debug\TierraCreative.FtpPurge.exe
+C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\obj\Debug\TierraCreative.FtpPurge.pdb
