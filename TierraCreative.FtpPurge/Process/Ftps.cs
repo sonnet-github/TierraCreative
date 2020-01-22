@@ -11,7 +11,7 @@ namespace TierraCreative.FtpPurge.Process
 {
    public static class Ftps
     {
-        public static bool PostDatatoFTP(string filename)
+        public static bool PostDatatoFTP(string directoryname, string filename)
         {
             try
             {
@@ -21,7 +21,8 @@ namespace TierraCreative.FtpPurge.Process
                 request.Credentials = new NetworkCredential("maruthi", "******");
 
                 // Copy the contents of the file to the request stream.  
-                StreamReader sourceStream = new StreamReader(@"E:\yourlocation\" + filename);
+                //StreamReader sourceStream = new StreamReader(@"E:\yourlocation\" + filename);
+                StreamReader sourceStream = new StreamReader(directoryname + filename);
                 byte[] fileContents = Encoding.UTF8.GetBytes(sourceStream.ReadToEnd());
                 sourceStream.Close();
                 request.ContentLength = fileContents.Length;
