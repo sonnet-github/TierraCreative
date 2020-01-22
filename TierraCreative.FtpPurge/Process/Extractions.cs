@@ -8,7 +8,7 @@ namespace TierraCreative.FtpPurge.Process
 {
     public static class Extractions
     {
-        public static string ExtractPurgeData(string filename, out List<Models.FilenameFields> fileNameFields) {
+        public static string ExtractPurgeData(out List<Models.FilenameFields> fileNameFields) {
             TierraCreativeContext _context = new TierraCreativeContext();
             fileNameFields = new List<Models.FilenameFields>();
 
@@ -80,16 +80,19 @@ namespace TierraCreative.FtpPurge.Process
                 //concat data
                 foreach (var fileNameField in fileNameFields)
                 {
+
+                    //1,2019-12-09-16-35-21,220001091,123456789,NZF01DT123C1,DERI,2019-12-09,10000.50,
+
                     data += string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}{9}",
                                         fileNameField.Sequence,
-                                        fileNameField.Timestamp,
+                                        Convert.ToDateTime(fileNameField.Timestamp).ToString("yyyy-dd-MM-HH-mm-ss"),
                                         fileNameField.MainCSN,
                                         fileNameField.CSN,
                                         fileNameField.ISIN,
-                                        fileNameField.InstructionID,
+                                        fileNameField.InstructionID,                                     
+                                        Convert.ToDateTime(fileNameField.TransferDate).ToString("yyyy-dd-MM"),
+                                        Convert.ToDouble(fileNameField.TransferQty).ToString("##.00"),
                                         fileNameField.TIN,
-                                        fileNameField.TransferDate,
-                                        fileNameField.TransferQty, 
                                         Environment.NewLine);
                 }
 
