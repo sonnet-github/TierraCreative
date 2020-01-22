@@ -60,7 +60,9 @@
         #btn-add-user {
             margin-bottom: 1rem;
         }
-        
+        .pagination {
+        justify-content:center!important;
+        }      
     </style>
 }
 @section ScriptContent
@@ -69,6 +71,7 @@
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function () {
+            $.fn.DataTable.ext.pager.numbers_length = 5; 
             $('.table').DataTable({
                 "pagingType": "full_numbers",
                 "order": [],
@@ -80,7 +83,8 @@
                     { "orderable": false, "targets": 3 }
                 ]
             });
-
+            $("#DataTables_Table_0_paginate").parent().attr("class", "col-sm-12 col-md-12");
+            $(".pagination").css({"justify-content":"center"});
         });
     </script>
     <script>
