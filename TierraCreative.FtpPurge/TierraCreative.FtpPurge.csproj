@@ -55,6 +55,7 @@
     <Compile Include="Models\FilenameFields.cs" />
     <Compile Include="Process\Extractions.cs" />
     <Compile Include="Process\Ftps.cs" />
+    <Compile Include="Process\Purges.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
