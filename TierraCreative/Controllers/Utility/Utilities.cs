@@ -126,7 +126,7 @@ namespace TierraCreative.Controllers.Utility
                     .Replace("[ToCSNValue]", ToCSNValue)
                     .Replace("[ISINValue]", ISINValue)
                     .Replace("[AmountValue]", AmountValue)
-                    .Replace("[Timestamp]", Timestamp);
+                    .Replace("[Timestamp]", Convert.ToDateTime(Timestamp).ToString("dd/MM/yyyy"));
 
             emailmodel.Subject = subject ;
             emailmodel.Body = body + "<br /><br />This notification was sent on " + System.DateTime.Now.ToString("dd/MM/yyyy") + " by the CISELECT application.";
