@@ -10,6 +10,7 @@ namespace TierraCreative.FtpPurge.Process
     {
         public static string ExtractPurgeData(out List<Models.FilenameFields> fileNameFields) {
             TierraCreativeContext _context = new TierraCreativeContext();
+
             fileNameFields = new List<Models.FilenameFields>();
 
             var ctr = 1;

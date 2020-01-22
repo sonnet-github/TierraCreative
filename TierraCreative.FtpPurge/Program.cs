@@ -12,7 +12,7 @@ namespace TierraCreative.FtpPurge
         static void Main(string[] args)
         {
             var directoryname = @"C:\CSV\";
-            var filename = "ELE_TIE_CPU_.csv";
+            var filename = string.Format("ELE_TIE_CPU_{0}.csv", System.DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
 
             //data db extraction
             List<Models.FilenameFields> fileNameFields = new List<Models.FilenameFields>();
@@ -24,8 +24,11 @@ namespace TierraCreative.FtpPurge
 
             File.WriteAllText(directoryname + filename, data);
 
+            //purge data
+            var IsSuccess = FtpPurge.Process.Purges.PurgeData();
+
             //ftp data
-            var IsSuccess = FtpPurge.Process.Ftps.PostDatatoFTP(filename);
+            //IsSuccess = FtpPurge.Process.Ftps.PostDatatoFTP(filename);
 
         }
     }
