@@ -70,7 +70,7 @@
     <script>
         $(document).ready(function () {
             $('.table').DataTable({
-                "pagingType": "numbers",
+                "pagingType": "full_numbers",
                 "order": [],
                 "columnDefs": [
 
@@ -176,7 +176,7 @@
                                         if (item.Role.RoleName != "Super User")
                                         {
                                             @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) <span>|</span>
-                                            @Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>
+                                            @*@Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>*@
                                             <a href="#" onclick="$('#confirm_delete').attr('href', '@Url.Action("DeleteConfirm", "admin", new { id = item.UserId })');" data-toggle="modal" data-target="#exampleModal">
                                                 Delete
                                             </a>
@@ -184,7 +184,7 @@
                                         else
                                         {
                                             @Html.Raw("<span style='color:gray;'>Edit</span> | ")
-                                            @Html.Raw("<span style='color:gray;'>View</span> | ")
+                                            @*@Html.Raw("<span style='color:gray;'>View</span> | ")*@
                                             <a href="#" onclick="$('#confirm_delete').attr('href', '@Url.Action("DeleteConfirm", "admin", new { id = item.UserId })');" data-toggle="modal" data-target="#exampleModal">
                                                 Delete
                                             </a>
@@ -193,7 +193,7 @@
                                     else
                                     {
                                         @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) <span>|</span>
-                                        @Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>
+                                        @*@Html.ActionLink("View", "Details", new { id = item.UserId }) <span>|</span>*@
                                         @*<a href="#" onclick="if (confirm('Are you sure you want to delete this user?')) { window.location.href = '@Url.Action("DeleteConfirm", "admin", new { id = item.UserId })'; }">Delete</a>*@
                                         <a href="#" onclick="$('#confirm_delete').attr('href', '@Url.Action("DeleteConfirm", "admin", new { id = item.UserId })');" data-toggle="modal" data-target="#exampleModal">
                                             Delete
@@ -241,7 +241,7 @@
     <div class="col-lg-12 form">
         @if (ViewBag.with_transaction == true)
         {
-            @:<p>Unable to delete user with transaction.</p>
+            @:<p>This User is part of the transaction records and cannot be deleted. You can disable this User instead.</p>
         }
         @if (ViewBag.IsAllowed == true && ViewBag.with_transaction==false)
         {

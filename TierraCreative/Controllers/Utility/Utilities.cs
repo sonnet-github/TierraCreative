@@ -60,7 +60,7 @@ namespace TierraCreative.Controllers.Utility
             subject = subject
                       .Replace("[TransactionID]", TransactionID)
                       .Replace("[FormName]", FormName)
-                      .Replace("[Timestamp]", System.DateTime.Now.ToString());
+                      .Replace("[Timestamp]", System.DateTime.Now.ToString("dd/MM/yyyy"));
 
             string body = @"The following [FormName] transaction was approved by [FullName] ([Username]): <br />
                                 <table border='1'>

@@ -13,7 +13,7 @@
             color: #5791C2 !important;
         }
 
-        #DataTables_Table_0_wrapper > div:nth-child(1), #DataTables_Table_0_wrapper > div:nth-child(3) > div.col-sm-12.col-md-5 {
+        #DataTables_Table_0_length,#DataTables_Table_0_wrapper > div:nth-child(3) > div.col-sm-12.col-md-5 {
             display: none !important;
         }
 
@@ -64,7 +64,7 @@
     <script>
         $(document).ready(function () {
             $('.table').DataTable({
-                "pagingType": "numbers",
+                "pagingType": "full_numbers",
                 "order": [],
                 "columnDefs": [
                     { "type": "date-uk", targets: 2 },
@@ -74,7 +74,6 @@
                     { "orderable": false, "targets": 3 },
                     { "orderable": false, "targets": 4 },
                     { "orderable": false, "targets": 5 },
-                    { "orderable": false, "targets": 6 },
                     { "orderable": false, "targets": 7 }
                 ]
             });
