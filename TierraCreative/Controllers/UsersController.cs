@@ -324,9 +324,9 @@ namespace TierraCreative.Controllers
                     Session["allowed"] = true;
                     if (!with_transaction)
                     {
-                        //delete if user has no transaction
-                        _context.Users.Remove(user);
-                        _context.SaveChanges();
+                        ////delete if user has no transaction
+                        //_context.Users.Remove(user);
+                        //_context.SaveChanges();
                         ViewBag.IsAllowed = true;
                     }
                     else
@@ -346,8 +346,8 @@ namespace TierraCreative.Controllers
                 if (!with_transaction)
                 {
                     //delete if user has no transaction
-                    _context.Users.Remove(user);
-                    _context.SaveChanges();
+                    //_context.Users.Remove(user);
+                    //_context.SaveChanges();
                 }
                 else
                 {
