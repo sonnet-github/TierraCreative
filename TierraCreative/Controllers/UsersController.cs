@@ -308,7 +308,7 @@ namespace TierraCreative.Controllers
             var aILs = _context.AILs.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).ToList();
             var sPs = _context.SupplementaryDividends.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).ToList();
 
-            if (dRps.Count == 0 && dRps.Count == 0 && dRps.Count == 0) {
+            if (dRps.Count == 0 && aILs.Count == 0 && sPs.Count == 0) {
                 with_transaction = false;
             }
             if (Session["UserRole"].ToString() != "Super User")
@@ -325,8 +325,8 @@ namespace TierraCreative.Controllers
                     if (!with_transaction)
                     {
                         ////delete if user has no transaction
-                        //_context.Users.Remove(user);
-                        //_context.SaveChanges();
+                        _context.Users.Remove(user);
+                        _context.SaveChanges();
                         ViewBag.IsAllowed = true;
                     }
                     else
@@ -346,8 +346,8 @@ namespace TierraCreative.Controllers
                 if (!with_transaction)
                 {
                     //delete if user has no transaction
-                    //_context.Users.Remove(user);
-                    //_context.SaveChanges();
+                    _context.Users.Remove(user);
+                    _context.SaveChanges();
                 }
                 else
                 {
