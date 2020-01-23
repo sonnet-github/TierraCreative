@@ -308,7 +308,7 @@ namespace TierraCreative.Controllers
             var aILs = _context.AILs.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).Where(x => x.DeletedById == null).ToList();
             var sPs = _context.SupplementaryDividends.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).Where(x => x.DeletedById == null).ToList();
 
-            if (dRps.Count == 0 || dRps.Count == 0 || dRps.Count == 0) {
+            if (dRps.Count == 0 && dRps.Count == 0 && dRps.Count == 0) {
                 with_transaction = false;
             }
             if (Session["UserRole"].ToString() != "Super User")
