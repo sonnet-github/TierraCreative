@@ -311,6 +311,9 @@ namespace TierraCreative.Controllers
             if (dRps.Count == 0 && aILs.Count == 0 && sPs.Count == 0) {
                 with_transaction = false;
             }
+
+            //with_transaction = true;
+
             if (Session["UserRole"].ToString() != "Super User")
             {
                 if (user.Role.RoleName == "Super User")
