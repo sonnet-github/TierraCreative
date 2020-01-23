@@ -304,9 +304,9 @@ namespace TierraCreative.Controllers
             Session["with_transaction"] = true;
             var with_transaction = true;
 
-            var dRps = _context.DRPs.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).Where(x => x.DeletedById == null).ToList();
-            var aILs = _context.AILs.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).Where(x => x.DeletedById == null).ToList();
-            var sPs = _context.SupplementaryDividends.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).Where(x => x.DeletedById == null).ToList();
+            var dRps = _context.DRPs.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).ToList();
+            var aILs = _context.AILs.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).ToList();
+            var sPs = _context.SupplementaryDividends.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).ToList();
 
             if (dRps.Count == 0 && dRps.Count == 0 && dRps.Count == 0) {
                 with_transaction = false;
