@@ -546,6 +546,7 @@ namespace TierraCreative.Controllers
         public ActionResult ChangePassword()
         {
             ViewBag.IsSuccess = null;
+            ViewBag.IsFirstLog = Session["IsFirstLog"];
             return View("../ChangePassword");
         }
 
