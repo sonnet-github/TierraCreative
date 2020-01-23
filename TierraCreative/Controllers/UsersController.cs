@@ -297,13 +297,9 @@ namespace TierraCreative.Controllers
             ViewBag.ErrorMessage = null;
 
             User user = _context.Users.Include(x => x.Role).SingleOrDefault(x => x.UserId == id);
-
-            user.IsEnabled = false;
-            user.DeletedById = int.Parse(Session["UserId"].ToString());
-            user.DeletedDate = System.DateTime.Now;
-
+            
             var userid = int.Parse(Session["UserId"].ToString());
-            var cur_user = _context.Users.SingleOrDefault(x => x.UserId == userid);
+          
             Session["allowed"] = false;
             Session["with_transaction"] = true;
             var with_transaction = true;
@@ -313,27 +309,57 @@ namespace TierraCreative.Controllers
             var sPs = _context.SupplementaryDividends.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).Where(x => x.DeletedById == null).ToList();
 
             if (dRps.Count == 0 || dRps.Count == 0 || dRps.Count == 0) {
-                with_transaction = true;
+                with_transaction = false;
             }
-            if (Session["UserRole"].ToString() != "Super User" && with_transaction==false)
+            if (Session["UserRole"].ToString() != "Super User")
             {
-                if (user != null) {
-                    if (user.Role.RoleName != "Super User")
+                if (user.Role.RoleName == "Super User")
+                {
+                    //Admin not allowed to delete super user - pending Throw error message
+
+                    //todo code here....
+                }
+                else
+                {
+                    Session["allowed"] = true;
+                    if (!with_transaction)
                     {
-                        Session["allowed"] = true;
+                        //delete if user has no transaction
+                        _context.Users.Remove(user);
+                        _context.SaveChanges();
+                    }
+                    else
+                    {
+                        user.IsEnabled = false;
+                        user.DeletedById = int.Parse(Session["UserId"].ToString());
+                        user.DeletedDate = System.DateTime.Now;
+
                         _context.Entry(user).State = EntityState.Modified;
                         _context.SaveChanges();
                     }
                 }
             }
-            else
+            else //Super User
             {
                 Session["allowed"] = true;
-                if (!with_transaction) {
+                if (!with_transaction)
+                {
+                    //delete if user has no transaction
+                    _context.Users.Remove(user);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    user.IsEnabled = false;
+                    user.DeletedById = int.Parse(Session["UserId"].ToString());
+                    user.DeletedDate = System.DateTime.Now;
+
                     _context.Entry(user).State = EntityState.Modified;
                     _context.SaveChanges();
                 }
+
             }
+
             Session["Deleted"] = true;
             Session["with_transaction"] = with_transaction;
             return RedirectToAction("../admin/main");
