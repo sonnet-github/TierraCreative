@@ -28,8 +28,8 @@ namespace TierraCreative.FtpPurge
             var IsSuccess = FtpPurge.Process.Purges.PurgeData();
 
             //ftp data
-            if (IsSuccess)
-                IsSuccess = FtpPurge.Process.Ftps.PostDatatoFTP(directoryname,filename);
+            //if (IsSuccess)
+            //    IsSuccess = FtpPurge.Process.Ftps.PostDatatoFTP(directoryname,filename);
         }
     }
 }

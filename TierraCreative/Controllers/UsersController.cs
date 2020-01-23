@@ -19,6 +19,7 @@ namespace TierraCreative.Controllers
 
         public ActionResult Admin()
         {
+            Session["InvalidPassword"] = null;
             return View("Admin");
         }
 
@@ -61,11 +62,29 @@ namespace TierraCreative.Controllers
                     }
                     else
                         ViewBag.ErrorMessage = "UserName is disabled!";
-                else
+                else {
                     ViewBag.ErrorMessage = "Invalid password!";
+
+                    if (Session["InvalidPassword"] == null)
+                        Session["InvalidPassword"] = 0;
+
+                    Session["InvalidPassword"] = int.Parse(Session["InvalidPassword"].ToString()) + 1;
+
+                    if (Session["InvalidPassword"].ToString() == "5") {
+                        ViewBag.ErrorMessage = "5 invalid attempts, your Username is now disabled!";
+
+                        user.IsEnabled = false;
+
+                        _context.Entry(user).State = EntityState.Modified;
+                        _context.SaveChanges();
+
+                        Session["InvalidPassword"] = null;
+                    }
+                }
             }
-            else
+            else { 
                 ViewBag.ErrorMessage = "UserName does not exists!";
+            }
 
             return View("admin");
         }
@@ -392,6 +411,7 @@ namespace TierraCreative.Controllers
         #region -- Users -- 
         public ActionResult Login()
         {
+            Session["InvalidPassword"] = null;
             return View("../Login");
         }
 
@@ -429,7 +449,26 @@ namespace TierraCreative.Controllers
                     else
                         ViewBag.ErrorMessage = "UserName is disabled!";
                 else
+                {
                     ViewBag.ErrorMessage = "Invalid password!";
+
+                    if (Session["InvalidPassword"] == null)
+                        Session["InvalidPassword"] = 0;
+
+                    Session["InvalidPassword"] = int.Parse(Session["InvalidPassword"].ToString()) + 1;
+
+                    if (Session["InvalidPassword"].ToString() == "5")
+                    {
+                        ViewBag.ErrorMessage = "5 invalid attempts, your Username is now disabled!";
+
+                        user.IsEnabled = false;
+
+                        _context.Entry(user).State = EntityState.Modified;
+                        _context.SaveChanges();
+
+                        Session["InvalidPassword"] = null;
+                    }
+                }
             }
             else
                 ViewBag.ErrorMessage = "UserName does not exists!";
