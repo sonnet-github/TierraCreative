@@ -327,6 +327,7 @@ namespace TierraCreative.Controllers
                         //delete if user has no transaction
                         _context.Users.Remove(user);
                         _context.SaveChanges();
+                        ViewBag.IsAllowed = true;
                     }
                     else
                     {
