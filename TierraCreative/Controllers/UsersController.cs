@@ -304,11 +304,17 @@ namespace TierraCreative.Controllers
             Session["with_transaction"] = true;
             var with_transaction = true;
 
-            var dRps = _context.DRPs.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).ToList();
-            var aILs = _context.AILs.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).ToList();
-            var sPs = _context.SupplementaryDividends.Include(a => a.User).Include(a => a.ReviewedUser).Where(x => x.CreatedById == id).ToList();
+            var dRps = _context.DRPs.SingleOrDefault(x => x.UserId == id);
+            var aILs = _context.AILs.SingleOrDefault(x => x.UserId == id);
+            var sPs = _context.SupplementaryDividends.SingleOrDefault(x => x.UserId == id);
 
-            if (dRps.Count == 0 && aILs.Count == 0 && sPs.Count == 0) {
+            var dRps_Reviewed = _context.DRPs.SingleOrDefault(x => x.ReviewedById == id);
+            var aILs_Reviewed = _context.AILs.SingleOrDefault(x => x.ReviewedById == id);
+            var sPs_Reviewed = _context.SupplementaryDividends.SingleOrDefault(x => x.ReviewedById == id);
+
+
+            if (dRps == null && aILs == null && sPs == null &&
+                dRps_Reviewed == null && aILs_Reviewed == null && sPs_Reviewed == null) {
                 with_transaction = false;
             }
 
@@ -321,6 +327,8 @@ namespace TierraCreative.Controllers
                     //Admin not allowed to delete super user - pending Throw error message
 
                     //todo code here....
+
+                    ViewBag.IsAllowed = false;
                 }
                 else
                 {
@@ -334,12 +342,12 @@ namespace TierraCreative.Controllers
                     }
                     else
                     {
-                        user.IsEnabled = false;
-                        user.DeletedById = int.Parse(Session["UserId"].ToString());
-                        user.DeletedDate = System.DateTime.Now;
+                        //user.IsEnabled = false;
+                        //user.DeletedById = int.Parse(Session["UserId"].ToString());
+                        //user.DeletedDate = System.DateTime.Now;
 
-                        _context.Entry(user).State = EntityState.Modified;
-                        _context.SaveChanges();
+                        //_context.Entry(user).State = EntityState.Modified;
+                        //_context.SaveChanges();
                     }
                 }
             }
@@ -351,21 +359,23 @@ namespace TierraCreative.Controllers
                     //delete if user has no transaction
                     _context.Users.Remove(user);
                     _context.SaveChanges();
+                    ViewBag.IsAllowed = true;
                 }
                 else
                 {
-                    user.IsEnabled = false;
-                    user.DeletedById = int.Parse(Session["UserId"].ToString());
-                    user.DeletedDate = System.DateTime.Now;
+                    //user.IsEnabled = false;
+                    //user.DeletedById = int.Parse(Session["UserId"].ToString());
+                    //user.DeletedDate = System.DateTime.Now;
 
-                    _context.Entry(user).State = EntityState.Modified;
-                    _context.SaveChanges();
+                    //_context.Entry(user).State = EntityState.Modified;
+                    //_context.SaveChanges();
                 }
 
             }
 
             Session["Deleted"] = true;
             Session["with_transaction"] = with_transaction;
+
             return RedirectToAction("../admin/main");
 
             //return View("delete",user);

@@ -25,7 +25,7 @@ namespace TierraCreative.FtpPurge
             File.WriteAllText(directoryname + filename, data);
 
             //purge data
-            var IsSuccess = FtpPurge.Process.Purges.PurgeData();
+            //var IsSuccess = FtpPurge.Process.Purges.PurgeData();
 
             //ftp data
             //if (IsSuccess)
