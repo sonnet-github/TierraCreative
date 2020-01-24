@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using TierraCreative;
 using TierraCreative.Model;
-using TierraCreative.ViewModels;
 
 namespace TierraCreative.Controllers
 {
@@ -568,6 +563,7 @@ namespace TierraCreative.Controllers
         [HttpPost]
         public ActionResult ChangePassword(FormCollection form)
         {
+            ViewBag.IsFirstLog = Session["IsFirstLog"];
             Utility.Utilities utilities = new Utility.Utilities();
 
             ViewBag.IsSuccess = null;
