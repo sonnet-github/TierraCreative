@@ -49,7 +49,7 @@ namespace TierraCreative.FtpPurge.Process
                         MainCSN = Main_Account,
                         CSN = AIL_Account,
                         ISIN = ail.ISIN,
-                        InstructionID = "RERE",
+                        InstructionID = (ail.FromCSN == "Main" ? "DERI" : "RERE"),
                         TIN ="",
                         TransferDate = System.DateTime.Now.ToString(),
                         TransferQty = ail.TransferAmount.ToString()
@@ -68,7 +68,7 @@ namespace TierraCreative.FtpPurge.Process
                         MainCSN = Main_Account,
                         CSN = SP_Account,
                         ISIN = sp.ISIN,
-                        InstructionID = "RERE",
+                        InstructionID = (sp.FromCSN == "Main" ? "DERI" : "RERE"),
                         TIN = "",
                         TransferDate = System.DateTime.Now.ToString(),
                         TransferQty = sp.TransferAmount.ToString()
