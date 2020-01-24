@@ -563,7 +563,7 @@ namespace TierraCreative.Controllers
         [HttpPost]
         public ActionResult ChangePassword(FormCollection form)
         {
-            ViewBag.IsFirstLog = Session["IsFirstLog"];
+            
             Utility.Utilities utilities = new Utility.Utilities();
 
             ViewBag.IsSuccess = null;
@@ -599,6 +599,8 @@ namespace TierraCreative.Controllers
             }
             if (!error_)
             {
+                ViewBag.IsFirstLog = Session["IsFirstLog"];
+                Session["IsFirstLog"] = "false";
                 user.Password = newpassword;
                 user.IsFirstLog = false;
                 _context.Entry(user).State = EntityState.Modified;
