@@ -90,7 +90,7 @@ namespace TierraCreative.FtpPurge.Process
 
                     data += string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}{9}",
                                         lastpurgeid,
-                                        Convert.ToDateTime(fileNameField.Timestamp).ToString("yyyy-dd-MM-HH-mm-ss"),
+                                        Convert.ToDateTime(fileNameField.Timestamp).ToString("yyyy-MM-dd-HH-mm-ss"),
                                         fileNameField.MainCSN,
                                         fileNameField.CSN,
                                         fileNameField.ISIN,
