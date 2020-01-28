@@ -206,7 +206,7 @@ namespace TierraCreative.Controllers
                 ViewBag.NotAllowed = true;
                 review = GetApproveData(review, source, int.Parse(id.ToString()));
 
-                ViewBag.ErrorMessage = @"Your username is associated with the submission. You are not allowed to confirm this. Please refer approval to a user with the appropriate clearance.";
+                ViewBag.ErrorMessage = @"You are not able to review your own submission. Please request another user to approve this request.";
 
                 return View(review);
             }
