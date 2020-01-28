@@ -33,6 +33,7 @@
         @Html.HiddenFor(model => model.UpdatedDate)
 
         <div class="form-horizontal">
+            <p style="color:red;display:none;" id="complete_field">Please complete all fields prior to submitting your request.</p>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="form-group row">
@@ -53,7 +54,7 @@
             <div class="form-group row">
                 @Html.LabelFor(model => model.FromCSN, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
                 <div class="col-lg-4 col-sm-6">
-                    @Html.DropDownList("FromCSN", null,"Please select", htmlAttributes: new { @required="required",@class = "form-control" })
+                    @Html.DropDownList("FromCSN", null, "Please select", htmlAttributes: new { @required = "required", @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.FromCSN, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -69,7 +70,7 @@
             <div class="form-group row">
                 @Html.LabelFor(model => model.ToCSN, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
                 <div class="col-lg-4 col-sm-6">
-                    @Html.DropDownList("ToCSN", null,"Please select", htmlAttributes: new {@required="required", @class = "form-control" })
+                    @Html.DropDownList("ToCSN", null, "Please select", htmlAttributes: new { @required = "required", @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.ToCSN, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -77,7 +78,7 @@
             <div class="form-group row">
                 @Html.LabelFor(model => model.ISIN, htmlAttributes: new { @class = "control-label col-lg-3 col-sm-6" })
                 <div class="col-lg-4 col-sm-6">
-                    @Html.EditorFor(model => model.ISIN, new { htmlAttributes = new { @required="required",@class = "form-control", @Value = @Session["ISIN"] } })
+                    @Html.EditorFor(model => model.ISIN, new { htmlAttributes = new { @required = "required", @class = "form-control", @Value = @Session["ISIN"] } })
                     @Html.ValidationMessageFor(model => model.ISIN, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -85,7 +86,7 @@
             <div class="form-group row">
                 <label class="control-label col-lg-3 col-sm-6" for="TransferAmount">Share Amount Transfer</label>
                 <div class="col-lg-4 col-sm-6">
-                    @Html.EditorFor(model => model.TransferAmount, new { htmlAttributes = new { @required="required",@class = "form-control numeric", @Value = @Session["TransferAmount"] } })
+                    @Html.EditorFor(model => model.TransferAmount, new { htmlAttributes = new { @required = "required", @class = "form-control numeric", @Value = @Session["TransferAmount"] } })
                     @Html.ValidationMessageFor(model => model.TransferAmount, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -136,25 +137,37 @@
     </div>*@
 
 @section Scripts {
-    
+
     @Scripts.Render("~/bundles/jqueryval")
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#FromCSN').on('change', function () {
-            $("#ToCSN option[value='" + $('#FromCSN').val() + "']").remove();
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#FromCSN').on('change', function () {
+                $("#ToCSN option[value='" + $('#FromCSN').val() + "']").remove();
 
-            $("#ToCSN").append("<option value='" + $('#FromCSN').val() + "'>" + $('#FromCSN option:selected').text() + "</option>");
+                $("#ToCSN").append("<option value='" + $('#FromCSN').val() + "'>" + $('#FromCSN option:selected').text() + "</option>");
+            });
+
+            $('#ToCSN').on('change', function () {
+                $("#FromCSN option[value='" + $('#ToCSN').val() + "']").remove();
+
+                $("#FromCSN").append("<option value='" + $('#ToCSN').val() + "'>" + $('#ToCSN option:selected').text() + "</option>");
+            });
+
         });
 
-        $('#ToCSN').on('change', function () {
-            $("#FromCSN option[value='" + $('#ToCSN').val() + "']").remove();
-
-            $("#FromCSN").append("<option value='" + $('#ToCSN').val() + "'>" + $('#ToCSN option:selected').text() + "</option>");
+    </script>
+    <script>
+        $("input[type='submit']").on("click", function () {
+            setTimeout(function () {
+                if ($(".field-validation-error").length) {
+                    $("#complete_field").show();
+                }
+                else {
+                    $("#complete_field").hide();
+                }
+            }, 100);
         });
-
-    });
-
-</script>
+    </script>
 }
 
