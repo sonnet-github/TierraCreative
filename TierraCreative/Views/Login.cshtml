@@ -13,6 +13,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="~/Content/styles.css" rel="stylesheet" />
+    <style>
+       @@media(max-width: 426px) {
+            .jumbotron{
+                margin:10px 0!important;
+                margin-top:20px!important;
+            }
+            .jumbotron h1 {
+                font-size:2.5rem;
+            }
+            .jumbotron p {
+                font-size:1.2rem;
+            }
+            #main h2 {
+                margin-top:25px;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -20,12 +37,17 @@
             <img src="/Images/Logo.png" alt="Computershare" />
         </a>
     </nav>
-    <div class="jumbotron" style="background:#8F3686;color:#fff;border-radius:0;font-family:Arial;">
-        <h1 class="display-4" style="font-family:Arial;padding-left:2%;">RBNZ Election Portal </h1>
-        <p class="lead" style="font-family:Arial;padding-left:2%;">COMPUTERSHARE INVESTOR SERVICES LIMITED</p>
-    </div>
     <div class="container">
-        <div class="col-lg-12">
+        <div class="col-lg-12" id="splash">
+            <div class="jumbotron" style="background:url('images/banner.jpg');color:#fff;font-family:Arial;margin-top:50px;">
+                <h1 class="display-4" style="font-family:Arial;padding-left:2%;">RBNZ Election Portal </h1>
+                <p class="lead" style="font-family:Arial;padding-left:2%;">COMPUTERSHARE INVESTOR SERVICES LIMITED</p>
+                <p>
+                    <a href="#main" class="btn btn default">Login</a>
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-12" id="main">
             <h2>Login</h2>
             <hr />
             @using (Html.BeginForm())
