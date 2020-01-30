@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -15,10 +16,10 @@ namespace TierraCreative.FtpPurge.Process
         {
             try
             {
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://Hostname.com" + @"\" + filename);
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://" + ConfigurationManager.AppSettings["FtpURL"] + @"\" + filename);
                 request.CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.CacheIfAvailable);
                 request.Method = WebRequestMethods.Ftp.UploadFile;
-                request.Credentials = new NetworkCredential("maruthi", "******");
+                request.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["FtpUser"], ConfigurationManager.AppSettings["FtpPass"]);
 
                 // Copy the contents of the file to the request stream.  
                 //StreamReader sourceStream = new StreamReader(@"E:\yourlocation\" + filename);
@@ -31,7 +32,7 @@ namespace TierraCreative.FtpPurge.Process
                 requestStream.Close();
 
                 FtpWebResponse response = (FtpWebResponse)request.GetResponse();
-                Console.WriteLine("Upload File Complete, status {0}", response.StatusDescription);
+                Console.WriteLine("Upload FTP File Complete, status {0}", response.StatusDescription);
 
                 response.Close();
 

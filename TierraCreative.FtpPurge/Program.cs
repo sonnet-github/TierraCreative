@@ -15,21 +15,34 @@ namespace TierraCreative.FtpPurge
             var filename = string.Format("ELE_TIE_CPU_{0}.csv", System.DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
 
             //data db extraction
+            Console.WriteLine("DB Extraction Started...");           
             List<Models.FilenameFields> fileNameFields = new List<Models.FilenameFields>();
             var data = FtpPurge.Process.Extractions.ExtractPurgeData(out fileNameFields);
+            Console.WriteLine("DB Extraction Ended...");         
+
+            Console.WriteLine("");          
 
             //create CSV file
+            Console.WriteLine("Create CSV file Started...");          
             if (!Directory.Exists(directoryname))
                 Directory.CreateDirectory(directoryname);
 
             File.WriteAllText(directoryname + filename, data);
-
+            Console.WriteLine("Create CSV file Ended..");
+            
             //purge data
-            //var IsSuccess = FtpPurge.Process.Purges.PurgeData();
+            Console.WriteLine("Purge DB data Started...");
+            var IsSuccess = true; // FtpPurge.Process.Purges.PurgeData();
+            Console.WriteLine("Purge DB data Ended...");
 
             //ftp data
-            //if (IsSuccess)
-            //    IsSuccess = FtpPurge.Process.Ftps.PostDatatoFTP(directoryname,filename);
+            Console.WriteLine("FTP CSV file Started...");
+            if (IsSuccess)
+                //IsSuccess = FtpPurge.Process.Ftps.PostDatatoFTP(directoryname,filename);
+
+            Console.WriteLine("FTP CSV file Ended...");
+
+
         }
     }
 }
