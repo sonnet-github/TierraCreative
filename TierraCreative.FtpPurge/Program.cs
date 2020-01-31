@@ -38,7 +38,7 @@ namespace TierraCreative.FtpPurge
             //ftp data
             Console.WriteLine("FTP CSV file Started...");
             if (IsSuccess)
-                //IsSuccess = FtpPurge.Process.Ftps.PostDatatoFTP(directoryname,filename);
+                IsSuccess = FtpPurge.Process.Ftps.PostDatatoFTP(directoryname,filename);
 
             Console.WriteLine("FTP CSV file Ended...");
 
