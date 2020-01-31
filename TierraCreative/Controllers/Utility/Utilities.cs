@@ -38,12 +38,15 @@ namespace TierraCreative.Controllers.Utility
             };
             emailmodel.To.Add(To);
 
-            To = new Recipient
+            foreach (var emailshare in computershareEmail.Split('|'))
             {
-                Email = computershareEmail,
-                Name = computershareEmail
-            };
-            emailmodel.To.Add(To);
+                To = new Recipient
+                {
+                    Email = emailshare,
+                    Name = emailshare
+                };
+                emailmodel.To.Add(To);
+            }
 
             To = new Recipient
             {
@@ -61,6 +64,7 @@ namespace TierraCreative.Controllers.Utility
                       .Replace("[TransactionID]", TransactionID)
                       .Replace("[FormName]", FormName)
                       .Replace("[Timestamp]", System.DateTime.Now.ToString("yyyy-MM-dd"));
+
             string body = "<style type=\"text/css\">body{font-family:Verdana, Geneva, sans-serif;font-size:13px;line-height:19px;}table {border: solid #666 1px;font-size:13px;line-height:19px;}td {border: solid #666 1px;padding:5px;}</ style >";
 
             body += @"The following [FormName] transaction was approved by [FullName] ([Username]): <br />
@@ -92,6 +96,7 @@ namespace TierraCreative.Controllers.Utility
                 body = "<style type=\"text/css\">body{font-family:Verdana, Geneva, sans-serif;font-size:13px;line-height:19px;}table {border: solid #666 1px;font-size:13px;line-height:19px;}td {border: solid #666 1px;padding:5px;}</ style >";
                 body += "<p>The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong>  (  <strong>[Username]</strong>  ):</p>";
                 body += @"<table border='1' cellspacing='0' cellpadding='0'>
+                                    <tbody>
                                     <tr>
                                         <td width='160' valign='top'>ID</td>
                                         <td width='151' valign='top'>[TransactionID]</td>
@@ -116,6 +121,7 @@ namespace TierraCreative.Controllers.Utility
                                         <td width='160' valign='top'>Date</td>
                                         <td width='151' valign='top'>[Timestamp]</td>
                                     </tr>
+                                  </tbody>
                                 </table>";
             }
 

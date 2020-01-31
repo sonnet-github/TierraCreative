@@ -299,17 +299,17 @@ namespace TierraCreative.Controllers
             Session["with_transaction"] = true;
             var with_transaction = true;
 
-            var dRps = _context.DRPs.SingleOrDefault(x => x.UserId == id);
-            var aILs = _context.AILs.SingleOrDefault(x => x.UserId == id);
-            var sPs = _context.SupplementaryDividends.SingleOrDefault(x => x.UserId == id);
+            var dRps = _context.DRPs.Where(x => x.UserId == id).ToList();
+            var aILs = _context.AILs.Where(x => x.UserId == id).ToList();
+            var sPs = _context.SupplementaryDividends.Where(x => x.UserId == id).ToList();
 
-            var dRps_Reviewed = _context.DRPs.SingleOrDefault(x => x.ReviewedById == id);
-            var aILs_Reviewed = _context.AILs.SingleOrDefault(x => x.ReviewedById == id);
-            var sPs_Reviewed = _context.SupplementaryDividends.SingleOrDefault(x => x.ReviewedById == id);
+            var dRps_Reviewed = _context.DRPs.Where(x => x.ReviewedById == id).ToList();
+            var aILs_Reviewed = _context.AILs.Where(x => x.ReviewedById == id).ToList();
+            var sPs_Reviewed = _context.SupplementaryDividends.Where(x => x.ReviewedById == id).ToList();
 
 
-            if (dRps == null && aILs == null && sPs == null &&
-                dRps_Reviewed == null && aILs_Reviewed == null && sPs_Reviewed == null) {
+            if (dRps.Count()==0 && aILs.Count() == 0 && sPs.Count() == 0 &&
+                dRps_Reviewed.Count() == 0 && aILs_Reviewed.Count() == 0 && sPs_Reviewed.Count() == 0) {
                 with_transaction = false;
             }
 
