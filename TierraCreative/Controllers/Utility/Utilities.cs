@@ -225,8 +225,7 @@ namespace TierraCreative.Controllers.Utility
                 subject = "CISELECT – Admin Password Changed";
             }
 
-            var body = "<style type=\"text/css\">body{font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;}table {border: solid #666 1px;font-size:13px;line-height:19px;}td {border: solid #666 1px;padding:5px;}</ style >";
-            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'>The following user  <strong>" + username + " </strong> has changed the password associated with their account on <strong>" + System.DateTime.Now.ToString("yyyy-MM-dd") + "</strong> .</p>";
+            var body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'>The following user  <strong>" + username + " </strong> has changed the password associated with their account on <strong>" + System.DateTime.Now.ToString("yyyy-MM-dd") + "</strong> .</p>";
             body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'>  If you didn&rsquo;t initiate this password change please contact <strong>" + fromEmail+ "</strong> .</p>";
             body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><em>This e-mail was sent on by the CISELECT application.  </em></p>";
             body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><img src=\"http://tierracreative.clientpreview.agency/Images/cis-logo.png\" width=\"240\" height=\"60\"></p>";
