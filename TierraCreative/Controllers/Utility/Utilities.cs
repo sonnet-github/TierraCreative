@@ -96,27 +96,27 @@ namespace TierraCreative.Controllers.Utility
                                     <tbody>
                                     <tr>
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' >ID</td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;'>[TransactionID]</td>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><strong>[TransactionID]</strong></td>
                                     </tr>
                                     <tr>
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' >From CSN</td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;'>[FromCSNValue]</td>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><strong>[FromCSNValue]</strong></td>
                                     </tr>
                                     <tr>
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' >To CSN</td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;'>[ToCSNValue]</td>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><strong>[ToCSNValue]</strong></td>
                                     </tr>
                                     <tr>
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' >ISIN</td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;'>[ISINValue]</td>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><strong>[ISINValue]</strong></td>
                                     </tr>
                                     <tr>
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' >Transfer Amount</td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;'>[AmountValue]</td>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><strong>[AmountValue]</strong></td>
                                     </tr>
                                     <tr>
-                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' >Date</td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;'>[Timestamp]</td>
+                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;font-weight:bold;' >Date</td>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><strong>[Timestamp]</strong></td>
                                     </tr>
                                   </tbody>
                                 </table>";
