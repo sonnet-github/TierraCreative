@@ -38,12 +38,15 @@ namespace TierraCreative.Controllers.Utility
             };
             emailmodel.To.Add(To);
 
-            To = new Recipient
+            foreach (var emailshare in computershareEmail.Split('|'))
             {
-                Email = computershareEmail,
-                Name = computershareEmail
-            };
-            emailmodel.To.Add(To);
+                To = new Recipient
+                {
+                    Email = emailshare,
+                    Name = emailshare
+                };
+                emailmodel.To.Add(To);
+            }
 
             To = new Recipient
             {
@@ -90,6 +93,7 @@ namespace TierraCreative.Controllers.Utility
             {
                 body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'> The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong>  (<strong>[Username]</strong>):</p><br/>";
                 body += @"<table border='1' cellspacing='0' cellpadding='0'>
+                                    <tbody>
                                     <tr>
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' >ID</td>
                                         <td width='151' valign='top' style='font-weith:bold;border: solid #666 1px;padding:5px;'>[TransactionID]</td>
@@ -114,6 +118,7 @@ namespace TierraCreative.Controllers.Utility
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' >Date</td>
                                         <td width='151' valign='top' style='font-weith:bold;border: solid #666 1px;padding:5px;'>[Timestamp]</td>
                                     </tr>
+                                  </tbody>
                                 </table>";
             }
 
