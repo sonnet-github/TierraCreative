@@ -172,12 +172,11 @@ namespace TierraCreative.Controllers.Utility
             //emailmodel.Attachment.Add(attachment);
 
             var subject = @"CISELECT – Forgotten Password";
-<<<<<<< HEAD
+
             //if (HttpContext.Current.Session["Layout"].ToString() != "admin")
             if (HttpContext.Current.Request.Url.AbsoluteUri.ToLower().ToString().IndexOf("/admin") != -1)
-=======
+
             if (HttpContext.Current.Session["Layout"].ToString() == "admin")
->>>>>>> c5d2fb6b45efad3e79672aeb7303b5d9a1f78830
             {
                 subject = "CISELECT – Admin Forgotten Password";
             }
@@ -225,12 +224,9 @@ namespace TierraCreative.Controllers.Utility
             //emailmodel.Attachment.Add(attachment);
 
             var subject = @"CISELECT – Password Changed";
-<<<<<<< HEAD
+
             //if (HttpContext.Current.Session["Layout"].ToString() != "admin")
-            if (HttpContext.Current.Request.Url.AbsoluteUri.ToLower().ToString().IndexOf("/admin") != -1)
-=======
-            if (HttpContext.Current.Session["Layout"].ToString() == "admin")
->>>>>>> c5d2fb6b45efad3e79672aeb7303b5d9a1f78830
+            if (HttpContext.Current.Request.Url.AbsoluteUri.ToLower().ToString().IndexOf("/admin") != -1)           
             {
                 subject = "CISELECT – Admin Password Changed";
             }
