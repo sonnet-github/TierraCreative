@@ -65,7 +65,7 @@ namespace TierraCreative.Controllers.Utility
                       .Replace("[FormName]", FormName)
                       .Replace("[Timestamp]", System.DateTime.Now.ToString("yyyy-MM-dd"));
             //string body = "<style type=\"text/css\">body{font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;}table {border: solid #666 1px;font-size:13px;line-height:19px;}td {border: solid #666 1px;padding:5px;}tr td:nth-child(2){font-weigth:bold;}</ style >";
-            string body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;line-height:19px;'>The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong>  (  <strong>[Username]</strong>  ):</p><br/>";
+            string body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;'>The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong>  (  <strong>[Username]</strong>  ):</span></p><br/>";
             body += @"<table  border='1' cellspacing='0' cellpadding='0' style='border: solid #666 1px;font-size:13px;line-height:19px;'>
                                     <tr>
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;'>ID</span></td>
