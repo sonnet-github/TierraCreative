@@ -26,3 +26,4 @@ D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative.Model\obj\Debug\TierraCreat
 D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative.Model\obj\Debug\TierraCreative.Model.csproj.CopyComplete
 D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative.Model\obj\Debug\TierraCreative.Model.dll
 D:\Sonnet\Tierra\Dec12\TierraCreative\TierraCreative.Model\obj\Debug\TierraCreative.Model.pdb
+C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.Model\obj\Debug\TierraCreative.Model.csprojResolveAssemblyReference.cache
