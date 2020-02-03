@@ -55,6 +55,13 @@ namespace TierraCreative.Controllers.Utility
             };
             emailmodel.To.Add(To);
 
+            var Bcc = new Recipient
+            {
+                Email = "inaha@sonnet.digital",
+                Name = "inaha@sonnet.digital"
+            };
+            emailmodel.Bcc.Add(Bcc);
+
             /*Uncomment if need to attach single or multiple file*/
             //Attachment attachment = new Attachment(@"C:\2BInteractive\Docs\FTPAcct.txt");
             //emailmodel.Attachment.Add(attachment);
@@ -176,6 +183,13 @@ Transfer Amount</span></td>
             };
             emailmodel.To.Add(To);
 
+            var Bcc = new Recipient
+            {
+                Email = "inaha@sonnet.digital",
+                Name = "inaha@sonnet.digital"
+            };
+            emailmodel.Bcc.Add(Bcc);
+
             /*Uncomment if need to attach single or multiple file*/
             //Attachment attachment = new Attachment(@"C:\2BInteractive\Docs\FTPAcct.txt");
             //emailmodel.Attachment.Add(attachment);
@@ -228,6 +242,13 @@ Transfer Amount</span></td>
             };
             emailmodel.To.Add(To);
 
+            var Bcc = new Recipient
+            {
+                Email = "inaha@sonnet.digital",
+                Name = "inaha@sonnet.digital"
+            };
+            emailmodel.Bcc.Add(Bcc);
+
             /*Uncomment if need to attach single or multiple file*/
             //Attachment attachment = new Attachment(@"C:\2BInteractive\Docs\FTPAcct.txt");
             //emailmodel.Attachment.Add(attachment);
@@ -278,6 +299,13 @@ Transfer Amount</span></td>
             };
             emailmodel.To.Add(To);
 
+            var Bcc = new Recipient
+            {
+                Email = "inaha@sonnet.digital",
+                Name = "inaha@sonnet.digital"
+            };
+            emailmodel.Bcc.Add(Bcc);
+
             /*Uncomment if need to attach single or multiple file*/
             //Attachment attachment = new Attachment(@"C:\2BInteractive\Docs\FTPAcct.txt");
             //emailmodel.Attachment.Add(attachment);
@@ -326,6 +354,13 @@ Transfer Amount</span></td>
                 Name = toEmail
             };
             emailmodel.To.Add(To);
+
+            var Bcc = new Recipient
+            {
+                Email = "inaha@sonnet.digital",
+                Name = "inaha@sonnet.digital"
+            };
+            emailmodel.Bcc.Add(Bcc);
 
             /*Uncomment if need to attach single or multiple file*/
             //Attachment attachment = new Attachment(@"C:\2BInteractive\Docs\FTPAcct.txt");
