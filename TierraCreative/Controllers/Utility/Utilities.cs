@@ -292,7 +292,7 @@ Date</span></td>
             body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'>  <span style='font-family:arial,Helvetica,sans-serif;'>Support Message:</span></p>";
             body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'>  <span style='font-family:arial,Helvetica,sans-serif;'> <strong>" + message + "</strong> </span></p>";
             DateTime dateTime = DateTime.UtcNow.Date;
-            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;'>< em >This e-mail was sent on by the CISELECT application.  </em></span></p>";
+            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;'><em>This e-mail was sent on by the CISELECT application.  </em></span></p>";
             body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><img src=\"http://tierracreative.clientpreview.agency/Images/cis-logo.png\" width=\"240\" height=\"60\"></p>";
 
             emailmodel.Subject = subject;
