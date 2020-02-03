@@ -422,7 +422,7 @@ namespace TierraCreative.Controllers
             string msg = form["txtmessage"];
 
             //send email link
-            var success = utilities.SendSupportEmail(System.Configuration.ConfigurationManager.AppSettings["supportemail"], System.Configuration.ConfigurationManager.AppSettings["supportemail"], user.FullName, user.UserName, msg);
+            var success = utilities.SendSupportEmail(System.Configuration.ConfigurationManager.AppSettings["supportemail"], user.Email, user.FullName, user.UserName, msg);
             success = utilities.SendSupportUserEmail(System.Configuration.ConfigurationManager.AppSettings["supportemail"], user.Email, user.FullName, user.UserName, msg);
 
             if (success)
