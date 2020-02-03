@@ -65,68 +65,68 @@ namespace TierraCreative.Controllers.Utility
                       .Replace("[FormName]", FormName)
                       .Replace("[Timestamp]", System.DateTime.Now.ToString("yyyy-MM-dd"));
             //string body = "<style type=\"text/css\">body{font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;}table {border: solid #666 1px;font-size:13px;line-height:19px;}td {border: solid #666 1px;padding:5px;}tr td:nth-child(2){font-weigth:bold;}</ style >";
-            string body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;'>The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong>  (  <strong>[Username]</strong>  ):</span></p><br/>";
+            string body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong>  (  <strong>[Username]</strong>  ):</span></p><br/>";
             body += @"<table  border='1' cellspacing='0' cellpadding='0' style='border: solid #666 1px;font-size:13px;line-height:19px;'>
                                     <tr>
-                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;'>ID</span></td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;'>[TransactionID]</span></td>
+                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>ID</span></td>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>[TransactionID]</span></td>
                                     </tr>
                                     <tr>
-                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;'>CSN</span></td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;'>[FromCSNValue]</span></td>
+                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>CSN</span></td>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>[FromCSNValue]</span></td>
                                     </tr>
                                     <tr>
-                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;'>ISIN</span></td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;'>[ISINValue]</td>
+                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>ISIN</span></td>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>[ISINValue]</td>
                                     </tr>
                                     <tr>
-                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;'>DRP Amount</span></td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;'>[AmountValue]</span></td>
+                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>DRP Amount</span></td>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>[AmountValue]</span></td>
                                     </tr>
                                     <tr>
-                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;'>Date</span></td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;'>[Timestamp]</span></td>
+                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>Date</span></td>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>[Timestamp]</span></td>
                                     </tr>
                                 </table>";
 
             if (FormName == "AIL" || FormName == "Supplementary Dividend")
             {
-                body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;margin-bottom:10px;'><span style='font-family:arial,Helvetica,sans-serif;'> The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong>  (<strong>[Username]</strong>):</span></p>";
+                body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;margin-bottom:10px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'> The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong>  (<strong>[Username]</strong>):</span></p>";
                 body += @"<table border='1' cellspacing='0' cellpadding='0'>
                                     <tbody>
                                     <tr>
-                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' ><span style='font-family:arial,Helvetica,sans-serif;'>ID</span></td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;'>
+                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' ><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>ID</span></td>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>
 <strong>[TransactionID]</strong></span></td>
                                     </tr>
                                     <tr>
-                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' ><span style='font-family:arial,Helvetica,sans-serif;'>
+                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' ><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>
 From CSN</span></td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;'>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>
 <strong>[FromCSNValue]</strong></span></td>
                                     </tr>
                                     <tr>
-                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' ><span style='font-family:arial,Helvetica,sans-serif;'>
+                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' ><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>
 To CSN</span></td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;'>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>
 <strong>[ToCSNValue]</strong></span></td>
                                     </tr>
                                     <tr>
-                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' ><span style='font-family:arial,Helvetica,sans-serif;'>
+                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' ><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>
 ISIN</span></td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;'>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>
 <strong>[ISINValue]</strong></span></td>
                                     </tr>
                                     <tr>
-                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' ><span style='font-family:arial,Helvetica,sans-serif;'>
+                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' ><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>
 Transfer Amount</span></td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;'>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>
 <strong>[AmountValue]</strong></span></td>
                                     </tr>
                                     <tr>
-                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;font-weight:bold;' ><span style='font-family:arial,Helvetica,sans-serif;'>
+                                        <td width='160' valign='top' style='border: solid #666 1px;padding:5px;font-weight:bold;' ><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>
 Date</span></td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;'><strong>[Timestamp]</strong></span></td>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'><strong>[Timestamp]</strong></span></td>
                                     </tr>
                                   </tbody>
                                 </table>";
@@ -190,12 +190,12 @@ Date</span></td>
             {
                 subject = "CISELECT – Admin Forgotten Password";
             }
-            var body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;'>The following user <strong>" + username + "</strong> initiated a forgotten password request on <strong>" + System.DateTime.Now.ToString("yyyy-MM-dd") + "</strong>.</span></p>";
-            body += " <p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'> <span style='font-family:arial,Helvetica,sans-serif;'> Please use the following link to reset your password:</span></p>";
-            body += " <p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'> <span style='font-family:arial,Helvetica,sans-serif;'><a href='" + string.Format("{0}forgotpasswordchange?guid={1}&email={2}", HttpContext.Current.Request.Url.AbsoluteUri.Replace("forgotpassword", ""), guid.ToString(), toEmail) + "'>Click here</a></span></p> ";
-            body += " <p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'> <span style='font-family:arial,Helvetica,sans-serif;'> If you didn&rsquo;t initiate this request please use the link  below to invalidate it and contact <strong>" + fromEmail+ "</strong>.</span></p> ";
-            body += " <p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'> <span style='font-family:arial,Helvetica,sans-serif;'>  <strong>InvalidateLink</strong> </span></p>";
-            body += " <p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;'><em>This e-mail was sent on by the CISELECT application.  </em></span></p>";
+            var body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>The following user <strong>" + username + "</strong> initiated a forgotten password request on <strong>" + System.DateTime.Now.ToString("yyyy-MM-dd") + "</strong>.</span></p>";
+            body += " <p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'> <span style='font-family:arial,Helvetica,sans-serif;font-size:13px'> Please use the following link to reset your password:</span></p>";
+            body += " <p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'> <span style='font-family:arial,Helvetica,sans-serif;font-size:13px'><a href='" + string.Format("{0}forgotpasswordchange?guid={1}&email={2}", HttpContext.Current.Request.Url.AbsoluteUri.Replace("forgotpassword", ""), guid.ToString(), toEmail) + "'>Click here</a></span></p> ";
+            body += " <p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'> <span style='font-family:arial,Helvetica,sans-serif;font-size:13px'> If you didn&rsquo;t initiate this request please use the link  below to invalidate it and contact <strong>" + fromEmail+ "</strong>.</span></p> ";
+            body += " <p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'> <span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>  <strong>InvalidateLink</strong> </span></p>";
+            body += " <p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'><em>This e-mail was sent on by the CISELECT application.  </em></span></p>";
             body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><img src=\"http://tierracreative.clientpreview.agency/Images/cis-logo.png\" width=\"240\" height=\"60\"></p>";
 
             emailmodel.Subject = subject;
@@ -241,9 +241,9 @@ Date</span></td>
                 subject = "CISELECT – Admin Password Changed";
             }
 
-            var body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;'>The following user  <strong>" + username + " </strong> has changed the password associated with their account on <strong>" + System.DateTime.Now.ToString("yyyy-MM-dd") + "</strong> .</span></p>";
-            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'> <span style='font-family:arial,Helvetica,sans-serif;'> If you didn&rsquo;t initiate this password change please contact <strong>" + fromEmail+ "</strong> .</span></p>";
-            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;'><em>This e-mail was sent on by the CISELECT application.  </em></span></p>";
+            var body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>The following user  <strong>" + username + " </strong> has changed the password associated with their account on <strong>" + System.DateTime.Now.ToString("yyyy-MM-dd") + "</strong> .</span></p>";
+            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'> <span style='font-family:arial,Helvetica,sans-serif;font-size:13px'> If you didn&rsquo;t initiate this password change please contact <strong>" + fromEmail+ "</strong> .</span></p>";
+            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'><em>This e-mail was sent on by the CISELECT application.  </em></span></p>";
             body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><img src=\"http://tierracreative.clientpreview.agency/Images/cis-logo.png\" width=\"240\" height=\"60\"></p>";
 
             emailmodel.Subject = subject;
@@ -285,14 +285,14 @@ Date</span></td>
 
             var subject = @"CISELECT – Support Request";
 
-            var body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;'>Support request was submitted on <strong>" + System.DateTime.Now.ToString("yyyy-MM-dd") + "</strong> .</span></p>";
-            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'>  <span style='font-family:arial,Helvetica,sans-serif;'>User:</span></p>";
-            body += string.Format("<span style='font-family:arial,Helvetica,sans-serif;'><strong>{0}</strong> (<strong>{1}</strong>)</span>", fullame, username);
-            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'>  <span style='font-family:arial,Helvetica,sans-serif;'><strong>" + toEmail + "</strong></span></p>";
-            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'>  <span style='font-family:arial,Helvetica,sans-serif;'>Support Message:</span></p>";
-            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'>  <span style='font-family:arial,Helvetica,sans-serif;'> <strong>" + message + "</strong> </span></p>";
+            var body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>Support request was submitted on <strong>" + System.DateTime.Now.ToString("yyyy-MM-dd") + "</strong> .</span></p>";
+            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'>  <span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>User:</span></p>";
+            body += string.Format("<span style='font-family:arial,Helvetica,sans-serif;font-size:13px'><strong>{0}</strong> (<strong>{1}</strong>)</span>", fullame, username);
+            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'>  <span style='font-family:arial,Helvetica,sans-serif;font-size:13px'><strong>" + toEmail + "</strong></span></p>";
+            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'>  <span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>Support Message:</span></p>";
+            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'>  <span style='font-family:arial,Helvetica,sans-serif;font-size:13px'> <strong>" + message + "</strong> </span></p>";
             DateTime dateTime = DateTime.UtcNow.Date;
-            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;'><em>This e-mail was sent on by the CISELECT application.  </em></span></p>";
+            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'><em>This e-mail was sent on by the CISELECT application.  </em></span></p>";
             body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><img src=\"http://tierracreative.clientpreview.agency/Images/cis-logo.png\" width=\"240\" height=\"60\"></p>";
 
             emailmodel.Subject = subject;
@@ -334,13 +334,13 @@ Date</span></td>
 
             var subject = @"CISELECT – Support Request";
 
-            var body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;'>Support request was submitted on <strong>" + System.DateTime.Now.ToString("yyyy-MM-dd") + "</strong>.</span></p>";
-            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;'>  User:</span></p>";
-            body += string.Format("<span style='font-family:arial,Helvetica,sans-serif;'><strong>{0}</strong> (<strong>{1}</strong>)</span>", fullame, username);
-            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;'>  <strong>" + toEmail + "</strong></span></p>";
-            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'> <span style='font-family:arial,Helvetica,sans-serif;'> Support Message:</span></p>";
-            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'> <span style='font-family:arial,Helvetica,sans-serif;'>  <strong>" + message + "</strong></span> </p>";
-            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;'><em>This e-mail was sent on by the CISELECT application.  </em></span></p>";
+            var body = "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>Support request was submitted on <strong>" + System.DateTime.Now.ToString("yyyy-MM-dd") + "</strong>.</span></p>";
+            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>  User:</span></p>";
+            body += string.Format("<span style='font-family:arial,Helvetica,sans-serif;font-size:13px'><strong>{0}</strong> (<strong>{1}</strong>)</span>", fullame, username);
+            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>  <strong>" + toEmail + "</strong></span></p>";
+            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'> <span style='font-family:arial,Helvetica,sans-serif;font-size:13px'> Support Message:</span></p>";
+            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'> <span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>  <strong>" + message + "</strong></span> </p>";
+            body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'><em>This e-mail was sent on by the CISELECT application.  </em></span></p>";
             body += "<p style='font-family:Verdana, Geneva, sans-serif;font-size:13px;padding-top:0;margin-top:0;line-height:19px;'><img src=\"http://tierracreative.clientpreview.agency/Images/cis-logo.png\" width=\"240\" height=\"60\"></p>";
 
             emailmodel.Subject = subject;
