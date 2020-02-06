@@ -760,6 +760,12 @@ namespace TierraCreative.Controllers
 
         #endregion
 
+        public ActionResult PageError()
+        {
+            Session["InvalidPassword"] = null;
+            return View("../PageError");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
