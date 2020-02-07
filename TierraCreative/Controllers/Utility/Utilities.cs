@@ -101,7 +101,9 @@ namespace TierraCreative.Controllers.Utility
 
             if (FormName == "AIL" || FormName == "Supplementary Dividend")
             {
-                body = "<p style='font-family:arial,Helvetica,sans-serif;font-size:13pxpadding-top:0;margin-top:0;line-height:19px;margin-bottom:10px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'> The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong>  (<strong>[Username]</strong>):</span></p>";
+                body = @"<p><img src='http://tierracreative.clientpreview.agency/Images/cis-email-header.png' alt='Computershare RBNZ Election Portal' width='500' height='156'></p>";
+
+                body += "<p style='font-family:arial,Helvetica,sans-serif;font-size:13pxpadding-top:0;margin-top:0;line-height:19px;margin-bottom:10px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'> The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong>  (<strong>[Username]</strong>):</span></p>";
                 body += @"<table border='1' cellspacing='0' cellpadding='0'>
                                     <tbody>
                                     <tr>
