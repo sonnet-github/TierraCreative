@@ -112,6 +112,7 @@ namespace TierraCreative.Controllers
 
             var id = int.Parse(form["Id"]);
             var source = form["Source"];
+            var destination = form["To"];
 
             var submitUserEmail = string.Empty;
             var computershareEmail = string.Empty;
@@ -198,7 +199,9 @@ namespace TierraCreative.Controllers
                             fromEmail,
                             ApprovalEmail,
                             computershareEmail,
-                            submitUserEmail);
+                            submitUserEmail,
+                            source,
+                            destination);
             }
             else
             {
