@@ -21,7 +21,9 @@ namespace TierraCreative.Controllers.Utility
             string computershareEmail,
             string submitUserEmail,
             string Source,
-            string Destination)
+            string Destination,
+            string SourceValue,
+            string DestinationValue)
         {
             SendGridHelper emailhelper = new SendGridHelper();
             SendGridModel emailmodel = new SendGridModel();
@@ -148,8 +150,8 @@ Transfer Amount</span></td>
                     .Replace("[FormName]", FormName)
                     .Replace("[FullName]", FullName)
                     .Replace("[Username]", UserName)
-                    .Replace("[FromCSNValue]", FromCSNValue)
-                    .Replace("[ToCSNValue]", ToCSNValue)
+                    .Replace("[FromCSNValue]", SourceValue)
+                    .Replace("[ToCSNValue]", DestinationValue)
                     .Replace("[ISINValue]", ISINValue)
                     .Replace("[AmountValue]", AmountValue)
                     .Replace("[Source]", Source)
