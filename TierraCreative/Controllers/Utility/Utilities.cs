@@ -83,7 +83,7 @@ namespace TierraCreative.Controllers.Utility
                                     </tr>
                                     <tr>
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>CSN</span></td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>[CSNDisplayName]([FromCSNValue])</span></td>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>[Source]([FromCSNValue])</span></td>
                                     </tr>
                                     <tr>
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>ISIN</span></td>
