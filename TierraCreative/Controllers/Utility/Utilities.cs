@@ -75,7 +75,7 @@ namespace TierraCreative.Controllers.Utility
                       .Replace("[Timestamp]", System.DateTime.Now.ToString("yyyy-MM-dd"));
             //string body = "<style type=\"text/css\">body{font-family:arial,Helvetica,sans-serif;font-size:13pxpadding-top:0;margin-top:0;line-height:19px;}table {border: solid #666 1px;font-size:13px;line-height:19px;}td {border: solid #666 1px;padding:5px;}tr td:nth-child(2){font-weigth:bold;}</ style >";
             string body = @"<p><img src='http://tierracreative.clientpreview.agency/Images/cis-email-header.png' alt='Computershare RBNZ Election Portal' width='500' height='156'></p>";
-            body += "<p style='font-family:arial,Helvetica,sans-serif;font-size:13pxpadding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong>  ( <strong>[Username]</strong>):</span></p><br/>";
+            body += "<p style='font-family:arial,Helvetica,sans-serif;font-size:13pxpadding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong> (<strong>[Username]</strong>):</span></p><br/>";
             body += @"<table  border='1' cellspacing='0' cellpadding='0' style='border: solid #666 1px;font-size:13px;line-height:19px;'>
                                     <tr>
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>ID</span></td>
@@ -103,7 +103,7 @@ namespace TierraCreative.Controllers.Utility
             {
                 body = @"<p><img src='http://tierracreative.clientpreview.agency/Images/cis-email-header.png' alt='Computershare RBNZ Election Portal' width='500' height='156'></p>";
 
-                body += "<p style='font-family:arial,Helvetica,sans-serif;font-size:13pxpadding-top:0;margin-top:0;line-height:19px;margin-bottom:10px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'> The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong>  (<strong>[Username]</strong>):</span></p>";
+                body += "<p style='font-family:arial,Helvetica,sans-serif;font-size:13pxpadding-top:0;margin-top:0;line-height:19px;margin-bottom:10px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'> The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong> (<strong>[Username]</strong>):</span></p>";
                 body += @"<table border='1' cellspacing='0' cellpadding='0'>
                                     <tbody>
                                     <tr>
