@@ -19,7 +19,11 @@ namespace TierraCreative.Controllers.Utility
             string fromEmail,
             string ApprovalEmail,
             string computershareEmail,
-            string submitUserEmail)
+            string submitUserEmail,
+            string Source,
+            string Destination,
+            string SourceValue,
+            string DestinationValue)
         {
             SendGridHelper emailhelper = new SendGridHelper();
             SendGridModel emailmodel = new SendGridModel();
@@ -72,7 +76,8 @@ namespace TierraCreative.Controllers.Utility
                       .Replace("[FormName]", FormName)
                       .Replace("[Timestamp]", System.DateTime.Now.ToString("yyyy-MM-dd"));
             //string body = "<style type=\"text/css\">body{font-family:arial,Helvetica,sans-serif;font-size:13pxpadding-top:0;margin-top:0;line-height:19px;}table {border: solid #666 1px;font-size:13px;line-height:19px;}td {border: solid #666 1px;padding:5px;}tr td:nth-child(2){font-weigth:bold;}</ style >";
-            string body = "<p style='font-family:arial,Helvetica,sans-serif;font-size:13pxpadding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong>  ( <strong>[Username]</strong>):</span></p><br/>";
+            string body = @"<p><img src='http://tierracreative.clientpreview.agency/Images/cis-email-header.png' alt='Computershare RBNZ Election Portal' width='500' height='156'></p>";
+            body += "<p style='font-family:arial,Helvetica,sans-serif;font-size:13pxpadding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;line-height:19px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong> (<strong>[Username]</strong>):</span></p><br/>";
             body += @"<table  border='1' cellspacing='0' cellpadding='0' style='border: solid #666 1px;font-size:13px;line-height:19px;'>
                                     <tr>
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>ID</span></td>
@@ -80,7 +85,7 @@ namespace TierraCreative.Controllers.Utility
                                     </tr>
                                     <tr>
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>CSN</span></td>
-                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>[FromCSNValue]</span></td>
+                                        <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>[Source] ([FromCSNValue])</span></td>
                                     </tr>
                                     <tr>
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>ISIN</span></td>
@@ -98,7 +103,9 @@ namespace TierraCreative.Controllers.Utility
 
             if (FormName == "AIL" || FormName == "Supplementary Dividend")
             {
-                body = "<p style='font-family:arial,Helvetica,sans-serif;font-size:13pxpadding-top:0;margin-top:0;line-height:19px;margin-bottom:10px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'> The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong>  (<strong>[Username]</strong>):</span></p>";
+                body = @"<p><img src='http://tierracreative.clientpreview.agency/Images/cis-email-header.png' alt='Computershare RBNZ Election Portal' width='500' height='156'></p>";
+
+                body += "<p style='font-family:arial,Helvetica,sans-serif;font-size:13pxpadding-top:0;margin-top:0;line-height:19px;margin-bottom:10px;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'> The following <strong>[FormName]</strong> transaction was approved by  <strong>[FullName]</strong> (<strong>[Username]</strong>):</span></p>";
                 body += @"<table border='1' cellspacing='0' cellpadding='0'>
                                     <tbody>
                                     <tr>
@@ -110,13 +117,13 @@ namespace TierraCreative.Controllers.Utility
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' ><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>
 From CSN</span></td>
                                         <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>
-<strong>[FromCSNValue]</strong></span></td>
+<strong>[Source]</strong> (<strong>[FromCSNValue]</strong>)</span></td>
                                     </tr>
                                     <tr>
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' ><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>
 To CSN</span></td>
                                         <td width='151' valign='top' style='font-weigth:bold;border: solid #666 1px;padding:5px;font-weight:bold;'><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>
-<strong>[ToCSNValue]</strong></span></td>
+<strong>[Destination]</strong> (<strong>[ToCSNValue]</strong>)</span></td>
                                     </tr>
                                     <tr>
                                         <td width='160' valign='top' style='border: solid #666 1px;padding:5px;' ><span style='font-family:arial,Helvetica,sans-serif;font-size:13px'>
@@ -143,10 +150,12 @@ Transfer Amount</span></td>
                     .Replace("[FormName]", FormName)
                     .Replace("[FullName]", FullName)
                     .Replace("[Username]", UserName)
-                    .Replace("[FromCSNValue]", FromCSNValue)
-                    .Replace("[ToCSNValue]", ToCSNValue)
+                    .Replace("[FromCSNValue]", SourceValue)
+                    .Replace("[ToCSNValue]", DestinationValue)
                     .Replace("[ISINValue]", ISINValue)
                     .Replace("[AmountValue]", AmountValue)
+                    .Replace("[Source]", Source)
+                    .Replace("[Destination]", Destination)
                     .Replace("[Timestamp]", Convert.ToDateTime(Timestamp).ToString("yyyy-MM-dd"));
 
             emailmodel.Subject = subject ;

@@ -112,6 +112,11 @@ namespace TierraCreative.Controllers
 
             var id = int.Parse(form["Id"]);
             var source = form["Source"];
+            var csnsource = "";
+            var sourceval = "";
+            var csndestination = "";
+            var destinationval = "";
+            var destination = form["To"];
 
             var submitUserEmail = string.Empty;
             var computershareEmail = string.Empty;
@@ -123,6 +128,11 @@ namespace TierraCreative.Controllers
                     case "DRP":
                         var drp = _context.DRPs.Include(a => a.User).Include(a => a.ReviewedUser).Include(a => a.CreatedByUser)
                                                .SingleOrDefault(x => x.DRPId == id);
+
+                        var drp_val = _context.CSNLookUps.SingleOrDefault(a => a.CSNName == drp.CSN);
+                        sourceval = drp_val.CSNAccount;
+                        csnsource = drp.CSN;
+
 
                         drp.ReviewedById = int.Parse(Session["UserId"].ToString());
                         drp.ReviewedDate = System.DateTime.Now;
@@ -143,6 +153,14 @@ namespace TierraCreative.Controllers
                     case "AIL":
                         var ail = _context.AILs.Include(a => a.User).Include(a => a.ReviewedUser).Include(a => a.CreatedByUser)
                                                .SingleOrDefault(x => x.AILId == id);
+
+                        var ail_val = _context.CSNLookUps.SingleOrDefault(a => a.CSNName == ail.FromCSN);
+                        sourceval = ail_val.CSNAccount;
+                        csnsource = ail.FromCSN;
+
+                        ail_val = _context.CSNLookUps.SingleOrDefault(a => a.CSNName == ail.ToCSN);
+                        destinationval = ail_val.CSNAccount;
+                        csndestination = ail.ToCSN;
 
                         ail.ReviewedById = int.Parse(Session["UserId"].ToString());
                         ail.ReviewedDate = System.DateTime.Now;
@@ -166,6 +184,13 @@ namespace TierraCreative.Controllers
                         var sP = _context.SupplementaryDividends.Include(a => a.User).Include(a => a.ReviewedUser).Include(a => a.CreatedByUser)
                                                                 .SingleOrDefault(x => x.SDId == id);
 
+                        var sp_val = _context.CSNLookUps.SingleOrDefault(a => a.CSNName == sP.FromCSN);
+                        sourceval = sp_val.CSNAccount;
+                        csnsource = sP.ToCSN;
+
+                        sp_val = _context.CSNLookUps.SingleOrDefault(a => a.CSNName == sP.ToCSN);
+                        destinationval = sp_val.CSNAccount;
+                        csnsource = sP.ToCSN;
                         sP.ReviewedById = int.Parse(Session["UserId"].ToString());
                         sP.ReviewedDate = System.DateTime.Now;
 
@@ -198,7 +223,11 @@ namespace TierraCreative.Controllers
                             fromEmail,
                             ApprovalEmail,
                             computershareEmail,
-                            submitUserEmail);
+                            submitUserEmail,
+                            csnsource,
+                            csndestination,
+                            sourceval,
+                            destinationval);
             }
             else
             {

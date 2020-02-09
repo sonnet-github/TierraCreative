@@ -90,6 +90,12 @@ namespace TierraCreative
 
             #endregion           
 
+
+            routes.MapRoute(
+              name: "PageError",
+              url: "PageError/{action}/{id}",
+              defaults: new { controller = "users", action = "PageError", id = UrlParameter.Optional }
+           );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
