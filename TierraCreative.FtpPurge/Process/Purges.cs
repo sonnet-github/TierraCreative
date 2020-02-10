@@ -76,7 +76,7 @@ namespace TierraCreative.FtpPurge.Process
 
                 return true;
             }
-            catch { }
+            catch(Exception ex) { }
 
             return false;
         }
