@@ -146,7 +146,7 @@ namespace TierraCreative.Controllers
                         FromCSNValue = drp.CSN;
                         ISINValue = drp.ISIN;
                         AmountValue = drp.DRPAmount.ToString();                        
-                        computershareEmail = "drp@computershare.co.nz";
+                        computershareEmail = System.Configuration.ConfigurationManager.AppSettings["DRPEmailRecipients"]; // "drp@computershare.co.nz";
                         submitUserEmail = drp.CreatedByUser.Email;
 
                         break;
@@ -176,7 +176,7 @@ namespace TierraCreative.Controllers
                         ISINValue = ail.ISIN;
                         AmountValue = ail.TransferAmount.ToString();                        
                         fromEmail = System.Configuration.ConfigurationManager.AppSettings["supportemail"];
-                        computershareEmail = "payments@computershare.co.nz";
+                        computershareEmail = System.Configuration.ConfigurationManager.AppSettings["AILEmailRecipients"]; // "payments@computershare.co.nz";
                         submitUserEmail = ail.CreatedByUser.Email;
 
                         break;
@@ -204,7 +204,7 @@ namespace TierraCreative.Controllers
                         ToCSNValue = sP.ToCSN;
                         ISINValue = sP.ISIN;
                         AmountValue = sP.TransferAmount.ToString();
-                        computershareEmail = "payments@computershare.co.nz";
+                        computershareEmail = System.Configuration.ConfigurationManager.AppSettings["SPDEmailRecipients"]; //"payments@computershare.co.nz";
                         submitUserEmail = sP.CreatedByUser.Email;
 
                         break;
