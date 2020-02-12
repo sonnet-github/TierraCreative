@@ -95,7 +95,8 @@ namespace TierraCreative.FtpPurge.Process
                                         fileNameField.CSN,
                                         fileNameField.ISIN,
                                         fileNameField.InstructionID,                                     
-                                        Convert.ToDateTime(fileNameField.TransferDate).ToString("yyyy-dd-MM"),
+                                        //Convert.ToDateTime(fileNameField.TransferDate).ToString("yyyy-dd-MM"),
+                                        Convert.ToDateTime(fileNameField.TransferDate).ToString("yyyy-MM-dd"),
                                         Convert.ToDouble(fileNameField.TransferQty).ToString("##.00"),
                                         fileNameField.TIN,
                                         Environment.NewLine);
