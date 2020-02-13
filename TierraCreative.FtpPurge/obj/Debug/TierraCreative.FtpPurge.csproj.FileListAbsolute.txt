@@ -10,3 +10,5 @@ C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\Tierra
 C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\TierraCreative.Model.pdb
 C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\EntityFramework.xml
 C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\EntityFramework.SqlServer.xml
+C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\Renci.SshNet.dll
+C:\2BInteractive\prg\TierraCreative_Git\TierraCreative.FtpPurge\bin\Debug\Renci.SshNet.xml

@@ -146,7 +146,7 @@ namespace TierraCreative.Controllers
                         FromCSNValue = drp.CSN;
                         ISINValue = drp.ISIN;
                         AmountValue = drp.DRPAmount.ToString();                        
-                        computershareEmail = "1drp@computershare.co.nz";
+                        computershareEmail = System.Configuration.ConfigurationManager.AppSettings["DRPEmailRecipients"]; // "drp@computershare.co.nz";
                         submitUserEmail = drp.CreatedByUser.Email;
 
                         break;
@@ -176,7 +176,7 @@ namespace TierraCreative.Controllers
                         ISINValue = ail.ISIN;
                         AmountValue = ail.TransferAmount.ToString();                        
                         fromEmail = System.Configuration.ConfigurationManager.AppSettings["supportemail"];
-                        computershareEmail = "1payments@computershare.co.nz";
+                        computershareEmail = System.Configuration.ConfigurationManager.AppSettings["AILEmailRecipients"]; // "payments@computershare.co.nz";
                         submitUserEmail = ail.CreatedByUser.Email;
 
                         break;
@@ -186,11 +186,13 @@ namespace TierraCreative.Controllers
 
                         var sp_val = _context.CSNLookUps.SingleOrDefault(a => a.CSNName == sP.FromCSN);
                         sourceval = sp_val.CSNAccount;
-                        csnsource = sP.FromCSN;
+                        csnsource = sP.ToCSN;
 
                         sp_val = _context.CSNLookUps.SingleOrDefault(a => a.CSNName == sP.ToCSN);
                         destinationval = sp_val.CSNAccount;
                         csndestination = sP.ToCSN;
+
+                        csnsource = sP.ToCSN;
                         sP.ReviewedById = int.Parse(Session["UserId"].ToString());
                         sP.ReviewedDate = System.DateTime.Now;
 
@@ -204,7 +206,7 @@ namespace TierraCreative.Controllers
                         ToCSNValue = sP.ToCSN;
                         ISINValue = sP.ISIN;
                         AmountValue = sP.TransferAmount.ToString();
-                        computershareEmail = "1payments@computershare.co.nz";
+                        computershareEmail = System.Configuration.ConfigurationManager.AppSettings["SPDEmailRecipients"]; //"payments@computershare.co.nz";
                         submitUserEmail = sP.CreatedByUser.Email;
 
                         break;
