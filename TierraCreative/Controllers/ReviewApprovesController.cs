@@ -186,11 +186,11 @@ namespace TierraCreative.Controllers
 
                         var sp_val = _context.CSNLookUps.SingleOrDefault(a => a.CSNName == sP.FromCSN);
                         sourceval = sp_val.CSNAccount;
-                        csnsource = sP.ToCSN;
+                        csnsource = sP.FromCSN;
 
                         sp_val = _context.CSNLookUps.SingleOrDefault(a => a.CSNName == sP.ToCSN);
                         destinationval = sp_val.CSNAccount;
-                        csnsource = sP.ToCSN;
+                        csndestination = sP.ToCSN;
                         sP.ReviewedById = int.Parse(Session["UserId"].ToString());
                         sP.ReviewedDate = System.DateTime.Now;
 
