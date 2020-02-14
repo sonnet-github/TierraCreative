@@ -19,7 +19,7 @@ namespace TierraCreative.Model
         [StringLength(500)]
         public string CSN { get; set; }
 
-        [StringLength(500)]
+        [StringLength(12)]
         public string ISIN { get; set; }
 
         [Display(Name = "DRP Amount")]
