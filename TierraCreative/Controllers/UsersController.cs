@@ -4,12 +4,16 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using TierraCreative.Controllers.Utility;
 using TierraCreative.Model;
 
 namespace TierraCreative.Controllers
 {
     public class UsersController : BaseController
     {
+        Utilities util = new Utilities();
+        string EncryptionKey = "TIE1900686166";
+
         #region -- Admin --
 
         public ActionResult Admin()
@@ -24,7 +28,8 @@ namespace TierraCreative.Controllers
             ViewBag.ErrorMessage = null;
 
             var username = form["txtusername"].ToString();
-            var password = form["txtpassword"].ToString();
+           
+            var password = util.Encrypt(form["txtpassword"].ToString(), EncryptionKey);
 
             var user = _context.Users.Include(x => x.Role).SingleOrDefault(x => x.UserName == username || x.Email == username);
             if (user != null)
@@ -180,6 +185,8 @@ namespace TierraCreative.Controllers
             }
             if (!error_ )
             {
+                user.Password = util.Encrypt(user.Password, EncryptionKey);
+
                 user.IsEnabled = true;
                 user.CreatedById = int.Parse(Session["UserId"].ToString());
                 user.CreatedDate = System.DateTime.Now;
@@ -246,6 +253,9 @@ namespace TierraCreative.Controllers
                 }
                 else
                 {
+                    //string EncryptionKey = util.GenerateEncryptionKey();
+                    //user.Password = util.Encrypt(user.Password, EncryptionKey);
+
                     user.UpdatedById = int.Parse(Session["UserId"].ToString());
                     user.UpdatedDate = System.DateTime.Now;
 
@@ -456,7 +466,8 @@ namespace TierraCreative.Controllers
             ViewBag.ErrorMessage = null;
 
             var username = form["txtusername"].ToString();
-            var password = form["txtpassword"].ToString();
+
+            var password = util.Encrypt(form["txtpassword"].ToString(), EncryptionKey);
 
             var user = _context.Users.Include(x => x.Role).SingleOrDefault(x => x.UserName == username || x.Email == username);
             if (user != null)
@@ -567,7 +578,7 @@ namespace TierraCreative.Controllers
             Utility.Utilities utilities = new Utility.Utilities();
 
             ViewBag.IsSuccess = null;
-
+           
             var newpassword = form["New password"].ToString();
 
             var userid = int.Parse(Session["UserId"].ToString());
@@ -601,7 +612,9 @@ namespace TierraCreative.Controllers
             {
                 ViewBag.IsFirstLog = Session["IsFirstLog"];
                 Session["IsFirstLog"] = "false";
-                user.Password = newpassword;
+
+                user.Password = util.Encrypt(newpassword, EncryptionKey); 
+
                 user.IsFirstLog = false;
                 _context.Entry(user).State = EntityState.Modified;
                 _context.SaveChanges();
@@ -730,7 +743,8 @@ namespace TierraCreative.Controllers
                 if (!error_)
                 {
                     //update password
-                    user.Password = newpassword;
+                    user.Password = util.Encrypt(newpassword, EncryptionKey);
+
                     _context.Entry(user).State = EntityState.Modified;
                     _context.SaveChanges();
 
